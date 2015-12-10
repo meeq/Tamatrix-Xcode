@@ -17,9 +17,9 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
     var tamaData = [Int: NSDictionary]()
 
     func tamaDataDidUpdate(sender: AnyObject) {
-        print("tamaDataDidUpdate")
-        self.tamaData = sender.object as! [Int: NSDictionary]
         dispatch_async(dispatch_get_main_queue()) {
+            self.tamaData = sender.object as! [Int: NSDictionary]
+            print("tamaDataDidUpdate: \(self.tamaData.count)")
             self.collectionView.reloadData()
         }
     }
@@ -63,8 +63,10 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             "TamaItemViewCell", forIndexPath: indexPath) as! TamaListViewCell
-        let entry: NSDictionary = self.tamaData[indexPath.item]!
-        cell.lcdImageView.screenData = entry["pixels"] as? String
+        if let entry: NSDictionary = self.tamaData[indexPath.item] {
+            cell.lcdImageView.screenData = entry["pixels"] as? String
+            cell.lcdImageView.setNeedsDisplay()
+        }
         return cell
     }
 

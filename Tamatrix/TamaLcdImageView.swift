@@ -20,16 +20,16 @@ class TamaLcdImageView: UIView {
 
     convenience init(frame: CGRect, pixelSize: Int) {
         self.init(frame: frame)
-        fatPixelSize = pixelSize
+        self.fatPixelSize = pixelSize
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.init(red: 0.878, green: 0.953, blue: 0.808, alpha: 1.0)
+        self.backgroundColor = UIColor.init(red: 0.878, green: 0.953, blue: 0.808, alpha: 1.0)
     }
 
     override func drawRect(rect: CGRect) {
-        if self.screenData == nil {
+        guard self.screenData != nil else {
             return
         }
         let ctx: CGContextRef = UIGraphicsGetCurrentContext()!

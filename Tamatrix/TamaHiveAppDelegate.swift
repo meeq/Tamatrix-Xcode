@@ -28,7 +28,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Data Helpers
 
     func startFetchTimer() {
-        let timer = NSTimer(timeInterval: 1.0, target: self, selector: "fetchData", userInfo: nil, repeats: false)
+        let timer = NSTimer(timeInterval: 0.5, target: self, selector: "fetchData", userInfo: nil, repeats: false)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
 
@@ -45,6 +45,9 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
                 return
             }
             let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            if jsonStr == "" {
+                self.startFetchTimer()
+            }
             do {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
                     self.processData(json)

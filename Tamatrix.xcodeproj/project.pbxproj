@@ -16,6 +16,7 @@
 		7A69B2EA1C192EF1000F1FBA /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
 		7A69B2ED1C1933DA000F1FBA /* TamaListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */; };
 		7A69B2EF1C19649A000F1FBA /* TamaLcdImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */; };
+		7AE8C4A81C1A1E3C00E1C4FD /* hexagon-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A71C1A1E3C00E1C4FD /* hexagon-selected.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7A69B2E81C192EF1000F1FBA /* hexagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hexagon.png; sourceTree = "<group>"; };
 		7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListViewCell.swift; sourceTree = "<group>"; };
 		7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaLcdImageView.swift; sourceTree = "<group>"; };
+		7AE8C4A71C1A1E3C00E1C4FD /* hexagon-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-selected.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +66,8 @@
 			children = (
 				7A0068AB1C18E5BE0098B165 /* TamaHiveAppDelegate.swift */,
 				7A0068AD1C18E5BE0098B165 /* TamaListViewController.swift */,
-				7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */,
 				7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */,
+				7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */,
 				7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */,
 				7A0068B41C18E5BE0098B165 /* Info.plist */,
 				7A0068AF1C18E5BE0098B165 /* Main.storyboard */,
@@ -78,6 +80,7 @@
 		7A69B2EB1C192EF6000F1FBA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7AE8C4A71C1A1E3C00E1C4FD /* hexagon-selected.png */,
 				7A69B2E71C192EF1000F1FBA /* header.png */,
 				7A69B2E81C192EF1000F1FBA /* hexagon.png */,
 			);
@@ -145,6 +148,7 @@
 				7A69B2EA1C192EF1000F1FBA /* hexagon.png in Resources */,
 				7A69B2E91C192EF1000F1FBA /* header.png in Resources */,
 				7A0068B31C18E5BE0098B165 /* Assets.xcassets in Resources */,
+				7AE8C4A81C1A1E3C00E1C4FD /* hexagon-selected.png in Resources */,
 				7A0068B11C18E5BE0098B165 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
