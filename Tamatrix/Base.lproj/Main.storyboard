@@ -39,11 +39,15 @@
                                                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                                     </accessibility>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1h4-NR-8dd">
+                                                    <rect key="frame" x="15" y="85" width="240" height="160"/>
+                                                    <color key="backgroundColor" red="0.8784313725490196" green="0.95294117647058818" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="hHr-Xf-t0a" kind="show" id="Ctk-FP-mCt"/>
+                                            <segue destination="hHr-Xf-t0a" kind="show" id="p83-y1-FD8"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

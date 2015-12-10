@@ -8,16 +8,68 @@
 
 import UIKit
 
+let TamaDataUpdateNotificationKey = "com.christopherbonhage.tamaDataUpdateNotification"
+
 @UIApplicationMain
 class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var lastseq: Int = 0
+    var tamaData: [Int: NSDictionary]!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.tamaData = [Int: NSDictionary]()
+        self.fetchData()
         return true
     }
+
+    // MARK: Data Helpers
+
+    func startFetchTimer() {
+        let timer = NSTimer(timeInterval: 1.0, target: self, selector: "fetchData", userInfo: nil, repeats: false)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+    }
+
+    func fetchData() {
+        var urlString = "http://127.0.0.1/tamaweb/gettama.php"
+        if lastseq > 0 {
+            urlString = "\(urlString)?lastseq=\(lastseq)"
+        }
+        let url = NSURL(string: urlString)
+        print("Fetching data: \(url!.absoluteString)")
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { data, response, error in
+            guard data != nil else {
+                print("Request failed: \(error)")
+                return
+            }
+            let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            do {
+                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                    self.processData(json)
+                } else {
+                    print("Could not parse JSON: \(jsonStr)")
+                }
+            } catch let parseError {
+                print("Parse error for JSON: \(jsonStr)")
+                print(parseError)
+            }
+        }
+        task.resume()
+    }
+
+    func processData(data: NSDictionary) {
+        self.lastseq = data["lastseq"] as! Int
+        for entry in data["tama"] as! [NSDictionary] {
+            let id = entry["id"] as! Int
+            self.tamaData[id] = entry
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName(TamaDataUpdateNotificationKey, object: self.tamaData)
+        self.startFetchTimer()
+    }
+
+    // MARK: Application Delegate callbacks
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
