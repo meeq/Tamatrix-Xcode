@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		7A0068AC1C18E5BE0098B165 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068AB1C18E5BE0098B165 /* AppDelegate.swift */; };
-		7A0068AE1C18E5BE0098B165 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068AD1C18E5BE0098B165 /* ViewController.swift */; };
+		7A0068AE1C18E5BE0098B165 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068AD1C18E5BE0098B165 /* ListViewController.swift */; };
 		7A0068B11C18E5BE0098B165 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A0068AF1C18E5BE0098B165 /* Main.storyboard */; };
 		7A0068B31C18E5BE0098B165 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A0068B21C18E5BE0098B165 /* Assets.xcassets */; };
+		7A0068BB1C18F0080098B165 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068BA1C18F0080098B165 /* ItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7A0068A81C18E5BD0098B165 /* Tamatrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamatrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A0068AB1C18E5BE0098B165 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7A0068AD1C18E5BE0098B165 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7A0068AD1C18E5BE0098B165 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		7A0068B01C18E5BE0098B165 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A0068B21C18E5BE0098B165 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A0068B41C18E5BE0098B165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A0068BA1C18F0080098B165 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,10 +55,11 @@
 			isa = PBXGroup;
 			children = (
 				7A0068AB1C18E5BE0098B165 /* AppDelegate.swift */,
-				7A0068AD1C18E5BE0098B165 /* ViewController.swift */,
+				7A0068AD1C18E5BE0098B165 /* ListViewController.swift */,
+				7A0068BA1C18F0080098B165 /* ItemViewController.swift */,
+				7A0068B41C18E5BE0098B165 /* Info.plist */,
 				7A0068AF1C18E5BE0098B165 /* Main.storyboard */,
 				7A0068B21C18E5BE0098B165 /* Assets.xcassets */,
-				7A0068B41C18E5BE0098B165 /* Info.plist */,
 			);
 			path = Tamatrix;
 			sourceTree = "<group>";
@@ -131,8 +134,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A0068AE1C18E5BE0098B165 /* ViewController.swift in Sources */,
+				7A0068AE1C18E5BE0098B165 /* ListViewController.swift in Sources */,
 				7A0068AC1C18E5BE0098B165 /* AppDelegate.swift in Sources */,
+				7A0068BB1C18F0080098B165 /* ItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +278,7 @@
 				7A0068B91C18E5BE0098B165 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
