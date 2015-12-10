@@ -10,7 +10,7 @@ import UIKit
 
 class TamaLcdImageView: UIView {
 
-    var fatPixelSize: Int = 5
+    var pixelSize: Int = 1
     var screenData: String?
 
     required init?(coder: NSCoder) {
@@ -32,7 +32,11 @@ class TamaLcdImageView: UIView {
             return
         }
         let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
-        var destRect: CGRect = CGRect(x: 0, y: 0, width: fatPixelSize - 1, height: fatPixelSize - 1)
+        var pixelFillSize = pixelSize
+        if pixelSize > 3 {
+            pixelFillSize -= 1
+        }
+        var destRect: CGRect = CGRect(x: 0, y: 0, width: pixelFillSize, height: pixelFillSize)
         let pixels = [Character](self.screenData!.characters)
         var i: Int = 0
         for srcY in 0..<32 {
@@ -49,7 +53,7 @@ class TamaLcdImageView: UIView {
                 default:
                     break
                 }
-                destRect.origin = CGPoint(x: srcX * fatPixelSize, y: srcY * fatPixelSize)
+                destRect.origin = CGPoint(x: srcX * pixelSize, y: srcY * pixelSize)
                 CGContextFillRect(ctx, destRect)
                 i += 1
             }

@@ -31,7 +31,7 @@ class TamaItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.lcdImageView.fatPixelSize = 25
+        self.lcdImageView.pixelSize = 25
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "tamaDataDidUpdate:",
             name: TamaDataUpdateNotificationKey,

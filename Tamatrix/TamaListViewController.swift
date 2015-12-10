@@ -70,5 +70,9 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
         return cell
     }
 
+    func collectionView(collectionView: UICollectionView, canFocusItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
 }
 

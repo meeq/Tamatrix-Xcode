@@ -46,6 +46,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
             }
             let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
             if jsonStr == "" {
+                // Sometimes the response comes back blank; just ignore it and try again later.
                 self.startFetchTimer()
             }
             do {

@@ -8,6 +8,10 @@
 
 import UIKit
 
+let tamaCellBgNormal = UIImage(named: "hexagon.png")
+let tamaCellBgFocused = UIImage(named: "hexagon-invert.png")
+let tamaCellBgSelected = UIImage(named: "hexagon-invert-dark.png")
+
 class TamaListViewCell: UICollectionViewCell {
 
     @IBOutlet var lcdImageView: TamaLcdImageView!
@@ -23,12 +27,29 @@ class TamaListViewCell: UICollectionViewCell {
     }
 
     func initContentView() {
-        backgroundView = UIImageView(image: UIImage(named: "hexagon.png"))
-        selectedBackgroundView = UIImageView(image: UIImage(named: "hexagon-selected.png"))
+        backgroundView = UIImageView(image: tamaCellBgNormal)
+        selectedBackgroundView = UIImageView(image: tamaCellBgSelected)
 
         let lcdFrame = CGRect(x: 15, y: 85, width: 240, height: 160)
         lcdImageView = TamaLcdImageView(frame: lcdFrame)
+        lcdImageView.pixelSize = 5
         contentView.addSubview(lcdImageView)
+    }
+
+    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+
+        coordinator.addCoordinatedAnimations({
+                let backgroundView = self.backgroundView as! UIImageView
+                if self == context.nextFocusedView {
+                    backgroundView.image = tamaCellBgFocused
+                } else {
+                    backgroundView.image = tamaCellBgNormal
+                }
+                backgroundView.setNeedsDisplay()
+            },
+            completion: nil
+        )
     }
 
 }
