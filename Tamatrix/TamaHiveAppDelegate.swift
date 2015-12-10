@@ -28,7 +28,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Data Helpers
 
     func startFetchTimer() {
-        let timer = NSTimer(timeInterval: 0.5, target: self, selector: "fetchData", userInfo: nil, repeats: false)
+        let timer = NSTimer(timeInterval: 0.1, target: self, selector: "fetchData", userInfo: nil, repeats: false)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
 
@@ -38,7 +38,6 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
             urlString = "\(urlString)?lastseq=\(lastseq)"
         }
         let url = NSURL(string: urlString)
-        print("Fetching data: \(url!.absoluteString)")
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { data, response, error in
             guard data != nil else {
                 print("Request failed: \(error)")
