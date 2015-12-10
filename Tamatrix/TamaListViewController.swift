@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     // MARK: Properties
 
@@ -23,8 +23,7 @@ class ListViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set up the view controller
-        self.collectionView.backgroundColor = UIColor.whiteColor()
-        self.collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        self.collectionView.registerClass(TamaListViewCell.self, forCellWithReuseIdentifier: "TamaItemViewCell")
         self.tama = [Int: NSDictionary]()
         self.fetchData()
     }
@@ -32,7 +31,7 @@ class ListViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // TODO Configure ItemViewController for selection
         if let selection = collectionView.indexPathsForSelectedItems() {
-            let itemViewController = segue.destinationViewController as! ItemViewController
+            let itemViewController = segue.destinationViewController as! TamaItemViewController
             itemViewController.setItem(selection.first!)
         }
     }
@@ -49,7 +48,7 @@ class ListViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         // TODO Set up a real cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TamaItemViewCell", forIndexPath: indexPath) as! TamaListViewCell
 
         return cell
     }
@@ -87,8 +86,10 @@ class ListViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             let id = entry["id"] as! Int
             self.tama[id] = entry
         }
-        self.collectionView.reloadData()
-        print("Reloading collection view")
+        dispatch_async(dispatch_get_main_queue()) {
+            self.collectionView.reloadData()
+            print("Reloading collection view")
+        }
     }
 
 

@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
