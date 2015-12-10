@@ -12,11 +12,18 @@ class TamaItemViewController: UIViewController {
 
     // MARK: Properties
 
-    // MARK: Actions
+    @IBOutlet weak var lcdImageView: TamaLcdImageView!
 
-    func setItem(item: AnyObject) {
-        // TODO Something
-        print("ItemViewController.setItem(\(item)")
+    var tamaId: Int = 0
+
+    func tamaDataDidUpdate(sender: AnyObject) {
+        dispatch_async(dispatch_get_main_queue()) {
+            let tamaData = sender.object as! [Int: NSDictionary]
+            if let entry = tamaData[self.tamaId] {
+                self.lcdImageView.screenData = entry["pixels"] as? String
+                self.lcdImageView.setNeedsDisplay()
+            }
+        }
     }
 
     // MARK: Overrides
@@ -24,6 +31,15 @@ class TamaItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.lcdImageView.fatPixelSize = 25
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "tamaDataDidUpdate:",
+            name: TamaDataUpdateNotificationKey,
+            object: nil)
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }

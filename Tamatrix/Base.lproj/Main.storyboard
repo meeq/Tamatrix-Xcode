@@ -26,24 +26,12 @@
                                     <inset key="sectionInset" minX="30" minY="30" maxX="30" maxY="30"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TamaListViewCell" id="TCV-hK-lvH" customClass="TamaListViewCell" customModule="Tama_Hive" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" contentMode="center" reuseIdentifier="TamaListViewCell" id="TCV-hK-lvH" customClass="TamaListViewCell" customModule="Tama_Hive" customModuleProvider="target">
                                         <rect key="frame" x="30" y="30" width="270" height="330"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="270" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hexagon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nqf-iC-z4x">
-                                                    <rect key="frame" x="0.0" y="0.0" width="270" height="330"/>
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                                    </accessibility>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1h4-NR-8dd">
-                                                    <rect key="frame" x="15" y="85" width="240" height="160"/>
-                                                    <color key="backgroundColor" red="0.8784313725490196" green="0.95294117647058818" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
-                                                </imageView>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
@@ -83,15 +71,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDE-rW-eIa">
-                                <rect key="frame" x="581" y="161" width="758" height="757"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oID-J5-9OH" customClass="TamaLcdImageView" customModule="Tama_Hive" customModuleProvider="target">
+                                <rect key="frame" x="360" y="140" width="1200" height="800"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
+                        <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="XSK-ST-vOa" appends="YES" id="TSW-dM-bzM"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="lcdImageView" destination="oID-J5-9OH" id="yk4-rg-Ybg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIs-f1-Xx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="XSK-ST-vOa">
@@ -106,6 +99,5 @@
     </scenes>
     <resources>
         <image name="header.png" width="800" height="133"/>
-        <image name="hexagon.png" width="270" height="330"/>
     </resources>
 </document>

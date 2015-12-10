@@ -19,7 +19,6 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func tamaDataDidUpdate(sender: AnyObject) {
         dispatch_async(dispatch_get_main_queue()) {
             self.tamaData = sender.object as! [Int: NSDictionary]
-            print("tamaDataDidUpdate: \(self.tamaData.count)")
             self.collectionView.reloadData()
         }
     }
@@ -29,8 +28,7 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set up the view controller
-        self.collectionView.registerClass(
-            TamaListViewCell.self, forCellWithReuseIdentifier: "TamaItemViewCell")
+        self.collectionView.remembersLastFocusedIndexPath = true
         // Listen for data-change events
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "tamaDataDidUpdate:",
@@ -44,9 +42,11 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // TODO Configure ItemViewController for selection
-        if let selection = collectionView.indexPathsForSelectedItems() {
+        if let indexPath = collectionView.indexPathsForSelectedItems()?.first {
             let itemViewController = segue.destinationViewController as! TamaItemViewController
-            itemViewController.setItem(selection.first!)
+            if let entry: NSDictionary = self.tamaData[indexPath.item] {
+                itemViewController.tamaId = entry["id"] as! Int
+            }
         }
     }
 
@@ -62,14 +62,13 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            "TamaItemViewCell", forIndexPath: indexPath) as! TamaListViewCell
+            "TamaListViewCell", forIndexPath: indexPath) as! TamaListViewCell
         if let entry: NSDictionary = self.tamaData[indexPath.item] {
             cell.lcdImageView.screenData = entry["pixels"] as? String
             cell.lcdImageView.setNeedsDisplay()
         }
         return cell
     }
-
 
 }
 

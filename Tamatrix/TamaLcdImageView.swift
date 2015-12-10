@@ -15,16 +15,15 @@ class TamaLcdImageView: UIView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        // Not used; no need to implement.
-    }
-
-    convenience init(frame: CGRect, pixelSize: Int) {
-        self.init(frame: frame)
-        self.fatPixelSize = pixelSize
+        self.setBackgroundColor()
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.setBackgroundColor()
+    }
+
+    func setBackgroundColor() {
         self.backgroundColor = UIColor.init(red: 0.878, green: 0.953, blue: 0.808, alpha: 1.0)
     }
 
