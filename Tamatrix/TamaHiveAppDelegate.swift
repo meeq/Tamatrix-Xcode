@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  TamaHiveAppDelegate.swift
 //  Tamatrix
 //
 //  Created by Christopher Bonhage on 12/9/15.

@@ -1,5 +1,5 @@
 //
-//  ItemViewController.swift
+//  TamaItemViewController.swift
 //  Tamatrix
 //
 //  Created by Christopher Bonhage on 12/9/15.
