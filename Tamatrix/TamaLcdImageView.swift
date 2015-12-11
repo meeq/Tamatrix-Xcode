@@ -27,6 +27,14 @@ class TamaLcdImageView: UIView {
         self.backgroundColor = UIColor.init(red: 0.878, green: 0.953, blue: 0.808, alpha: 1.0)
     }
 
+    func setTamaData(entry: NSDictionary?) {
+        guard entry != nil else {
+            return
+        }
+        self.screenData = entry!["pixels"] as? String
+        self.setNeedsDisplay()
+    }
+
     override func drawRect(rect: CGRect) {
         guard self.screenData != nil else {
             return

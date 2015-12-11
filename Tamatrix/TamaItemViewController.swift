@@ -19,10 +19,7 @@ class TamaItemViewController: UIViewController {
     func tamaDataDidUpdate(sender: AnyObject) {
         dispatch_async(dispatch_get_main_queue()) {
             let tamaData = sender.object as! [Int: NSDictionary]
-            if let entry = tamaData[self.tamaId] {
-                self.lcdImageView.screenData = entry["pixels"] as? String
-                self.lcdImageView.setNeedsDisplay()
-            }
+            self.lcdImageView.setTamaData(tamaData[self.tamaId])
         }
     }
 

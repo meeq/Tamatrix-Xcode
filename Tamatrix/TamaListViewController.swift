@@ -31,10 +31,7 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func redrawVisibleCells() {
         for indexPath in self.collectionView.indexPathsForVisibleItems() {
             let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! TamaListViewCell
-            if let entry: NSDictionary = self.tamaData[indexPath.item] {
-                cell.lcdImageView.screenData = entry["pixels"] as? String
-                cell.lcdImageView.setNeedsDisplay()
-            }
+            cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
         }
     }
 
@@ -78,10 +75,7 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             "TamaListViewCell", forIndexPath: indexPath) as! TamaListViewCell
-        if let entry: NSDictionary = self.tamaData[indexPath.item] {
-            cell.lcdImageView.screenData = entry["pixels"] as? String
-            cell.lcdImageView.setNeedsDisplay()
-        }
+        cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
         return cell
     }
 
