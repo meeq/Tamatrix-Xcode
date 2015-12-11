@@ -16,6 +16,7 @@
 		7A69B2EA1C192EF1000F1FBA /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
 		7A69B2ED1C1933DA000F1FBA /* TamaListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */; };
 		7A69B2EF1C19649A000F1FBA /* TamaLcdImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */; };
+		7AE766DF1C1A880300078E68 /* TamaListHiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */; };
 		7AE8C4AB1C1A37F000E1C4FD /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
 		7AE8C4AC1C1A37F000E1C4FD /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		7A69B2E81C192EF1000F1FBA /* hexagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hexagon.png; sourceTree = "<group>"; };
 		7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListViewCell.swift; sourceTree = "<group>"; };
 		7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaLcdImageView.swift; sourceTree = "<group>"; };
+		7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListHiveLayout.swift; sourceTree = "<group>"; };
 		7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert-dark.png"; sourceTree = "<group>"; };
 		7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,11 +71,12 @@
 				7A0068AB1C18E5BE0098B165 /* TamaHiveAppDelegate.swift */,
 				7A0068AD1C18E5BE0098B165 /* TamaListViewController.swift */,
 				7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */,
+				7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */,
 				7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */,
 				7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */,
-				7A0068B41C18E5BE0098B165 /* Info.plist */,
 				7A0068AF1C18E5BE0098B165 /* Main.storyboard */,
 				7A0068B21C18E5BE0098B165 /* Assets.xcassets */,
+				7A0068B41C18E5BE0098B165 /* Info.plist */,
 				7A69B2EB1C192EF6000F1FBA /* Images */,
 			);
 			path = Tamatrix;
@@ -167,6 +170,7 @@
 				7A0068AE1C18E5BE0098B165 /* TamaListViewController.swift in Sources */,
 				7A69B2EF1C19649A000F1FBA /* TamaLcdImageView.swift in Sources */,
 				7A0068AC1C18E5BE0098B165 /* TamaHiveAppDelegate.swift in Sources */,
+				7AE766DF1C1A880300078E68 /* TamaListHiveLayout.swift in Sources */,
 				7A0068BB1C18F0080098B165 /* TamaItemViewController.swift in Sources */,
 				7A69B2ED1C1933DA000F1FBA /* TamaListViewCell.swift in Sources */,
 			);
