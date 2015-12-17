@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7A0068A71C18E5BD0098B165"
-               BuildableName = "Tama-Hive.app"
-               BlueprintName = "Tama-Hive"
+               BlueprintIdentifier = "7A151F1F1C23447E002AC8DA"
+               BuildableName = "Tama-Hive-iOS.app"
+               BlueprintName = "Tama-Hive-iOS"
                ReferencedContainer = "container:Tamatrix.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A0068A71C18E5BD0098B165"
-            BuildableName = "Tama-Hive.app"
-            BlueprintName = "Tama-Hive"
+            BlueprintIdentifier = "7A151F1F1C23447E002AC8DA"
+            BuildableName = "Tama-Hive-iOS.app"
+            BlueprintName = "Tama-Hive-iOS"
             ReferencedContainer = "container:Tamatrix.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A0068A71C18E5BD0098B165"
-            BuildableName = "Tama-Hive.app"
-            BlueprintName = "Tama-Hive"
+            BlueprintIdentifier = "7A151F1F1C23447E002AC8DA"
+            BuildableName = "Tama-Hive-iOS.app"
+            BlueprintName = "Tama-Hive-iOS"
             ReferencedContainer = "container:Tamatrix.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A0068A71C18E5BD0098B165"
-            BuildableName = "Tama-Hive.app"
-            BlueprintName = "Tama-Hive"
+            BlueprintIdentifier = "7A151F1F1C23447E002AC8DA"
+            BuildableName = "Tama-Hive-iOS.app"
+            BlueprintName = "Tama-Hive-iOS"
             ReferencedContainer = "container:Tamatrix.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

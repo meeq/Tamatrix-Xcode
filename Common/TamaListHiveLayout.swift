@@ -30,7 +30,6 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
         var emptyRow: Bool = true
 
         for item in 0 ..< collectionView!.numberOfItemsInSection(0) {
-
             let indexPath = NSIndexPath(forItem: item, inSection: 0)
             let itemAttrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
             itemAttrs.frame = CGRect(x: xOffset, y: yOffset, width: cellWidth, height: cellHeight)

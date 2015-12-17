@@ -8,11 +8,9 @@
 
 import UIKit
 
-class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class TamaListViewController: UICollectionViewController {
 
     // MARK: Properties
-
-    @IBOutlet weak var collectionView: UICollectionView!
 
     var tamaData = [Int: NSDictionary]()
 
@@ -21,7 +19,7 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
             let oldData = self.tamaData
             self.tamaData = sender.object as! [Int: NSDictionary]
             if oldData.count != self.tamaData.count {
-                self.collectionView.reloadData()
+                self.collectionView?.reloadData()
             } else {
                 self.redrawVisibleCells()
             }
@@ -29,9 +27,11 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
 
     func redrawVisibleCells() {
-        for indexPath in self.collectionView.indexPathsForVisibleItems() {
-            let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! TamaListViewCell
-            cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
+        if let collectionView = self.collectionView {
+            for indexPath in collectionView.indexPathsForVisibleItems() {
+                let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TamaListViewCell
+                cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
+            }
         }
     }
 
@@ -39,8 +39,6 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set up the view controller
-        self.collectionView.remembersLastFocusedIndexPath = true
         // Listen for data-change events
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "tamaDataDidUpdate:",
@@ -54,7 +52,7 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // TODO Configure ItemViewController for selection
-        if let indexPath = collectionView.indexPathsForSelectedItems()?.first {
+        if let indexPath = collectionView!.indexPathsForSelectedItems()?.first {
             let itemViewController = segue.destinationViewController as! TamaItemViewController
             if let entry: NSDictionary = self.tamaData[indexPath.item] {
                 itemViewController.tamaId = entry["id"] as! Int
@@ -64,22 +62,22 @@ class TamaListViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     // MARK: UICollectionViewDataSource
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.tamaData.count;
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             "TamaListViewCell", forIndexPath: indexPath) as! TamaListViewCell
         cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, canFocusItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func collectionView(collectionView: UICollectionView, canFocusItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
 

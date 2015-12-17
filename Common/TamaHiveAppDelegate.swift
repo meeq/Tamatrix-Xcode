@@ -9,7 +9,7 @@
 import UIKit
 
 let TamaDataUpdateNotificationKey = "com.christopherbonhage.tamaDataUpdateNotification"
-let TamaDataURL = "http://127.0.0.1/tamaweb/gettama.php"
+let TamaDataURL = "http://tamahive.spritesserver.nl/gettama.php"
 
 @UIApplicationMain
 class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,7 +29,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
 
     func startFetchTimer() {
         let timer = NSTimer(
-            timeInterval: 0.2,
+            timeInterval: 1.0,
             target: self,
             selector: "fetchData",
             userInfo: nil,
@@ -42,6 +42,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
         if lastseq > 0 {
             urlString = "\(urlString)?lastseq=\(lastseq)"
         }
+        print("Fetching data from \(urlString)")
         let url = NSURL(string: urlString)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { data, response, error in
             guard data != nil else {
