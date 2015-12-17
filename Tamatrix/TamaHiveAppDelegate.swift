@@ -9,6 +9,7 @@
 import UIKit
 
 let TamaDataUpdateNotificationKey = "com.christopherbonhage.tamaDataUpdateNotification"
+let TamaDataURL = "http://127.0.0.1/tamaweb/gettama.php"
 
 @UIApplicationMain
 class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,6 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     var tamaData: [Int: NSDictionary]!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         self.tamaData = [Int: NSDictionary]()
         self.fetchData()
         return true
@@ -28,12 +28,17 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Data Helpers
 
     func startFetchTimer() {
-        let timer = NSTimer(timeInterval: 0.1, target: self, selector: "fetchData", userInfo: nil, repeats: false)
+        let timer = NSTimer(
+            timeInterval: 0.2,
+            target: self,
+            selector: "fetchData",
+            userInfo: nil,
+            repeats: false)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
 
     func fetchData() {
-        var urlString = "http://127.0.0.1/tamaweb/gettama.php"
+        var urlString = TamaDataURL
         if lastseq > 0 {
             urlString = "\(urlString)?lastseq=\(lastseq)"
         }
