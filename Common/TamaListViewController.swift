@@ -12,12 +12,12 @@ class TamaListViewController: UICollectionViewController {
 
     // MARK: Properties
 
-    var tamaData = [Int: NSDictionary]()
+    private var tamaData = [Int: NSDictionary]()
 
     func tamaDataDidUpdate(sender: AnyObject) {
+        let oldData = self.tamaData
+        self.tamaData = sender.object as! [Int: NSDictionary]
         dispatch_async(dispatch_get_main_queue()) {
-            let oldData = self.tamaData
-            self.tamaData = sender.object as! [Int: NSDictionary]
             if oldData.count != self.tamaData.count {
                 self.collectionView?.reloadData()
             } else {
@@ -28,6 +28,7 @@ class TamaListViewController: UICollectionViewController {
 
     func redrawVisibleCells() {
         if let collectionView = self.collectionView {
+            // Update the pixel data for all visible LCDs
             for indexPath in collectionView.indexPathsForVisibleItems() {
                 let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TamaListViewCell
                 cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
@@ -51,11 +52,11 @@ class TamaListViewController: UICollectionViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // TODO Configure ItemViewController for selection
+        // Configure ItemViewController for indexed selection
         if let indexPath = collectionView!.indexPathsForSelectedItems()?.first {
             let itemViewController = segue.destinationViewController as! TamaItemViewController
-            if let entry: NSDictionary = self.tamaData[indexPath.item] {
-                itemViewController.tamaId = entry["id"] as! Int
+            if let tamaId = self.tamaData[indexPath.item]?["id"] as? Int {
+                itemViewController.tamaId = tamaId
             }
         }
     }

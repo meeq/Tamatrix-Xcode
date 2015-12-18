@@ -17,8 +17,9 @@ class TamaItemViewController: UIViewController {
     var tamaId: Int = 0
 
     func tamaDataDidUpdate(sender: AnyObject) {
+        let tamaData = sender.object as! [Int: NSDictionary]
+        // Update the LCD image on the main thread
         dispatch_async(dispatch_get_main_queue()) {
-            let tamaData = sender.object as! [Int: NSDictionary]
             self.lcdImageView.setTamaData(tamaData[self.tamaId])
         }
     }
@@ -27,7 +28,7 @@ class TamaItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Register for data update notifications
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "tamaDataDidUpdate:",
             name: TamaDataUpdateNotificationKey,
@@ -35,6 +36,7 @@ class TamaItemViewController: UIViewController {
     }
 
     deinit {
+        // Stop listening for data updates
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     

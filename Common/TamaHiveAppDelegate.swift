@@ -8,8 +8,6 @@
 
 import UIKit
 
-let TamaDataURL = "http://tamahive.spritesserver.nl/gettama.php"
-
 @UIApplicationMain
 class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,7 +15,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     var dataController: TamaDataController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        dataController = TamaDataController(url: TamaDataURL)
+        dataController = TamaDataController()
         return true
     }
 
@@ -26,7 +24,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        dataController?.stopFetchTimer()
+        dataController?.stopFetching()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {

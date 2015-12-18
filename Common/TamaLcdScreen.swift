@@ -11,7 +11,7 @@ import UIKit
 private let tamaScreenWidth: Int = 48
 private let tamaScreenHeight: Int = 32
 
-private let tamaScreenMinGapPixelSize: Int = 5
+private let tamaScreenMinGapPixelSize: CGFloat = 5
 private let tamaScreenBgColor = UIColor.init(red: 0.878, green: 0.953, blue: 0.808, alpha: 1.0)
 private let tamaScreenFgColors: [Character: UIColor] = [
     "A": UIColor.init(red: 0.937, green: 1.0, blue: 0.878, alpha: 1.0),
@@ -20,19 +20,18 @@ private let tamaScreenFgColors: [Character: UIColor] = [
     "D": UIColor.init(red: 0.0627, green: 0.125, blue: 0, alpha: 1.0)
 ]
 
-private func tamaCalculateLcdPixelSize(size: CGSize) -> Int {
+private func tamaCalculateLcdPixelSize(size: CGSize) -> CGFloat {
     let x: CGFloat = size.width / CGFloat(tamaScreenWidth)
     let y: CGFloat = size.height / CGFloat(tamaScreenHeight)
-    return Int(min(x, y))
+    return min(x, y)
 }
 
-func tamaDrawLcdInCurrentCGContext(data: String, size: CGSize) {
-    let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
+func tamaDrawLcdInCGContext(ctx: CGContextRef, data: String, size: CGSize) {
     // Determine pixel sizes
     let pixelSize = tamaCalculateLcdPixelSize(size)
     var pixelFillSize = pixelSize
     if pixelSize >= tamaScreenMinGapPixelSize {
-        pixelFillSize -= 1
+        pixelFillSize *= 0.9
     }
     // Clear the background
     CGContextSetFillColorWithColor(ctx, tamaScreenBgColor.CGColor)
@@ -47,7 +46,9 @@ func tamaDrawLcdInCurrentCGContext(data: String, size: CGSize) {
             if let cgColor = tamaScreenFgColors[pixelChars[i]]?.CGColor {
                 CGContextSetFillColorWithColor(ctx, cgColor)
             }
-            destRect.origin = CGPoint(x: srcX * pixelSize, y: srcY * pixelSize)
+            let destX = CGFloat(srcX) * pixelSize
+            let destY = CGFloat(srcY) * pixelSize
+            destRect.origin = CGPoint(x: destX, y: destY)
             CGContextFillRect(ctx, destRect)
             i += 1
         }

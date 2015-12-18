@@ -10,22 +10,20 @@ import UIKit
 
 class TamaLcdImageView: UIView {
 
-    var screenData: String?
+    private var screenData: String?
 
     func setTamaData(entry: NSDictionary?) {
-        guard entry != nil else {
-            return
+        if let pixelData = entry?["pixels"] as? String {
+            self.screenData = pixelData
+            self.setNeedsDisplay()
         }
-        self.screenData = entry!["pixels"] as? String
-        self.setNeedsDisplay()
     }
 
     override func drawRect(rect: CGRect) {
-        guard self.screenData != nil else {
-            return
+        if let pixelData = self.screenData {
+            let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
+            tamaDrawLcdInCGContext(ctx, data: pixelData, size: self.frame.size)
         }
-        tamaDrawLcdInCurrentCGContext(self.screenData!, size: self.frame.size)
-        
     }
     
 }

@@ -8,15 +8,13 @@
 
 import WatchKit
 
-let TamaDataURL = "http://tamahive.spritesserver.nl/gettama.php"
-
 class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
 
     var dataController: TamaDataController?
     var tamaData = [Int: NSDictionary]()
 
     func applicationDidFinishLaunching() {
-        dataController = TamaDataController(url: TamaDataURL)
+        dataController = TamaDataController()
         // Listen for data-change events
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "tamaDataDidUpdate:",
@@ -36,13 +34,12 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func reloadRootControllers() {
-        let controllers = [String](count: self.tamaData.count, repeatedValue: "TamaInterfaceController")
-        let keys = self.tamaData.keys.sort()
+        let names = [String](count: self.tamaData.count, repeatedValue: "TamaInterfaceController")
         var contexts = [NSDictionary]()
-        for key in keys {
+        for key in self.tamaData.keys.sort() {
             contexts.append(self.tamaData[key]!)
         }
-        WKInterfaceController.reloadRootControllersWithNames(controllers, contexts: contexts)
+        WKInterfaceController.reloadRootControllersWithNames(names, contexts: contexts)
     }
 
     func applicationDidBecomeActive() {
@@ -52,7 +49,7 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationWillResignActive() {
         // Stop timers
-        dataController?.stopFetchTimer()
+        dataController?.stopFetching()
     }
 
 }

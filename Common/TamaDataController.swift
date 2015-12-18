@@ -8,7 +8,7 @@
 
 import Foundation
 
-let defaultTamaDataURL = "http://tamahive.spritesserver.nl/gettama.php"
+let tamaDefaultDataURL = "http://tamahive.spritesserver.nl/gettama.php"
 let TamaDataUpdateNotificationKey = "com.christopherbonhage.tamaDataUpdateNotification"
 
 class TamaDataController: NSObject {
@@ -27,11 +27,11 @@ class TamaDataController: NSObject {
     }
 
     convenience override init() {
-        self.init(url: defaultTamaDataURL)
+        self.init(url: tamaDefaultDataURL)
     }
 
     func startFetchTimer() {
-        self.stopFetchTimer()
+        self.stopFetching()
         self.fetchTimer = NSTimer(
             timeInterval: self.fetchInterval,
             target: self,
@@ -41,7 +41,7 @@ class TamaDataController: NSObject {
         NSRunLoop.mainRunLoop().addTimer(self.fetchTimer!, forMode: NSRunLoopCommonModes)
     }
 
-    func stopFetchTimer() {
+    func stopFetching() {
         self.fetchTimer?.invalidate()
         self.fetchTimer = nil
     }

@@ -18,12 +18,14 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
         cache.removeAll()
 
         contentWidth = CGRectGetWidth(collectionView!.bounds)
+        // TODO Fix hard-coded layout sizes to support iOS devices
         let verticalMargin: CGFloat = 50
-        let leftMargin: CGFloat = 50
+        let leftMargin: CGFloat = 150
         let rightMargin: CGFloat = contentWidth - leftMargin
         let cellWidth: CGFloat = 270
         let cellHeight: CGFloat = 330
-        let cellPadding: CGFloat = 40
+        let cellXPadding: CGFloat = 60
+        let cellYPadding: CGFloat = 0
         var xOffset: CGFloat = leftMargin
         var yOffset: CGFloat = verticalMargin
         var insetRow: Bool = false
@@ -36,9 +38,9 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
             cache.append(itemAttrs)
             emptyRow = false
 
-            xOffset += cellPadding + cellWidth
+            xOffset += cellXPadding + cellWidth
             if xOffset + cellWidth > rightMargin {
-                yOffset += cellHeight
+                yOffset += cellYPadding + cellHeight
                 xOffset = leftMargin
                 insetRow = !insetRow
                 emptyRow = true

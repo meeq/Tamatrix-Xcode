@@ -8,28 +8,29 @@
 
 import UIKit
 
-let tamaCellBgNormal = UIImage(named: "hexagon.png")
-let tamaCellBgFocused = UIImage(named: "hexagon-invert.png")
-let tamaCellBgSelected = UIImage(named: "hexagon-invert-dark.png")
-
 class TamaListViewCell: UICollectionViewCell {
+
+    private let tamaCellBgNormal = UIImage(named: "hexagon.png")
+    private let tamaCellBgFocused = UIImage(named: "hexagon-invert.png")
+    private let tamaCellBgSelected = UIImage(named: "hexagon-invert-dark.png")
 
     @IBOutlet var lcdImageView: TamaLcdImageView!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.initContentView()
+        self.prepareContentView()
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.initContentView()
+        self.prepareContentView()
     }
 
-    func initContentView() {
+    func prepareContentView() {
         backgroundView = UIImageView(image: tamaCellBgNormal)
         selectedBackgroundView = UIImageView(image: tamaCellBgSelected)
 
+        // TODO Remove hard-coded LCD frame size; use autolayout?
         let lcdFrame = CGRect(x: 15, y: 85, width: 240, height: 160)
         lcdImageView = TamaLcdImageView(frame: lcdFrame)
         contentView.addSubview(lcdImageView)
@@ -41,9 +42,9 @@ class TamaListViewCell: UICollectionViewCell {
         coordinator.addCoordinatedAnimations({
                 let backgroundView = self.backgroundView as! UIImageView
                 if self == context.nextFocusedView {
-                    backgroundView.image = tamaCellBgFocused
+                    backgroundView.image = self.tamaCellBgFocused
                 } else {
-                    backgroundView.image = tamaCellBgNormal
+                    backgroundView.image = self.tamaCellBgNormal
                 }
                 backgroundView.setNeedsDisplay()
             },

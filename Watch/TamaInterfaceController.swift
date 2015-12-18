@@ -22,9 +22,6 @@ class TamaInterfaceController: WKInterfaceController {
         super.awakeWithContext(context)
 
         // Set properties from context
-        if let contextId = context as? Int {
-            self.tamaId = contextId
-        }
         if let contextDict = context as? NSDictionary {
             self.tamaId = contextDict["id"] as! Int
             self.tamaPixels = contextDict["pixels"] as? String
@@ -78,10 +75,10 @@ class TamaInterfaceController: WKInterfaceController {
         // Create a drawing context for the LCD
         let imageSize = CGSizeMake(240, 160)
         UIGraphicsBeginImageContext(imageSize)
-        tamaDrawLcdInCurrentCGContext(pixels, size: imageSize)
+        let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
+        tamaDrawLcdInCGContext(ctx, data: pixels, size: imageSize)
 
         // Convert the graphics context to an image
-        let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
         let result = UIImage(CGImage: CGBitmapContextCreateImage(ctx)!)
         UIGraphicsEndImageContext()
         return result
