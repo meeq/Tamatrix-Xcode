@@ -32,7 +32,6 @@ class TamaListViewCell: UICollectionViewCell {
 
         let lcdFrame = CGRect(x: 15, y: 85, width: 240, height: 160)
         lcdImageView = TamaLcdImageView(frame: lcdFrame)
-        lcdImageView.pixelSize = 5
         contentView.addSubview(lcdImageView)
     }
 

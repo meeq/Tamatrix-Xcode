@@ -17,20 +17,21 @@
                     </connections>
                 </controller>
             </objects>
+            <point key="canvasLocation" x="611" y="430"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Tama-Hive-->
         <scene sceneID="VVQ-w8-pSC">
             <objects>
-                <controller id="iEI-Q1-3iO">
+                <controller title="Tama-Hive" id="iEI-Q1-3iO">
                     <items>
                         <label alignment="center" verticalAlignment="center" text="Fetching..." id="595-Xq-HIU"/>
                     </items>
                     <connections>
-                        <segue destination="AgC-eL-Hgc" kind="relationship" relationship="nextPage" id="tgH-3C-euj"/>
+                        <segue destination="AgC-eL-Hgc" kind="relationship" relationship="nextPage" id="bfr-eS-1E7"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="640" y="630"/>
+            <point key="canvasLocation" x="412" y="430"/>
         </scene>
     </scenes>
 </document>

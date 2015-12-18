@@ -37,6 +37,10 @@
 		7A7DC6501C238861006DBD58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC64B1C238861006DBD58 /* LaunchScreen.storyboard */; };
 		7A7DC6511C238861006DBD58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC64D1C238861006DBD58 /* Main.storyboard */; };
 		7A7DC6531C238A63006DBD58 /* TamaDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */; };
+		7A9AFD411C23B3B700D0A8F6 /* TamaDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */; };
+		7A9AFD431C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
+		7A9AFD441C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
+		7A9AFD451C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
 		7AE766DF1C1A880300078E68 /* TamaListHiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */; };
 		7AE8C4AB1C1A37F000E1C4FD /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
 		7AE8C4AC1C1A37F000E1C4FD /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
@@ -110,6 +114,7 @@
 		7A7DC64C1C238861006DBD58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A7DC64D1C238861006DBD58 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7A7DC64E1C238861006DBD58 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaLcdScreen.swift; sourceTree = "<group>"; };
 		7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListHiveLayout.swift; sourceTree = "<group>"; };
 		7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert-dark.png"; sourceTree = "<group>"; };
 		7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert.png"; sourceTree = "<group>"; };
@@ -167,12 +172,13 @@
 			isa = PBXGroup;
 			children = (
 				7A0068AB1C18E5BE0098B165 /* TamaHiveAppDelegate.swift */,
+				7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */,
 				7A0068AD1C18E5BE0098B165 /* TamaListViewController.swift */,
 				7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */,
 				7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */,
 				7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */,
 				7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */,
-				7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */,
+				7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -180,9 +186,9 @@
 		7A151F211C23447E002AC8DA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				7A7DC64A1C238861006DBD58 /* Assets.xcassets */,
-				7A7DC64B1C238861006DBD58 /* LaunchScreen.storyboard */,
 				7A7DC64D1C238861006DBD58 /* Main.storyboard */,
+				7A7DC64B1C238861006DBD58 /* LaunchScreen.storyboard */,
+				7A7DC64A1C238861006DBD58 /* Assets.xcassets */,
 				7A7DC64E1C238861006DBD58 /* Info.plist */,
 			);
 			path = iOS;
@@ -393,7 +399,9 @@
 			files = (
 				7A0068AE1C18E5BE0098B165 /* TamaListViewController.swift in Sources */,
 				7A69B2EF1C19649A000F1FBA /* TamaLcdImageView.swift in Sources */,
+				7A9AFD411C23B3B700D0A8F6 /* TamaDataController.swift in Sources */,
 				7A0068AC1C18E5BE0098B165 /* TamaHiveAppDelegate.swift in Sources */,
+				7A9AFD441C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */,
 				7AE766DF1C1A880300078E68 /* TamaListHiveLayout.swift in Sources */,
 				7A0068BB1C18F0080098B165 /* TamaItemViewController.swift in Sources */,
 				7A69B2ED1C1933DA000F1FBA /* TamaListViewCell.swift in Sources */,
@@ -408,6 +416,7 @@
 				7A151F341C234583002AC8DA /* TamaListViewController.swift in Sources */,
 				7A7DC6491C2384D0006DBD58 /* TamaDataController.swift in Sources */,
 				7A151F361C234588002AC8DA /* TamaListHiveLayout.swift in Sources */,
+				7A9AFD431C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */,
 				7A151F331C234581002AC8DA /* TamaHiveAppDelegate.swift in Sources */,
 				7A151F381C23458D002AC8DA /* TamaLcdImageView.swift in Sources */,
 				7A151F351C234586002AC8DA /* TamaItemViewController.swift in Sources */,
@@ -418,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A9AFD451C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */,
 				7A7DC6391C237E68006DBD58 /* TamaExtensionDelegate.swift in Sources */,
 				7A7DC6371C237E68006DBD58 /* TamaInterfaceController.swift in Sources */,
 				7A7DC6531C238A63006DBD58 /* TamaDataController.swift in Sources */,

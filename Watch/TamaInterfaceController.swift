@@ -1,5 +1,5 @@
 //
-//  InterfaceController.swift
+//  TamaInterfaceController.swift
 //  Tama-Hive-Watch Extension
 //
 //  Created by Christopher Bonhage on 12/17/15.
@@ -14,14 +14,20 @@ class TamaInterfaceController: WKInterfaceController {
 
     var tamaId: Int = 0
     var tamaPixels: String?
+    var isActive: Bool = false
 
     @IBOutlet weak var lcd: WKInterfaceImage!
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
 
+        // Set properties from context
         if let contextId = context as? Int {
             self.tamaId = contextId
+        }
+        if let contextDict = context as? NSDictionary {
+            self.tamaId = contextDict["id"] as! Int
+            self.tamaPixels = contextDict["pixels"] as? String
         }
 
         // Listen for data-change events
@@ -39,6 +45,8 @@ class TamaInterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        self.isActive = true
+        // Draw the LCD on activation if we have pixel data
         if (tamaPixels != nil) {
             let image = self.drawLcdImage(tamaPixels!)
             self.lcd.setImage(image)
@@ -48,62 +56,32 @@ class TamaInterfaceController: WKInterfaceController {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        self.isActive = false
     }
 
     func tamaDataDidUpdate(sender: AnyObject) {
         let newData = sender.object as! [Int: NSDictionary]
-        var image: UIImage?
-        if let entry = newData[self.tamaId] {
-            if let pixels = entry["pixels"] as? String {
-                self.tamaPixels = pixels
-                image = self.drawLcdImage(pixels)
-            }
-        }
-        if (image != nil) {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.lcd.setImage(image)
+        // Extract the pixel data from the fetched dump
+        if let pixels = newData[self.tamaId]?["pixels"] as? String {
+            self.tamaPixels = pixels
+            if self.isActive {
+                let lcdImage = self.drawLcdImage(pixels)
+                // Schedule the image to be updated in the UI
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.lcd.setImage(lcdImage)
+                }
             }
         }
     }
 
     func drawLcdImage(pixels: String) -> UIImage {
-        let pixelSize: Int = 5
-        var pixelFillSize = pixelSize
-        if pixelSize > 3 {
-            pixelFillSize -= 1
-        }
-        let imageSize = CGSizeMake(48.0 * CGFloat(pixelSize), 32.0 * CGFloat(pixelSize))
-
-        // TODO De-duplicate this against TamaLcdImageView
+        // Create a drawing context for the LCD
+        let imageSize = CGSizeMake(240, 160)
         UIGraphicsBeginImageContext(imageSize)
+        tamaDrawLcdInCurrentCGContext(pixels, size: imageSize)
+
+        // Convert the graphics context to an image
         let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
-
-        CGContextSetRGBFillColor(ctx, 0.937, 1.0, 0.878, 1.0)
-        CGContextFillRect(ctx, CGRect(origin: CGPointZero, size: imageSize))
-
-        var destRect = CGRect(x: 0, y: 0, width: pixelFillSize, height: pixelFillSize)
-        let chars = [Character](pixels.characters)
-        var i: Int = 0
-        for srcY in 0..<32 {
-            for srcX in 0..<48 {
-                switch chars[i] {
-                case "A":
-                    CGContextSetRGBFillColor(ctx, 0.937, 1.0, 0.878, 1.0)
-                case "B":
-                    CGContextSetRGBFillColor(ctx, 0.627, 0.690, 0.565, 1.0)
-                case "C":
-                    CGContextSetRGBFillColor(ctx, 0.439, 0.439, 0.345, 1.0)
-                case "D":
-                    CGContextSetRGBFillColor(ctx, 0.0627, 0.125, 0, 1.0)
-                default:
-                    break
-                }
-                destRect.origin = CGPoint(x: srcX * pixelSize, y: srcY * pixelSize)
-                CGContextFillRect(ctx, destRect)
-                i += 1
-            }
-        }
-
         let result = UIImage(CGImage: CGBitmapContextCreateImage(ctx)!)
         UIGraphicsEndImageContext()
         return result

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7A151F1F1C23447E002AC8DA"
-               BuildableName = "Tama-Hive-iOS.app"
+               BuildableName = "Tama-Hive.app"
                BlueprintName = "Tama-Hive-iOS"
                ReferencedContainer = "container:Tamatrix.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A151F1F1C23447E002AC8DA"
-            BuildableName = "Tama-Hive-iOS.app"
+            BuildableName = "Tama-Hive.app"
             BlueprintName = "Tama-Hive-iOS"
             ReferencedContainer = "container:Tamatrix.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A151F1F1C23447E002AC8DA"
-            BuildableName = "Tama-Hive-iOS.app"
+            BuildableName = "Tama-Hive.app"
             BlueprintName = "Tama-Hive-iOS"
             ReferencedContainer = "container:Tamatrix.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7A151F1F1C23447E002AC8DA"
-            BuildableName = "Tama-Hive-iOS.app"
+            BuildableName = "Tama-Hive.app"
             BlueprintName = "Tama-Hive-iOS"
             ReferencedContainer = "container:Tamatrix.xcodeproj">
          </BuildableReference>

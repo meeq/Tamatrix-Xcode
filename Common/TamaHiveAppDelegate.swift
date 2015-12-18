@@ -18,7 +18,6 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         dataController = TamaDataController(url: TamaDataURL)
-        dataController!.fetchData()
         return true
     }
 

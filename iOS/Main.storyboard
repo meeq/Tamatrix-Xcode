@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -21,17 +22,17 @@
             </objects>
             <point key="canvasLocation" x="335" y="567"/>
         </scene>
-        <!--Tama List View Controller-->
+        <!--Tama-Hive-->
         <scene sceneID="YJg-Qv-TDS">
             <objects>
-                <collectionViewController id="sjT-o3-zxx" customClass="TamaListViewController" customModule="Tama_Hive_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="sjT-o3-zxx" customClass="TamaListViewController" customModule="Tama_Hive" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="mXe-Bg-mPR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewLayout key="collectionViewLayout" id="Tqb-ap-5B9" customClass="TamaListHiveLayout" customModule="Tama_Hive_iOS" customModuleProvider="target"/>
+                        <collectionViewLayout key="collectionViewLayout" id="Tqb-ap-5B9" customClass="TamaListHiveLayout" customModule="Tama_Hive" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TamaListViewCell" id="md4-pV-T3J" customClass="TamaListViewCell" customModule="Tama_Hive_iOS" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TamaListViewCell" id="md4-pV-T3J" customClass="TamaListViewCell" customModule="Tama_Hive" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -39,6 +40,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="Nlp-CJ-eXA" kind="show" id="Q8Z-fI-JnY"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -46,7 +50,7 @@
                             <outlet property="delegate" destination="sjT-o3-zxx" id="3nL-mK-1ds"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="Eac-eN-FuK"/>
+                    <navigationItem key="navigationItem" title="Tama-Hive" id="Eac-eN-FuK"/>
                     <connections>
                         <outlet property="collectionView" destination="mXe-Bg-mPR" id="1rg-uK-3LP"/>
                     </connections>
@@ -58,6 +62,43 @@
                 </imageView>
             </objects>
             <point key="canvasLocation" x="1003" y="567"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="4IS-2P-2gV">
+            <objects>
+                <viewController title="Detail" id="Nlp-CJ-eXA" customClass="TamaItemViewController" customModule="Tama_Hive" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tVL-f0-zdI"/>
+                        <viewControllerLayoutGuide type="bottom" id="UrC-Pp-7bc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hvw-WT-gt3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-dn-vaJ" customClass="TamaLcdImageView" customModule="Tama_Hive" customModuleProvider="target">
+                                <rect key="frame" x="60" y="140" width="480" height="320"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="EyX-dn-vaJ" secondAttribute="height" multiplier="3:2" id="6gk-aW-9St"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerX" secondItem="hvw-WT-gt3" secondAttribute="centerX" id="i0m-7A-2l5"/>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerY" secondItem="hvw-WT-gt3" secondAttribute="centerY" id="n6S-SW-s4U"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lcdImageView" destination="EyX-dn-vaJ" id="YTt-Ge-uIP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dSU-xj-2Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="477" y="-125"/>
         </scene>
     </scenes>
     <resources>
