@@ -12,21 +12,20 @@ import Foundation
 
 class TamaInterfaceController: WKInterfaceController {
 
-    var tamaId: Int = 0
-    var tamaPixels: String?
-    var isActive: Bool = false
+    private var tamaId: Int = 0
+    private var tamaPixels: String?
+    private var isActive: Bool = false
+    private let fatPixelSize: CGFloat = 5
 
     @IBOutlet weak var lcd: WKInterfaceImage!
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-
         // Set properties from context
         if let contextDict = context as? NSDictionary {
             self.tamaId = contextDict["id"] as! Int
             self.tamaPixels = contextDict["pixels"] as? String
         }
-
         // Listen for data-change events
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "tamaDataDidUpdate:",
@@ -61,6 +60,7 @@ class TamaInterfaceController: WKInterfaceController {
         // Extract the pixel data from the fetched dump
         if let pixels = newData[self.tamaId]?["pixels"] as? String {
             self.tamaPixels = pixels
+            // Only draw if the view is visible
             if self.isActive {
                 let lcdImage = self.drawLcdImage(pixels)
                 // Schedule the image to be updated in the UI
@@ -72,12 +72,14 @@ class TamaInterfaceController: WKInterfaceController {
     }
 
     func drawLcdImage(pixels: String) -> UIImage {
+        // Determine image size
+        let width = CGFloat(tamaScreenWidth) * fatPixelSize
+        let height = CGFloat(tamaScreenHeight) * fatPixelSize
+        let size = CGSizeMake(width, height)
         // Create a drawing context for the LCD
-        let imageSize = CGSizeMake(240, 160)
-        UIGraphicsBeginImageContext(imageSize)
+        UIGraphicsBeginImageContext(size)
         let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
-        tamaDrawLcdInCGContext(ctx, data: pixels, size: imageSize)
-
+        tamaDrawLcdInCGContext(ctx, data: pixels, size: size)
         // Convert the graphics context to an image
         let result = UIImage(CGImage: CGBitmapContextCreateImage(ctx)!)
         UIGraphicsEndImageContext()

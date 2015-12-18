@@ -10,8 +10,8 @@ import WatchKit
 
 class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
 
-    var dataController: TamaDataController?
-    var tamaData = [Int: NSDictionary]()
+    private var dataController: TamaDataController?
+    private var tamaData = [Int: NSDictionary]()
 
     func applicationDidFinishLaunching() {
         dataController = TamaDataController()

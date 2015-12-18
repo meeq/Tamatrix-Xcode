@@ -8,19 +8,19 @@
 
 import UIKit
 
-private let tamaScreenWidth: Int = 48
-private let tamaScreenHeight: Int = 32
+let tamaScreenWidth: Int = 48
+let tamaScreenHeight: Int = 32
 
 private let tamaScreenMinGapPixelSize: CGFloat = 5
-private let tamaScreenBgColor = UIColor.init(red: 0.878, green: 0.953, blue: 0.808, alpha: 1.0)
+private let tamaScreenBgColor = UIColor.init(red: 0.878, green: 0.953, blue: 0.808, alpha: 1)
 private let tamaScreenFgColors: [Character: UIColor] = [
-    "A": UIColor.init(red: 0.937, green: 1.0, blue: 0.878, alpha: 1.0),
-    "B": UIColor.init(red: 0.627, green: 0.690, blue: 0.565, alpha: 1.0),
-    "C": UIColor.init(red: 0.439, green: 0.439, blue: 0.345, alpha: 1.0),
-    "D": UIColor.init(red: 0.0627, green: 0.125, blue: 0, alpha: 1.0)
+    "A": UIColor.init(red: 0.937, green: 1.0, blue: 0.878, alpha: 1),
+    "B": UIColor.init(red: 0.627, green: 0.690, blue: 0.565, alpha: 1),
+    "C": UIColor.init(red: 0.439, green: 0.439, blue: 0.345, alpha: 1),
+    "D": UIColor.init(red: 0.0627, green: 0.125, blue: 0, alpha: 1)
 ]
 
-private func tamaCalculateLcdPixelSize(size: CGSize) -> CGFloat {
+private func tamaCalculateLcdFatPixelSize(size: CGSize) -> CGFloat {
     let x: CGFloat = size.width / CGFloat(tamaScreenWidth)
     let y: CGFloat = size.height / CGFloat(tamaScreenHeight)
     return min(x, y)
@@ -28,7 +28,7 @@ private func tamaCalculateLcdPixelSize(size: CGSize) -> CGFloat {
 
 func tamaDrawLcdInCGContext(ctx: CGContextRef, data: String, size: CGSize) {
     // Determine pixel sizes
-    let pixelSize = tamaCalculateLcdPixelSize(size)
+    let pixelSize = tamaCalculateLcdFatPixelSize(size)
     var pixelFillSize = pixelSize
     if pixelSize >= tamaScreenMinGapPixelSize {
         pixelFillSize *= 0.9

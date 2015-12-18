@@ -19,6 +19,7 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
 
         contentWidth = CGRectGetWidth(collectionView!.bounds)
         // TODO Fix hard-coded layout sizes to support iOS devices
+        // TODO Turn cell background into a decoration to fix tight hive focus?
         let verticalMargin: CGFloat = 50
         let leftMargin: CGFloat = 150
         let rightMargin: CGFloat = contentWidth - leftMargin
@@ -28,29 +29,29 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
         let cellYPadding: CGFloat = 0
         var xOffset: CGFloat = leftMargin
         var yOffset: CGFloat = verticalMargin
-        var insetRow: Bool = false
-        var emptyRow: Bool = true
+        var isInsetRow: Bool = false
+        var isEmptyRow: Bool = true
 
         for item in 0 ..< collectionView!.numberOfItemsInSection(0) {
             let indexPath = NSIndexPath(forItem: item, inSection: 0)
             let itemAttrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
             itemAttrs.frame = CGRect(x: xOffset, y: yOffset, width: cellWidth, height: cellHeight)
             cache.append(itemAttrs)
-            emptyRow = false
+            isEmptyRow = false
 
             xOffset += cellXPadding + cellWidth
             if xOffset + cellWidth > rightMargin {
                 yOffset += cellYPadding + cellHeight
                 xOffset = leftMargin
-                insetRow = !insetRow
-                emptyRow = true
-                if insetRow {
+                isInsetRow = !isInsetRow
+                isEmptyRow = true
+                if isInsetRow {
                     xOffset += cellHeight / 2
                 }
             }
         }
         contentHeight = yOffset + verticalMargin
-        if !emptyRow {
+        if !isEmptyRow {
             contentHeight += cellHeight
         }
     }
