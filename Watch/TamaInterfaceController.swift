@@ -51,14 +51,17 @@ class TamaInterfaceController: WKInterfaceController {
     }
 
     func tamaDataDidUpdate(sender: AnyObject) {
-        dispatch_async(dispatch_get_main_queue()) {
-            let newData = sender.object as! [Int: NSDictionary]
-            if let entry = newData[self.tamaId] {
-                if let pixels = entry["pixels"] as? String {
-                    self.tamaPixels = pixels
-                    let image = self.drawLcdImage(pixels)
-                    self.lcd.setImage(image)
-                }
+        let newData = sender.object as! [Int: NSDictionary]
+        var image: UIImage?
+        if let entry = newData[self.tamaId] {
+            if let pixels = entry["pixels"] as? String {
+                self.tamaPixels = pixels
+                image = self.drawLcdImage(pixels)
+            }
+        }
+        if (image != nil) {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.lcd.setImage(image)
             }
         }
     }
@@ -71,6 +74,7 @@ class TamaInterfaceController: WKInterfaceController {
         }
         let imageSize = CGSizeMake(48.0 * CGFloat(pixelSize), 32.0 * CGFloat(pixelSize))
 
+        // TODO De-duplicate this against TamaLcdImageView
         UIGraphicsBeginImageContext(imageSize)
         let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
 

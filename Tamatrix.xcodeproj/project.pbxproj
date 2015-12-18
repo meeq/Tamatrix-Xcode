@@ -31,8 +31,7 @@
 		7A7DC6321C237E68006DBD58 /* Tama-Hive-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A7DC6311C237E68006DBD58 /* Tama-Hive-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A7DC6371C237E68006DBD58 /* TamaInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6361C237E68006DBD58 /* TamaInterfaceController.swift */; };
 		7A7DC6391C237E68006DBD58 /* TamaExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6381C237E68006DBD58 /* TamaExtensionDelegate.swift */; };
-		7A7DC63B1C237E68006DBD58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC63A1C237E68006DBD58 /* Assets.xcassets */; };
-		7A7DC63F1C237E68006DBD58 /* Tama-Hive-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7A7DC6251C237E68006DBD58 /* Tama-Hive-Watch.app */; };
+		7A7DC63F1C237E68006DBD58 /* Tama-Hive.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7A7DC6251C237E68006DBD58 /* Tama-Hive.app */; };
 		7A7DC6491C2384D0006DBD58 /* TamaDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */; };
 		7A7DC64F1C238861006DBD58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC64A1C238861006DBD58 /* Assets.xcassets */; };
 		7A7DC6501C238861006DBD58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC64B1C238861006DBD58 /* LaunchScreen.storyboard */; };
@@ -78,7 +77,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				7A7DC63F1C237E68006DBD58 /* Tama-Hive-Watch.app in Embed Watch Content */,
+				7A7DC63F1C237E68006DBD58 /* Tama-Hive.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,27 +85,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7A0068A81C18E5BD0098B165 /* Tama-Hive-TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive-TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A0068A81C18E5BD0098B165 /* Tama-Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A0068AB1C18E5BE0098B165 /* TamaHiveAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaHiveAppDelegate.swift; sourceTree = "<group>"; };
 		7A0068AD1C18E5BE0098B165 /* TamaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaListViewController.swift; sourceTree = "<group>"; };
 		7A0068B01C18E5BE0098B165 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A0068B21C18E5BE0098B165 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A0068B41C18E5BE0098B165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaItemViewController.swift; sourceTree = "<group>"; };
-		7A151F201C23447E002AC8DA /* Tama-Hive-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A151F201C23447E002AC8DA /* Tama-Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A69B2E71C192EF1000F1FBA /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
 		7A69B2E81C192EF1000F1FBA /* hexagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hexagon.png; sourceTree = "<group>"; };
 		7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListViewCell.swift; sourceTree = "<group>"; };
 		7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaLcdImageView.swift; sourceTree = "<group>"; };
-		7A7DC6251C237E68006DBD58 /* Tama-Hive-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A7DC6251C237E68006DBD58 /* Tama-Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7DC6281C237E68006DBD58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		7A7DC62A1C237E68006DBD58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A7DC62C1C237E68006DBD58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A7DC6311C237E68006DBD58 /* Tama-Hive-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Tama-Hive-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7DC6361C237E68006DBD58 /* TamaInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaInterfaceController.swift; sourceTree = "<group>"; };
 		7A7DC6381C237E68006DBD58 /* TamaExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaExtensionDelegate.swift; sourceTree = "<group>"; };
-		7A7DC63A1C237E68006DBD58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7A7DC63C1C237E68006DBD58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A7DC63C1C237E68006DBD58 /* Info-Extension.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Extension.plist"; sourceTree = "<group>"; };
 		7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaDataController.swift; sourceTree = "<group>"; };
 		7A7DC64A1C238861006DBD58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A7DC64C1C238861006DBD58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -147,10 +145,9 @@
 			children = (
 				7A151F211C23447E002AC8DA /* iOS */,
 				7A151F321C2344B0002AC8DA /* TV */,
+				7A7DC6351C237E68006DBD58 /* Watch */,
 				7A0068AA1C18E5BD0098B165 /* Common */,
 				7A69B2EB1C192EF6000F1FBA /* Images */,
-				7A7DC6261C237E68006DBD58 /* Tama-Hive-Watch */,
-				7A7DC6351C237E68006DBD58 /* Tama-Hive-Watch Extension */,
 				7A0068A91C18E5BD0098B165 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -158,9 +155,9 @@
 		7A0068A91C18E5BD0098B165 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7A0068A81C18E5BD0098B165 /* Tama-Hive-TV.app */,
-				7A151F201C23447E002AC8DA /* Tama-Hive-iOS.app */,
-				7A7DC6251C237E68006DBD58 /* Tama-Hive-Watch.app */,
+				7A0068A81C18E5BD0098B165 /* Tama-Hive.app */,
+				7A151F201C23447E002AC8DA /* Tama-Hive.app */,
+				7A7DC6251C237E68006DBD58 /* Tama-Hive.app */,
 				7A7DC6311C237E68006DBD58 /* Tama-Hive-Watch Extension.appex */,
 			);
 			name = Products;
@@ -212,25 +209,17 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		7A7DC6261C237E68006DBD58 /* Tama-Hive-Watch */ = {
-			isa = PBXGroup;
-			children = (
-				7A7DC6271C237E68006DBD58 /* Interface.storyboard */,
-				7A7DC62A1C237E68006DBD58 /* Assets.xcassets */,
-				7A7DC62C1C237E68006DBD58 /* Info.plist */,
-			);
-			path = "Tama-Hive-Watch";
-			sourceTree = "<group>";
-		};
-		7A7DC6351C237E68006DBD58 /* Tama-Hive-Watch Extension */ = {
+		7A7DC6351C237E68006DBD58 /* Watch */ = {
 			isa = PBXGroup;
 			children = (
 				7A7DC6361C237E68006DBD58 /* TamaInterfaceController.swift */,
 				7A7DC6381C237E68006DBD58 /* TamaExtensionDelegate.swift */,
-				7A7DC63A1C237E68006DBD58 /* Assets.xcassets */,
-				7A7DC63C1C237E68006DBD58 /* Info.plist */,
+				7A7DC6271C237E68006DBD58 /* Interface.storyboard */,
+				7A7DC62A1C237E68006DBD58 /* Assets.xcassets */,
+				7A7DC62C1C237E68006DBD58 /* Info.plist */,
+				7A7DC63C1C237E68006DBD58 /* Info-Extension.plist */,
 			);
-			path = "Tama-Hive-Watch Extension";
+			path = Watch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +239,7 @@
 			);
 			name = "Tama-Hive-TV";
 			productName = Tamatrix;
-			productReference = 7A0068A81C18E5BD0098B165 /* Tama-Hive-TV.app */;
+			productReference = 7A0068A81C18E5BD0098B165 /* Tama-Hive.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7A151F1F1C23447E002AC8DA /* Tama-Hive-iOS */ = {
@@ -269,7 +258,7 @@
 			);
 			name = "Tama-Hive-iOS";
 			productName = "Tama-Hive-iOS";
-			productReference = 7A151F201C23447E002AC8DA /* Tama-Hive-iOS.app */;
+			productReference = 7A151F201C23447E002AC8DA /* Tama-Hive.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7A7DC6241C237E68006DBD58 /* Tama-Hive-Watch */ = {
@@ -286,7 +275,7 @@
 			);
 			name = "Tama-Hive-Watch";
 			productName = "Tama-Hive-Watch";
-			productReference = 7A7DC6251C237E68006DBD58 /* Tama-Hive-Watch.app */;
+			productReference = 7A7DC6251C237E68006DBD58 /* Tama-Hive.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		7A7DC6301C237E68006DBD58 /* Tama-Hive-Watch Extension */ = {
@@ -392,7 +381,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A7DC63B1C237E68006DBD58 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,7 +556,7 @@
 				INFOPLIST_FILE = TV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-TV";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tama-Hive";
 			};
 			name = Debug;
 		};
@@ -580,7 +568,7 @@
 				INFOPLIST_FILE = TV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-TV";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tama-Hive";
 			};
 			name = Release;
 		};
@@ -593,7 +581,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tama-Hive";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -608,7 +596,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tama-Hive";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -617,7 +605,7 @@
 		7A7DC6411C237E68006DBD58 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "Tama-Hive-Watch Extension/Info.plist";
+				INFOPLIST_FILE = "Watch/Info-Extension.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-iOS.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -631,7 +619,7 @@
 		7A7DC6421C237E68006DBD58 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "Tama-Hive-Watch Extension/Info.plist";
+				INFOPLIST_FILE = "Watch/Info-Extension.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-iOS.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -648,9 +636,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Tama_Hive_Watch_Extension;
-				INFOPLIST_FILE = "Tama-Hive-Watch/Info.plist";
+				INFOPLIST_FILE = Watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-iOS.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tama-Hive";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -664,9 +652,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Tama_Hive_Watch_Extension;
-				INFOPLIST_FILE = "Tama-Hive-Watch/Info.plist";
+				INFOPLIST_FILE = Watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-iOS.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tama-Hive";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -711,6 +699,7 @@
 				7A7DC6421C237E68006DBD58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7A7DC6441C237E68006DBD58 /* Build configuration list for PBXNativeTarget "Tama-Hive-Watch" */ = {
 			isa = XCConfigurationList;
@@ -719,6 +708,7 @@
 				7A7DC6461C237E68006DBD58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

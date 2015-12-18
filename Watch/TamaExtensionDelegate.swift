@@ -17,7 +17,6 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
         dataController = TamaDataController(url: TamaDataURL)
-        dataController!.fetchData()
         // Listen for data-change events
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "tamaDataDidUpdate:",
@@ -26,11 +25,11 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func tamaDataDidUpdate(sender: AnyObject) {
-        dispatch_async(dispatch_get_main_queue()) {
-            let oldData = self.tamaData
-            let newData = sender.object as! [Int: NSDictionary]
-            self.tamaData = newData
-            if oldData.count != newData.count {
+        let oldData = self.tamaData
+        let newData = sender.object as! [Int: NSDictionary]
+        self.tamaData = newData
+        if oldData.count != newData.count {
+            dispatch_async(dispatch_get_main_queue()) {
                 self.reloadRootControllers()
             }
         }
