@@ -39,11 +39,11 @@ class TamaLcdImageView: UIView {
         guard self.screenData != nil else {
             return
         }
-        let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
         var pixelFillSize = pixelSize
         if pixelSize > 3 {
             pixelFillSize -= 1
         }
+        let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
         var destRect: CGRect = CGRect(x: 0, y: 0, width: pixelFillSize, height: pixelFillSize)
         let pixels = [Character](self.screenData!.characters)
         var i: Int = 0
