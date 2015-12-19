@@ -10,7 +10,7 @@
             <objects>
                 <controller identifier="TamaInterfaceController" title="Tama-Hive" id="AgC-eL-Hgc" customClass="TamaInterfaceController" customModule="Tama_Hive_Watch_Extension">
                     <items>
-                        <imageView alignment="center" verticalAlignment="center" contentMode="scaleAspectFit" id="Uev-jR-4XF"/>
+                        <imageView alignment="center" verticalAlignment="center" contentMode="center" id="Uev-jR-4XF"/>
                     </items>
                     <connections>
                         <outlet property="lcd" destination="Uev-jR-4XF" id="qIg-PZ-YW4"/>

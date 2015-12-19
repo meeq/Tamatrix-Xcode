@@ -50,23 +50,23 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
 
         var xOffset: CGFloat = leftInset
         var yOffset: CGFloat = verticalInset
-        var isInsetRow: Bool = false
+        var isStaggeredRow: Bool = false
         var isEmptyRow: Bool = true
 
         for item in 0 ..< collectionView!.numberOfItemsInSection(0) {
             let indexPath = NSIndexPath(forItem: item, inSection: 0)
             let itemAttrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-            itemAttrs.frame = CGRect(x: xOffset, y: yOffset, width: cellWidth, height: cellHeight)
+            itemAttrs.frame = CGRectMake(xOffset, yOffset, cellWidth, cellHeight)
             cache.append(itemAttrs)
             isEmptyRow = false
 
             xOffset += cellXPadding + cellWidth
             if xOffset + cellWidth > rightInset {
-                yOffset += cellYPadding + cellHeight
                 xOffset = leftInset
-                isInsetRow = !isInsetRow
+                yOffset += cellYPadding + cellHeight
                 isEmptyRow = true
-                if isInsetRow {
+                isStaggeredRow = !isStaggeredRow
+                if isStaggeredRow {
                     xOffset += cellHeight / 2
                 }
             }
@@ -78,7 +78,7 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
     }
 
     override func collectionViewContentSize() -> CGSize {
-        return CGSize(width: contentWidth, height: contentHeight)
+        return CGSizeMake(contentWidth, contentHeight)
     }
 
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

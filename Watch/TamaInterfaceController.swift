@@ -15,7 +15,7 @@ class TamaInterfaceController: WKInterfaceController {
     private var tamaId: Int = 0
     private var tamaPixels: String?
     private var isActive: Bool = false
-    private let fatPixelSize: CGFloat = 3
+    private var lcdSize: CGSize = CGSizeZero
 
     @IBOutlet weak var lcd: WKInterfaceImage!
 
@@ -26,6 +26,7 @@ class TamaInterfaceController: WKInterfaceController {
             self.tamaId = contextDict["id"] as! Int
             self.tamaPixels = contextDict["pixels"] as? String
         }
+        determineLcdSize()
         // Listen for data-change events
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "tamaDataDidUpdate:",
@@ -71,15 +72,19 @@ class TamaInterfaceController: WKInterfaceController {
         }
     }
 
-    func drawLcdImage(pixels: String) -> UIImage {
+    func determineLcdSize() {
         // Determine image size
-        let width = CGFloat(tamaScreenWidth) * fatPixelSize
-        let height = CGFloat(tamaScreenHeight) * fatPixelSize
-        let size = CGSizeMake(width, height)
+        let aspectRatio = CGFloat(tamaScreenWidth) / CGFloat(tamaScreenHeight)
+        let width = CGRectGetWidth(WKInterfaceDevice.currentDevice().screenBounds)
+        let height = width / aspectRatio
+        lcdSize = CGSizeMake(width, height)
+    }
+
+    func drawLcdImage(pixels: String) -> UIImage {
         // Create a drawing context for the LCD
-        UIGraphicsBeginImageContext(size)
+        UIGraphicsBeginImageContext(lcdSize)
         let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
-        tamaDrawLcdInCGContext(ctx, data: pixels, size: size)
+        tamaDrawLcdInCGContext(ctx, data: pixels, size: lcdSize)
         // Convert the graphics context to an image
         let result = UIImage(CGImage: CGBitmapContextCreateImage(ctx)!)
         UIGraphicsEndImageContext()
