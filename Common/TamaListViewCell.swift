@@ -14,8 +14,8 @@ class TamaListViewCell: UICollectionViewCell {
     private let tamaCellBgFocused = UIImage(named: "hexagon-invert.png")
     private let tamaCellBgSelected = UIImage(named: "hexagon-invert-dark.png")
 
-    var baseLcdWidth: CGFloat = 240
-    var baseLcdHeight: CGFloat = 160
+    var baseLcdWidth = CGFloat(tamaScreenWidth * 5)
+    var baseLcdHeight = CGFloat(tamaScreenHeight * 5)
 
     @IBOutlet var lcdImageView: TamaLcdImageView!
 

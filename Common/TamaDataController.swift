@@ -18,7 +18,7 @@ class TamaDataController: NSObject {
     var tamaData: [Int: NSDictionary]
     
     var fetchTimer: NSTimer?
-    var fetchInterval: NSTimeInterval = 0.2
+    var fetchInterval: NSTimeInterval = 0.35
     var fetchRepeats: Bool = true
 
     init(url: String) {

@@ -15,7 +15,7 @@ class TamaInterfaceController: WKInterfaceController {
     private var tamaId: Int = 0
     private var tamaPixels: String?
     private var isActive: Bool = false
-    private let fatPixelSize: CGFloat = 5
+    private let fatPixelSize: CGFloat = 3
 
     @IBOutlet weak var lcd: WKInterfaceImage!
 
