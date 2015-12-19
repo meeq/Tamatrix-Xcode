@@ -14,21 +14,30 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
     private var contentWidth: CGFloat = 0
     private var contentHeight: CGFloat = 0
 
+    let baseCellWidth: CGFloat = 270
+    let baseCellHeight: CGFloat = 330
+    let baseCellXPadding: CGFloat = 60
+    let baseCellYPadding: CGFloat = 0
+
     override func prepareLayout() {
         cache.removeAll()
 
+        let pixelScale: CGFloat = collectionView!.window!.screen.scale
+        let cellWidth: CGFloat = baseCellWidth / pixelScale
+        let cellHeight: CGFloat = baseCellHeight / pixelScale
+        let cellXPadding: CGFloat = baseCellXPadding / pixelScale
+        let cellYPadding: CGFloat = baseCellYPadding / pixelScale
+
+        // Based on this we should be able to figure out how many cells per row we get
+        // Which should tell us what the horizontal margins should be (with a minimum).
+
         contentWidth = CGRectGetWidth(collectionView!.bounds)
-        // TODO Fix hard-coded layout sizes to support iOS devices
-        // TODO Turn cell background into a decoration to fix tight hive focus?
-        let verticalMargin: CGFloat = 50
-        let leftMargin: CGFloat = 150
-        let rightMargin: CGFloat = contentWidth - leftMargin
-        let cellWidth: CGFloat = 270
-        let cellHeight: CGFloat = 330
-        let cellXPadding: CGFloat = 60
-        let cellYPadding: CGFloat = 0
-        var xOffset: CGFloat = leftMargin
-        var yOffset: CGFloat = verticalMargin
+        let verticalInset: CGFloat = 10
+        let leftInset: CGFloat = 0
+        let rightInset: CGFloat = contentWidth - leftInset
+
+        var xOffset: CGFloat = leftInset
+        var yOffset: CGFloat = verticalInset
         var isInsetRow: Bool = false
         var isEmptyRow: Bool = true
 
@@ -40,9 +49,9 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
             isEmptyRow = false
 
             xOffset += cellXPadding + cellWidth
-            if xOffset + cellWidth > rightMargin {
+            if xOffset + cellWidth > rightInset {
                 yOffset += cellYPadding + cellHeight
-                xOffset = leftMargin
+                xOffset = leftInset
                 isInsetRow = !isInsetRow
                 isEmptyRow = true
                 if isInsetRow {
@@ -50,7 +59,7 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
                 }
             }
         }
-        contentHeight = yOffset + verticalMargin
+        contentHeight = yOffset + verticalInset
         if !isEmptyRow {
             contentHeight += cellHeight
         }

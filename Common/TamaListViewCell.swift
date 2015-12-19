@@ -14,6 +14,9 @@ class TamaListViewCell: UICollectionViewCell {
     private let tamaCellBgFocused = UIImage(named: "hexagon-invert.png")
     private let tamaCellBgSelected = UIImage(named: "hexagon-invert-dark.png")
 
+    var baseLcdWidth: CGFloat = 240
+    var baseLcdHeight: CGFloat = 160
+
     @IBOutlet var lcdImageView: TamaLcdImageView!
 
     required init?(coder: NSCoder) {
@@ -29,11 +32,17 @@ class TamaListViewCell: UICollectionViewCell {
     func prepareContentView() {
         backgroundView = UIImageView(image: tamaCellBgNormal)
         selectedBackgroundView = UIImageView(image: tamaCellBgSelected)
-
-        // TODO Remove hard-coded LCD frame size; use autolayout?
-        let lcdFrame = CGRect(x: 15, y: 85, width: 240, height: 160)
-        lcdImageView = TamaLcdImageView(frame: lcdFrame)
+        lcdImageView = TamaLcdImageView(frame: frame)
         contentView.addSubview(lcdImageView)
+    }
+
+    func centerAndResizeLcdImageView() {
+        let pixelScale: CGFloat = UIScreen.mainScreen().scale
+        let width = baseLcdWidth / pixelScale
+        let height = baseLcdHeight / pixelScale
+        let x = (CGRectGetWidth(frame) / 2) - (width / 2)
+        let y = (CGRectGetHeight(frame) / 2) - (height / 2)
+        lcdImageView.frame = CGRect(x: x, y: y, width: width, height: height)
     }
 
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {

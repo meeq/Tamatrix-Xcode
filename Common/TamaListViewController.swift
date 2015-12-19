@@ -74,6 +74,7 @@ class TamaListViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             "TamaListViewCell", forIndexPath: indexPath) as! TamaListViewCell
+        cell.centerAndResizeLcdImageView()
         cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
         return cell
     }
