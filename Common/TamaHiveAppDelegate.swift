@@ -15,6 +15,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     var dataController: TamaDataController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        tamaRegisterUserDefaults()
         dataController = TamaDataController()
         return true
     }

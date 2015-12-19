@@ -8,26 +8,42 @@
 
 import Foundation
 
-let tamaDefaultDataURL = "http://tamahive.spritesserver.nl/gettama.php"
-let TamaDataUpdateNotificationKey = "com.christopherbonhage.tamaDataUpdateNotification"
+let TamaSettingsDataURLKey = "DataURL"
+let TamaSettingsDataURLDefault = "http://tamahive.spritesserver.nl/gettama.php"
+let TamaSettingsFetchIntervalKey = "FetchInterval"
+let TamaSettingsFetchIntervalDefault = 0.2
+
+func tamaRegisterUserDefaults() {
+    NSUserDefaults.standardUserDefaults().registerDefaults([
+        TamaSettingsDataURLKey: TamaSettingsDataURLDefault,
+        TamaSettingsFetchIntervalKey: TamaSettingsFetchIntervalDefault
+    ])
+}
+
+let TamaDataUpdateNotificationKey = "tamaDataUpdateNotification"
 
 class TamaDataController: NSObject {
 
-    var baseUrl: String
-    var lastseq: Int = 0
-    var tamaData: [Int: NSDictionary]
-    
-    var fetchTimer: NSTimer?
-    var fetchInterval: NSTimeInterval = 0.35
-    var fetchRepeats: Bool = true
+    // Fetch state
+    private var lastseq: Int = 0
+    private var tamaData: [Int: NSDictionary]
+    private var fetchTimer: NSTimer?
 
-    init(url: String) {
-        self.baseUrl = url
+    // Settings
+    var baseUrl: String = TamaSettingsDataURLDefault
+    var fetchInterval: NSTimeInterval = TamaSettingsFetchIntervalDefault
+
+    override init() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let configUrl = defaults.stringForKey(TamaSettingsDataURLKey) {
+            self.baseUrl = configUrl
+        }
+        let configInterval = defaults.doubleForKey(TamaSettingsFetchIntervalKey)
+        if configInterval > 0 {
+            self.fetchInterval = configInterval
+        }
         self.tamaData = [Int: NSDictionary]()
-    }
-
-    convenience override init() {
-        self.init(url: tamaDefaultDataURL)
+        super.init()
     }
 
     func startFetchTimer() {
@@ -84,9 +100,7 @@ class TamaDataController: NSObject {
             self.tamaData[id] = entry
         }
         NSNotificationCenter.defaultCenter().postNotificationName(TamaDataUpdateNotificationKey, object: self.tamaData)
-        if self.fetchRepeats {
-            self.startFetchTimer()
-        }
+        self.startFetchTimer()
     }
 
 }

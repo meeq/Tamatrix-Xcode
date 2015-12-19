@@ -14,6 +14,7 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
     private var tamaData = [Int: NSDictionary]()
 
     func applicationDidFinishLaunching() {
+        tamaRegisterUserDefaults()
         dataController = TamaDataController()
         // Listen for data-change events
         NSNotificationCenter.defaultCenter().addObserver(self,
