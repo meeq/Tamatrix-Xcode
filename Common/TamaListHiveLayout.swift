@@ -18,22 +18,34 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
     let baseCellHeight: CGFloat = 330
     let baseCellXPadding: CGFloat = 60
     let baseCellYPadding: CGFloat = 0
+    let baseVertInset: CGFloat = 30
+
+    private func computeNumCellsInFirstRowForWidth(contentWidth: CGFloat, cellWidth: CGFloat, cellPadding: CGFloat) -> Int {
+        var result: Int = 1
+        var xOffset: CGFloat = cellWidth
+        let xIncrement: CGFloat = cellPadding + cellWidth
+        while xOffset + xIncrement < contentWidth {
+            xOffset += xIncrement
+            result += 1
+        }
+        return result
+    }
 
     override func prepareLayout() {
         cache.removeAll()
 
+        contentWidth = CGRectGetWidth(collectionView!.bounds)
         let pixelScale: CGFloat = collectionView!.window!.screen.scale
         let cellWidth: CGFloat = baseCellWidth / pixelScale
         let cellHeight: CGFloat = baseCellHeight / pixelScale
         let cellXPadding: CGFloat = baseCellXPadding / pixelScale
         let cellYPadding: CGFloat = baseCellYPadding / pixelScale
 
-        // Based on this we should be able to figure out how many cells per row we get
-        // Which should tell us what the horizontal margins should be (with a minimum).
+        let cellsPerRow = computeNumCellsInFirstRowForWidth(contentWidth, cellWidth: cellWidth, cellPadding: cellXPadding)
+        let firstRowCellsWidth = (cellWidth * CGFloat(cellsPerRow)) + (cellXPadding * CGFloat(cellsPerRow - 1))
 
-        contentWidth = CGRectGetWidth(collectionView!.bounds)
-        let verticalInset: CGFloat = 10
-        let leftInset: CGFloat = 0
+        let verticalInset: CGFloat = baseVertInset / pixelScale
+        let leftInset: CGFloat = (contentWidth - firstRowCellsWidth) / 2
         let rightInset: CGFloat = contentWidth - leftInset
 
         var xOffset: CGFloat = leftInset
