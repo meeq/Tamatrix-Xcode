@@ -14,8 +14,8 @@ class TamaListViewCell: UICollectionViewCell {
     private let tamaCellBgFocused = UIImage(named: "hexagon-invert.png")
     private let tamaCellBgSelected = UIImage(named: "hexagon-invert-dark.png")
 
-    var baseLcdWidth = CGFloat(tamaScreenWidth * 5)
-    var baseLcdHeight = CGFloat(tamaScreenHeight * 5)
+    private var baseLcdWidth = CGFloat(tamaScreenWidth * 5)
+    private var baseLcdHeight = CGFloat(tamaScreenHeight * 5)
 
     @IBOutlet var lcdImageView: TamaLcdImageView!
 
@@ -42,7 +42,7 @@ class TamaListViewCell: UICollectionViewCell {
         let height = baseLcdHeight / pixelScale
         let x = (CGRectGetWidth(frame) / 2) - (width / 2)
         let y = (CGRectGetHeight(frame) / 2) - (height / 2)
-        lcdImageView.frame = CGRect(x: x, y: y, width: width, height: height)
+        lcdImageView.frame = CGRectMake(x, y, width, height)
     }
 
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {

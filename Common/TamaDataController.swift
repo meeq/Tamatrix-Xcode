@@ -28,10 +28,11 @@ class TamaDataController: NSObject {
     private var lastseq: Int = 0
     private var tamaData: [Int: NSDictionary]
     private var fetchTimer: NSTimer?
+    private var fetchRepeats: Bool = true
 
     // Settings
-    var baseUrl: String = TamaSettingsDataURLDefault
-    var fetchInterval: NSTimeInterval = TamaSettingsFetchIntervalDefault
+    private var baseUrl: String = TamaSettingsDataURLDefault
+    private var fetchInterval: NSTimeInterval = TamaSettingsFetchIntervalDefault
 
     override init() {
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -48,6 +49,7 @@ class TamaDataController: NSObject {
 
     func startFetchTimer() {
         self.stopFetching()
+        self.fetchRepeats = true
         self.fetchTimer = NSTimer(
             timeInterval: self.fetchInterval,
             target: self,
@@ -60,47 +62,64 @@ class TamaDataController: NSObject {
     func stopFetching() {
         self.fetchTimer?.invalidate()
         self.fetchTimer = nil
+        self.fetchRepeats = false
     }
 
     func fetchData() {
+        // Build the request URL from the sequence number of the last request
         var urlString = self.baseUrl
         if lastseq > 0 {
             urlString = "\(urlString)?lastseq=\(lastseq)"
         }
+#if DEBUG
         print("Fetching data from \(urlString)")
-        let url = NSURL(string: urlString)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { data, response, error in
+#endif
+        let url: NSURL = NSURL(string: urlString)! // TODO Handle bad URLs a bit more elegantly
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url) { data, response, error in
+            // TODO Notify the application that a data error has occurred
             guard data != nil else {
                 print("Request failed: \(error)")
                 return
             }
             let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            if jsonStr == "" {
-                // Sometimes the response comes back blank; just ignore it and try again later.
+            // Sometimes the response comes back blank; just ignore it and try again.
+            if (jsonStr == "") && self.fetchRepeats {
                 self.startFetchTimer()
+                return
             }
+            // Attempt to parse the response as JSON
             do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                    self.processData(json)
+                if let jsonObj = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                    self.processResponseDictionary(jsonObj) // Success!
                 } else {
-                    print("Could not parse JSON: \(jsonStr)")
+                    print("Could not parse JSON Object: \(jsonStr)")
+                    // TODO Notify the application that a data error has occurred
+                    // TODO Retry?
                 }
             } catch let parseError {
                 print("Parse error for JSON: \(jsonStr)")
                 print(parseError)
+                // TODO Notify the application that a data error has occurred
+                // TODO Retry?
             }
         }
         task.resume()
     }
 
-    func processData(data: NSDictionary) {
-        self.lastseq = data["lastseq"] as! Int
-        for entry in data["tama"] as! [NSDictionary] {
-            let id = entry["id"] as! Int
-            self.tamaData[id] = entry
+    func processResponseDictionary(respObj: NSDictionary) {
+        // Grab the useful bits
+        // TODO Validate the response object
+        self.lastseq = respObj["lastseq"] as! Int
+        for tama in respObj["tama"] as! [NSDictionary] {
+            let id = tama["id"] as! Int
+            self.tamaData[id] = tama
         }
+        // Update the rest of the application
         NSNotificationCenter.defaultCenter().postNotificationName(TamaDataUpdateNotificationKey, object: self.tamaData)
-        self.startFetchTimer()
+        // Keep fetching data periodically unless the timer was stopped.
+        if self.fetchRepeats {
+            self.startFetchTimer()
+        }
     }
 
 }

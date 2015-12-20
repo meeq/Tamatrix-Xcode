@@ -10,8 +10,6 @@ import UIKit
 
 class TamaListViewController: UICollectionViewController {
 
-    // MARK: Properties
-
     private var tamaData = [Int: NSDictionary]()
 
     func tamaDataDidUpdate(sender: AnyObject) {

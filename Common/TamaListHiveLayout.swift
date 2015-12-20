@@ -14,14 +14,14 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
     private var contentWidth: CGFloat = 0
     private var contentHeight: CGFloat = 0
 
-    let baseCellWidth: CGFloat = 270
-    let baseCellHeight: CGFloat = 330
-    let baseCellXPadding: CGFloat = 60
-    let baseCellYPadding: CGFloat = 0
-    let baseVertInset: CGFloat = 30
+    private let baseCellWidth: CGFloat = 270
+    private let baseCellHeight: CGFloat = 330
+    private let baseCellXPadding: CGFloat = 60
+    private let baseCellYPadding: CGFloat = 0
+    private let baseVertInset: CGFloat = 30
 
-    private func computeNumCellsInFirstRowForWidth(contentWidth: CGFloat, cellWidth: CGFloat, cellPadding: CGFloat) -> Int {
-        var result: Int = 1
+    private func computeNumCellsInFirstRowForWidth(contentWidth: CGFloat, cellWidth: CGFloat, cellPadding: CGFloat) -> CGFloat {
+        var result: CGFloat = 1
         var xOffset: CGFloat = cellWidth
         let xIncrement: CGFloat = cellPadding + cellWidth
         while xOffset + xIncrement < contentWidth {
@@ -42,7 +42,7 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
         let cellYPadding: CGFloat = baseCellYPadding / pixelScale
 
         let cellsPerRow = computeNumCellsInFirstRowForWidth(contentWidth, cellWidth: cellWidth, cellPadding: cellXPadding)
-        let firstRowCellsWidth = (cellWidth * CGFloat(cellsPerRow)) + (cellXPadding * CGFloat(cellsPerRow - 1))
+        let firstRowCellsWidth = (cellWidth * (cellsPerRow)) + (cellXPadding * (cellsPerRow - 1))
 
         let verticalInset: CGFloat = baseVertInset / pixelScale
         let leftInset: CGFloat = (contentWidth - firstRowCellsWidth) / 2
