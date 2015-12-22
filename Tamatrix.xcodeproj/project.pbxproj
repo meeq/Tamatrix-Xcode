@@ -17,7 +17,6 @@
 		7A151F351C234586002AC8DA /* TamaItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */; };
 		7A151F361C234588002AC8DA /* TamaListHiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */; };
 		7A151F371C23458B002AC8DA /* TamaListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */; };
-		7A151F381C23458D002AC8DA /* TamaLcdImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */; };
 		7A151F391C23459A002AC8DA /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E71C192EF1000F1FBA /* header.png */; };
 		7A151F3A1C23459C002AC8DA /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
 		7A151F3B1C23459F002AC8DA /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
@@ -25,7 +24,6 @@
 		7A69B2E91C192EF1000F1FBA /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E71C192EF1000F1FBA /* header.png */; };
 		7A69B2EA1C192EF1000F1FBA /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
 		7A69B2ED1C1933DA000F1FBA /* TamaListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */; };
-		7A69B2EF1C19649A000F1FBA /* TamaLcdImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */; };
 		7A7DC6291C237E68006DBD58 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC6271C237E68006DBD58 /* Interface.storyboard */; };
 		7A7DC62B1C237E68006DBD58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC62A1C237E68006DBD58 /* Assets.xcassets */; };
 		7A7DC6321C237E68006DBD58 /* Tama-Hive-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A7DC6311C237E68006DBD58 /* Tama-Hive-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -100,7 +98,6 @@
 		7A69B2E71C192EF1000F1FBA /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
 		7A69B2E81C192EF1000F1FBA /* hexagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hexagon.png; sourceTree = "<group>"; };
 		7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListViewCell.swift; sourceTree = "<group>"; };
-		7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaLcdImageView.swift; sourceTree = "<group>"; };
 		7A7DC6251C237E68006DBD58 /* Tama-Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7DC6281C237E68006DBD58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		7A7DC62A1C237E68006DBD58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -177,7 +174,6 @@
 				7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */,
 				7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */,
 				7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */,
-				7A69B2EE1C19649A000F1FBA /* TamaLcdImageView.swift */,
 				7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */,
 			);
 			path = Common;
@@ -398,7 +394,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A0068AE1C18E5BE0098B165 /* TamaListViewController.swift in Sources */,
-				7A69B2EF1C19649A000F1FBA /* TamaLcdImageView.swift in Sources */,
 				7A9AFD411C23B3B700D0A8F6 /* TamaDataController.swift in Sources */,
 				7A0068AC1C18E5BE0098B165 /* TamaHiveAppDelegate.swift in Sources */,
 				7A9AFD441C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */,
@@ -418,7 +413,6 @@
 				7A151F361C234588002AC8DA /* TamaListHiveLayout.swift in Sources */,
 				7A9AFD431C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */,
 				7A151F331C234581002AC8DA /* TamaHiveAppDelegate.swift in Sources */,
-				7A151F381C23458D002AC8DA /* TamaLcdImageView.swift in Sources */,
 				7A151F351C234586002AC8DA /* TamaItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

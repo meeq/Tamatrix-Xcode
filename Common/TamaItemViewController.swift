@@ -12,15 +12,24 @@ class TamaItemViewController: UIViewController {
 
     // MARK: Properties
 
-    @IBOutlet weak var lcdImageView: TamaLcdImageView!
+    @IBOutlet weak var lcdImageView: UIImageView!
 
     var tamaId: Int = 0
 
     func tamaDataDidUpdate(sender: AnyObject) {
         let tamaData = sender.object as! [Int: NSDictionary]
-        // Update the LCD image on the main thread
-        dispatch_async(dispatch_get_main_queue()) {
-            self.lcdImageView.setTamaData(tamaData[self.tamaId])
+        if let pixels = tamaData[self.tamaId]?["pixels"] as? String {
+            self.redrawLcdAsync(pixels)
+        }
+    }
+
+    func redrawLcdAsync(pixels: String) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            let lcdImage = tamaDrawLcdImage(pixels, size: self.lcdImageView.frame.size)
+            // Schedule the image to be updated in the UI
+            dispatch_async(dispatch_get_main_queue()) {
+                self.lcdImageView.image = lcdImage
+            }
         }
     }
 

@@ -43,11 +43,7 @@ class TamaInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         self.isActive = true
-        // Draw the LCD on activation if we have pixel data
-        if (tamaPixels != nil) {
-            let image = self.drawLcdImage(tamaPixels!)
-            self.lcd.setImage(image)
-        }
+        self.redrawLcdSync()
     }
 
     override func didDeactivate() {
@@ -56,39 +52,43 @@ class TamaInterfaceController: WKInterfaceController {
         self.isActive = false
     }
 
-    func tamaDataDidUpdate(sender: AnyObject) {
-        let newData = sender.object as! [Int: NSDictionary]
-        // Extract the pixel data from the fetched dump
-        if let pixels = newData[self.tamaId]?["pixels"] as? String {
-            self.tamaPixels = pixels
-            // Only draw if the view is visible
-            if self.isActive {
-                let lcdImage = self.drawLcdImage(pixels)
-                // Schedule the image to be updated in the UI
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.lcd.setImage(lcdImage)
-                }
-            }
-        }
-    }
-
     func determineLcdSize() {
         // Determine image size
         let aspectRatio = CGFloat(tamaScreenWidth) / CGFloat(tamaScreenHeight)
         let width = CGRectGetWidth(WKInterfaceDevice.currentDevice().screenBounds)
         let height = width / aspectRatio
-        lcdSize = CGSizeMake(width, height)
+        self.lcdSize = CGSizeMake(width, height)
     }
 
-    func drawLcdImage(pixels: String) -> UIImage {
-        // Create a drawing context for the LCD
-        UIGraphicsBeginImageContextWithOptions(lcdSize, true, 0.0)
-        let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
-        tamaDrawLcdInCGContext(ctx, data: pixels, size: lcdSize)
-        // Convert the graphics context to an image
-        let result = UIImage(CGImage: CGBitmapContextCreateImage(ctx)!)
-        UIGraphicsEndImageContext()
-        return result
+    func redrawLcdSync() {
+        // Only draw if the view is visible and we have pixel data
+        if !self.isActive || self.tamaPixels == nil {
+            return
+        }
+        self.lcd.setImage(tamaDrawLcdImage(tamaPixels!, size: lcdSize))
+    }
+
+    func redrawLcdAsync() {
+        // Only draw if the view is visible and we have pixel data
+        if !self.isActive || self.tamaPixels == nil {
+            return
+        }
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            let lcdImage = tamaDrawLcdImage(self.tamaPixels!, size: self.lcdSize)
+            // Schedule the image to be updated in the UI
+            dispatch_async(dispatch_get_main_queue()) {
+                self.lcd.setImage(lcdImage)
+            }
+        }
+    }
+
+    func tamaDataDidUpdate(sender: AnyObject) {
+        let newData = sender.object as! [Int: NSDictionary]
+        // Extract the pixel data from the fetched dump
+        if let pixels = newData[self.tamaId]?["pixels"] as? String {
+            self.tamaPixels = pixels
+            self.redrawLcdAsync()
+        }
     }
 
 }

@@ -17,11 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oID-J5-9OH" customClass="TamaLcdImageView" customModule="Tama_Hive" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oID-J5-9OH" customClass="UIImageView">
                                 <rect key="frame" x="360" y="140" width="1200" height="800"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="1200" id="9bd-ph-zD6"/>
                                     <constraint firstAttribute="width" secondItem="oID-J5-9OH" secondAttribute="height" multiplier="3:2" id="Nu7-il-dPj"/>
+                                    <constraint firstAttribute="height" constant="800" id="cHW-JH-c3W"/>
                                 </constraints>
                             </view>
                         </subviews>

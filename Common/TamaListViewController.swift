@@ -29,7 +29,9 @@ class TamaListViewController: UICollectionViewController {
             // Update the pixel data for all visible LCDs
             for indexPath in collectionView.indexPathsForVisibleItems() {
                 let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TamaListViewCell
-                cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
+                if let pixels = self.tamaData[indexPath.item]?["pixels"] as? String {
+                    cell.redrawLcdAsync(pixels)
+                }
             }
         }
     }
@@ -72,8 +74,10 @@ class TamaListViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             "TamaListViewCell", forIndexPath: indexPath) as! TamaListViewCell
-        cell.centerAndResizeLcdImageView()
-        cell.lcdImageView.setTamaData(self.tamaData[indexPath.item])
+        cell.centerAndResizeLcdImageView() // TODO Use constraints
+        if let pixels = self.tamaData[indexPath.item]?["pixels"] as? String {
+            cell.redrawLcdAsync(pixels)
+        }
         return cell
     }
 
