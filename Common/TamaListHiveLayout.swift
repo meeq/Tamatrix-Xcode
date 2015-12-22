@@ -35,7 +35,8 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
         cache.removeAll()
 
         contentWidth = CGRectGetWidth(collectionView!.bounds)
-        let pixelScale: CGFloat = collectionView!.window!.screen.scale
+        let currentScreen = collectionView!.window?.screen ?? UIScreen.mainScreen()
+        let pixelScale: CGFloat = currentScreen.scale
         let cellWidth: CGFloat = baseCellWidth / pixelScale
         let cellHeight: CGFloat = baseCellHeight / pixelScale
         let cellXPadding: CGFloat = baseCellXPadding / pixelScale

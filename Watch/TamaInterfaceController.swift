@@ -82,7 +82,7 @@ class TamaInterfaceController: WKInterfaceController {
 
     func drawLcdImage(pixels: String) -> UIImage {
         // Create a drawing context for the LCD
-        UIGraphicsBeginImageContext(lcdSize)
+        UIGraphicsBeginImageContextWithOptions(lcdSize, true, 0.0)
         let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
         tamaDrawLcdInCGContext(ctx, data: pixels, size: lcdSize)
         // Convert the graphics context to an image

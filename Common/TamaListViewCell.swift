@@ -37,7 +37,8 @@ class TamaListViewCell: UICollectionViewCell {
     }
 
     func centerAndResizeLcdImageView() {
-        let pixelScale: CGFloat = UIScreen.mainScreen().scale
+        let currentScreen = self.window?.screen ?? UIScreen.mainScreen()
+        let pixelScale: CGFloat = currentScreen.scale
         let width = baseLcdWidth / pixelScale
         let height = baseLcdHeight / pixelScale
         let x = (CGRectGetWidth(frame) / 2) - (width / 2)
