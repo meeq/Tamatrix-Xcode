@@ -2,12 +2,13 @@
 <document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="dLu-dZ-Uc9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Tama Item View Controller-->
         <scene sceneID="nLN-Fb-yny">
             <objects>
-                <viewController id="hHr-Xf-t0a" customClass="TamaItemViewController" customModule="Tama_Hive_TV" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hHr-Xf-t0a" customClass="TamaItemViewController" customModule="Tama_Hive" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jVT-7f-aNK"/>
                         <viewControllerLayoutGuide type="bottom" id="6kl-Gn-Ql1"/>
@@ -16,13 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oID-J5-9OH" customClass="TamaLcdImageView" customModule="Tama_Hive_TV" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oID-J5-9OH" customClass="TamaLcdImageView" customModule="Tama_Hive" customModuleProvider="target">
                                 <rect key="frame" x="360" y="140" width="1200" height="800"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oID-J5-9OH" secondAttribute="height" multiplier="3:2" id="Nu7-il-dPj"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="oID-J5-9OH" firstAttribute="centerY" secondItem="arV-VA-a08" secondAttribute="centerY" id="BCK-wf-bD9"/>
+                            <constraint firstItem="oID-J5-9OH" firstAttribute="centerX" secondItem="arV-VA-a08" secondAttribute="centerX" id="vep-R1-Nff"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="XSK-ST-vOa" appends="YES" id="TSW-dM-bzM"/>
                         </connections>
@@ -44,14 +52,14 @@
         <!--Tama List View Controller-->
         <scene sceneID="sDx-LW-hjV">
             <objects>
-                <collectionViewController id="dLu-dZ-Uc9" customClass="TamaListViewController" customModule="Tama_Hive_TV" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="dLu-dZ-Uc9" customClass="TamaListViewController" customModule="Tama_Hive" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Mkv-jS-WPq">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.43921568989999998" green="0.43921568989999998" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <collectionViewLayout key="collectionViewLayout" id="SDQ-ZA-QFg" customClass="TamaListHiveLayout" customModule="Tama_Hive_TV" customModuleProvider="target"/>
+                        <collectionViewLayout key="collectionViewLayout" id="SDQ-ZA-QFg" customClass="TamaListHiveLayout" customModule="Tama_Hive" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TamaListViewCell" id="XuE-G1-btw" customClass="TamaListViewCell" customModule="Tama_Hive_TV" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TamaListViewCell" id="XuE-G1-btw" customClass="TamaListViewCell" customModule="Tama_Hive" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

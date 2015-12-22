@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -13,6 +14,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5VY-bn-9In">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.93725490199999995" green="1" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="sjT-o3-zxx" kind="relationship" relationship="rootViewController" id="9dV-Su-cWB"/>
@@ -63,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="1003" y="567"/>
         </scene>
-        <!--Detail-->
+        <!--Tama Item View Controller-->
         <scene sceneID="4IS-2P-2gV">
             <objects>
-                <viewController title="Detail" id="Nlp-CJ-eXA" customClass="TamaItemViewController" customModule="Tama_Hive" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Nlp-CJ-eXA" customClass="TamaItemViewController" customModule="Tama_Hive" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tVL-f0-zdI"/>
                         <viewControllerLayoutGuide type="bottom" id="UrC-Pp-7bc"/>
@@ -75,9 +78,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-dn-vaJ" customClass="TamaLcdImageView" customModule="Tama_Hive" customModuleProvider="target">
-                                <rect key="frame" x="60" y="140" width="480" height="320"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-dn-vaJ" customClass="TamaLcdImageView" customModule="Tama_Hive" customModuleProvider="target">
+                                <rect key="frame" x="25" y="117" width="550" height="366"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -88,8 +91,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="UrC-Pp-7bc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EyX-dn-vaJ" secondAttribute="bottom" id="AXx-bJ-SRG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EyX-dn-vaJ" secondAttribute="trailing" priority="500" constant="5" id="b2L-85-bCe"/>
                             <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerX" secondItem="hvw-WT-gt3" secondAttribute="centerX" id="i0m-7A-2l5"/>
-                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerY" secondItem="hvw-WT-gt3" secondAttribute="centerY" id="n6S-SW-s4U"/>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="leading" secondItem="hvw-WT-gt3" secondAttribute="leadingMargin" priority="500" constant="5" id="i7D-aF-mzP"/>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerY" secondItem="hvw-WT-gt3" secondAttribute="centerY" priority="250" id="n6S-SW-s4U"/>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tVL-f0-zdI" secondAttribute="bottom" id="qSO-f7-GOb"/>
                         </constraints>
                     </view>
                     <connections>
