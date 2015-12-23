@@ -17,9 +17,9 @@ class TamaItemViewController: UIViewController {
     var tamaId: Int = 0
 
     func tamaDataDidUpdate(sender: AnyObject) {
-        let tamaData = sender.object as! [Int: NSDictionary]
-        if let pixels = tamaData[self.tamaId]?["pixels"] as? String {
-            self.redrawLcdAsync(pixels)
+        let tamaData = sender.object as! [Int: TamaModel]
+        if let tamaModel = tamaData[self.tamaId] {
+            self.redrawLcdAsync(tamaModel.pixels)
         }
     }
 

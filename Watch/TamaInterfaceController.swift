@@ -22,9 +22,9 @@ class TamaInterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         // Set properties from context
-        if let contextDict = context as? NSDictionary {
-            self.tamaId = contextDict["id"] as! Int
-            self.tamaPixels = contextDict["pixels"] as? String
+        if let tamaModel = context as? TamaModel {
+            self.tamaId = tamaModel.id
+            self.tamaPixels = tamaModel.pixels
         }
         determineLcdSize()
         // Listen for data-change events
@@ -83,10 +83,10 @@ class TamaInterfaceController: WKInterfaceController {
     }
 
     func tamaDataDidUpdate(sender: AnyObject) {
-        let newData = sender.object as! [Int: NSDictionary]
+        let newData = sender.object as! [Int: TamaModel]
         // Extract the pixel data from the fetched dump
-        if let pixels = newData[self.tamaId]?["pixels"] as? String {
-            self.tamaPixels = pixels
+        if let tamaModel = newData[self.tamaId] {
+            self.tamaPixels = tamaModel.pixels
             self.redrawLcdAsync()
         }
     }

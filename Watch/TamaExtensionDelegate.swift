@@ -11,7 +11,8 @@ import WatchKit
 class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
 
     private var dataController: TamaDataController?
-    private var tamaData = [Int: NSDictionary]()
+    private var tamaData = [Int: TamaModel]()
+    private var pageCount: Int = 0
 
     func applicationDidFinishLaunching() {
         tamaRegisterUserDefaults()
@@ -24,23 +25,22 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func tamaDataDidUpdate(sender: AnyObject) {
-        let oldData = self.tamaData
-        let newData = sender.object as! [Int: NSDictionary]
-        self.tamaData = newData
-        if oldData.count != newData.count {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.reloadRootControllers()
-            }
+        self.tamaData = sender.object as! [Int: TamaModel]
+        if self.pageCount != self.tamaData.count {
+            self.reloadRootControllers()
         }
     }
 
     func reloadRootControllers() {
-        let names = [String](count: self.tamaData.count, repeatedValue: "TamaInterfaceController")
-        var contexts = [NSDictionary]()
+        self.pageCount = self.tamaData.count
+        let names = [String](count: self.pageCount, repeatedValue: "TamaInterfaceController")
+        var contexts = [TamaModel]()
         for key in self.tamaData.keys.sort() {
             contexts.append(self.tamaData[key]!)
         }
-        WKInterfaceController.reloadRootControllersWithNames(names, contexts: contexts)
+        dispatch_async(dispatch_get_main_queue()) {
+            WKInterfaceController.reloadRootControllersWithNames(names, contexts: contexts)
+        }
     }
 
     func applicationDidBecomeActive() {

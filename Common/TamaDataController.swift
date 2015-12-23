@@ -22,11 +22,22 @@ func tamaRegisterUserDefaults() {
 
 let TamaDataUpdateNotificationKey = "tamaDataUpdateNotification"
 
+class TamaModel: NSObject {
+    var id: Int
+    var pixels: String
+
+    init(id: Int, pixels: String) {
+        self.id = id
+        self.pixels = pixels
+        super.init()
+    }
+}
+
 class TamaDataController: NSObject {
 
     // Fetch state
     private var lastseq: Int = 0
-    private var tamaData: [Int: NSDictionary]
+    private var tamaData: [Int: TamaModel]
     private var fetchTimer: NSTimer?
     private var fetchRepeats: Bool = true
 
@@ -43,7 +54,7 @@ class TamaDataController: NSObject {
         if configInterval > 0 {
             self.fetchInterval = configInterval
         }
-        self.tamaData = [Int: NSDictionary]()
+        self.tamaData = [Int: TamaModel]()
         super.init()
     }
 
@@ -110,9 +121,14 @@ class TamaDataController: NSObject {
         // Grab the useful bits
         // TODO Validate the response object
         self.lastseq = respObj["lastseq"] as! Int
-        for tama in respObj["tama"] as! [NSDictionary] {
-            let id = tama["id"] as! Int
-            self.tamaData[id] = tama
+        for tamaDict in respObj["tama"] as! [NSDictionary] {
+            let id = tamaDict["id"] as! Int
+            let pixels = tamaDict["pixels"] as! String
+            if let tamaModel = self.tamaData[id] {
+                tamaModel.pixels = pixels
+            } else {
+                self.tamaData[id] = TamaModel(id: id, pixels: pixels)
+            }
         }
         // Update the rest of the application
         NSNotificationCenter.defaultCenter().postNotificationName(TamaDataUpdateNotificationKey, object: self.tamaData)

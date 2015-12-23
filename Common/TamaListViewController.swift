@@ -10,17 +10,18 @@ import UIKit
 
 class TamaListViewController: UICollectionViewController {
 
-    private var tamaData = [Int: NSDictionary]()
+    private var tamaData = [Int: TamaModel]()
+    private var cellCount: Int = 0
 
     func tamaDataDidUpdate(sender: AnyObject) {
-        let oldData = self.tamaData
-        self.tamaData = sender.object as! [Int: NSDictionary]
-        dispatch_async(dispatch_get_main_queue()) {
-            if oldData.count != self.tamaData.count {
+        self.tamaData = sender.object as! [Int: TamaModel]
+        if self.cellCount != self.tamaData.count {
+            self.cellCount = self.tamaData.count
+            dispatch_async(dispatch_get_main_queue()) {
                 self.collectionView?.reloadData()
-            } else {
-                self.redrawVisibleCells()
             }
+        } else {
+            self.redrawVisibleCells()
         }
     }
 
@@ -29,8 +30,8 @@ class TamaListViewController: UICollectionViewController {
             // Update the pixel data for all visible LCDs
             for indexPath in collectionView.indexPathsForVisibleItems() {
                 let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TamaListViewCell
-                if let pixels = self.tamaData[indexPath.item]?["pixels"] as? String {
-                    cell.redrawLcdAsync(pixels)
+                if let tamaModel = self.tamaData[indexPath.item] {
+                    cell.redrawLcdAsync(tamaModel.pixels)
                 }
             }
         }
@@ -55,8 +56,8 @@ class TamaListViewController: UICollectionViewController {
         // Configure ItemViewController for indexed selection
         if let indexPath = collectionView!.indexPathsForSelectedItems()?.first {
             let itemViewController = segue.destinationViewController as! TamaItemViewController
-            if let tamaId = self.tamaData[indexPath.item]?["id"] as? Int {
-                itemViewController.tamaId = tamaId
+            if let tamaModel = self.tamaData[indexPath.item] {
+                itemViewController.tamaId = tamaModel.id
             }
         }
     }
@@ -68,15 +69,14 @@ class TamaListViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.tamaData.count;
+        return self.cellCount;
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            "TamaListViewCell", forIndexPath: indexPath) as! TamaListViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TamaListViewCell", forIndexPath: indexPath) as! TamaListViewCell
         cell.centerAndResizeLcdImageView() // TODO Use constraints
-        if let pixels = self.tamaData[indexPath.item]?["pixels"] as? String {
-            cell.redrawLcdAsync(pixels)
+        if let tamaModel = self.tamaData[indexPath.item] {
+            cell.redrawLcdAsync(tamaModel.pixels)
         }
         return cell
     }
