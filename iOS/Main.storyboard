@@ -78,8 +78,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-dn-vaJ" customClass="UIImageView">
-                                <rect key="frame" x="20" y="127" width="560" height="374"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-dn-vaJ" customClass="UIImageView">
+                                <rect key="frame" x="40" y="127" width="520" height="346"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -95,11 +95,14 @@
                                 <variation key="heightClass=compact" constant="5"/>
                             </constraint>
                             <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerX" secondItem="hvw-WT-gt3" secondAttribute="centerX" id="G3x-bf-a4y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EyX-dn-vaJ" secondAttribute="trailing" id="H27-jF-SBT"/>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="leading" secondItem="hvw-WT-gt3" secondAttribute="leadingMargin" id="Mou-UQ-PVS"/>
                             <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerY" secondItem="hvw-WT-gt3" secondAttribute="centerY" id="SYE-S1-o5j"/>
                             <constraint firstItem="EyX-dn-vaJ" firstAttribute="top" secondItem="tVL-f0-zdI" secondAttribute="bottom" id="jdT-LA-ABx">
                                 <variation key="heightClass=compact" constant="5"/>
                             </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="EyX-dn-vaJ" secondAttribute="trailing" id="lGo-9i-Dqg">
+                            <constraint firstAttribute="trailingMargin" secondItem="EyX-dn-vaJ" secondAttribute="trailing" constant="20" id="lGo-9i-Dqg">
+                                <variation key="heightClass=compact" constant="20"/>
                                 <variation key="heightClass=regular" constant="20"/>
                             </constraint>
                             <constraint firstItem="EyX-dn-vaJ" firstAttribute="leading" secondItem="hvw-WT-gt3" secondAttribute="leadingMargin" constant="20" id="u5c-LB-Cg6"/>
@@ -107,6 +110,8 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="6ml-ej-Q4s"/>
+                                <exclude reference="H27-jF-SBT"/>
+                                <exclude reference="Mou-UQ-PVS"/>
                                 <exclude reference="jdT-LA-ABx"/>
                             </mask>
                         </variation>
@@ -115,12 +120,16 @@
                                 <include reference="6ml-ej-Q4s"/>
                                 <exclude reference="SYE-S1-o5j"/>
                                 <include reference="jdT-LA-ABx"/>
+                                <exclude reference="lGo-9i-Dqg"/>
+                                <exclude reference="u5c-LB-Cg6"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="lGo-9i-Dqg"/>
-                                <include reference="u5c-LB-Cg6"/>
+                                <include reference="H27-jF-SBT"/>
+                                <include reference="Mou-UQ-PVS"/>
+                                <exclude reference="lGo-9i-Dqg"/>
+                                <exclude reference="u5c-LB-Cg6"/>
                             </mask>
                         </variation>
                     </view>
