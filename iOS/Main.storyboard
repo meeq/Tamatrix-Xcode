@@ -78,26 +78,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-dn-vaJ" customClass="UIImageView">
-                                <rect key="frame" x="25" y="117" width="550" height="366"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-dn-vaJ" customClass="UIImageView">
+                                <rect key="frame" x="20" y="127" width="560" height="374"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="EyX-dn-vaJ" secondAttribute="height" multiplier="3:2" id="6gk-aW-9St"/>
+                                    <constraint firstAttribute="width" secondItem="EyX-dn-vaJ" secondAttribute="height" multiplier="3:2" id="j68-dt-35P"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="UrC-Pp-7bc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EyX-dn-vaJ" secondAttribute="bottom" id="AXx-bJ-SRG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="EyX-dn-vaJ" secondAttribute="trailing" priority="500" constant="5" id="b2L-85-bCe"/>
-                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerX" secondItem="hvw-WT-gt3" secondAttribute="centerX" id="i0m-7A-2l5"/>
-                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="leading" secondItem="hvw-WT-gt3" secondAttribute="leadingMargin" priority="500" constant="5" id="i7D-aF-mzP"/>
-                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerY" secondItem="hvw-WT-gt3" secondAttribute="centerY" priority="250" id="n6S-SW-s4U"/>
-                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tVL-f0-zdI" secondAttribute="bottom" id="qSO-f7-GOb"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="EyX-dn-vaJ" secondAttribute="bottom" id="6ml-ej-Q4s">
+                                <variation key="heightClass=compact" constant="5"/>
+                            </constraint>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerX" secondItem="hvw-WT-gt3" secondAttribute="centerX" id="G3x-bf-a4y"/>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="centerY" secondItem="hvw-WT-gt3" secondAttribute="centerY" id="SYE-S1-o5j"/>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="top" secondItem="tVL-f0-zdI" secondAttribute="bottom" id="jdT-LA-ABx">
+                                <variation key="heightClass=compact" constant="5"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="EyX-dn-vaJ" secondAttribute="trailing" id="lGo-9i-Dqg">
+                                <variation key="heightClass=regular" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="EyX-dn-vaJ" firstAttribute="leading" secondItem="hvw-WT-gt3" secondAttribute="leadingMargin" constant="20" id="u5c-LB-Cg6"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6ml-ej-Q4s"/>
+                                <exclude reference="jdT-LA-ABx"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="6ml-ej-Q4s"/>
+                                <exclude reference="SYE-S1-o5j"/>
+                                <include reference="jdT-LA-ABx"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="lGo-9i-Dqg"/>
+                                <include reference="u5c-LB-Cg6"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="lcdImageView" destination="EyX-dn-vaJ" id="YTt-Ge-uIP"/>
