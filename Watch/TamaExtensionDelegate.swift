@@ -44,12 +44,10 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func applicationDidBecomeActive() {
-        // Start timers
-        dataController?.fetchData()
+        dataController?.startFetchTimer()
     }
 
     func applicationWillResignActive() {
-        // Stop timers
         dataController?.stopFetching()
     }
 

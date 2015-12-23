@@ -214,8 +214,8 @@
 		7A7DC6351C237E68006DBD58 /* Watch */ = {
 			isa = PBXGroup;
 			children = (
-				7A7DC6361C237E68006DBD58 /* TamaInterfaceController.swift */,
 				7A7DC6381C237E68006DBD58 /* TamaExtensionDelegate.swift */,
+				7A7DC6361C237E68006DBD58 /* TamaInterfaceController.swift */,
 				7A7DC6271C237E68006DBD58 /* Interface.storyboard */,
 				7A7DC62A1C237E68006DBD58 /* Assets.xcassets */,
 				7A7DC62C1C237E68006DBD58 /* Info.plist */,

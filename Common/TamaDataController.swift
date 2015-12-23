@@ -59,7 +59,9 @@ class TamaDataController: NSObject {
     }
 
     func startFetchTimer() {
-        self.stopFetching()
+        if self.fetchTimer != nil {
+            return
+        }
         self.fetchRepeats = true
         self.fetchTimer = NSTimer(
             timeInterval: self.fetchInterval,
@@ -77,14 +79,15 @@ class TamaDataController: NSObject {
     }
 
     func fetchData() {
+        // Clear possible outstanding timer
+        self.fetchTimer?.invalidate()
+        self.fetchTimer = nil
         // Build the request URL from the sequence number of the last request
         var urlString = self.baseUrl
         if lastseq > 0 {
             urlString = "\(urlString)?lastseq=\(lastseq)"
         }
-#if DEBUG
         print("Fetching data from \(urlString)")
-#endif
         let url: NSURL = NSURL(string: urlString)! // TODO Handle bad URLs a bit more elegantly
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) { data, response, error in
             // TODO Notify the application that a data error has occurred
@@ -117,9 +120,9 @@ class TamaDataController: NSObject {
         task.resume()
     }
 
-    func processResponseDictionary(respObj: NSDictionary) {
+    private func processResponseDictionary(respObj: NSDictionary) {
         // Grab the useful bits
-        // TODO Validate the response object
+        // TODO Validate the response object (beyond crashing)
         self.lastseq = respObj["lastseq"] as! Int
         for tamaDict in respObj["tama"] as! [NSDictionary] {
             let id = tamaDict["id"] as! Int

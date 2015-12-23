@@ -23,7 +23,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Application Delegate callbacks
 
     func applicationDidBecomeActive(application: UIApplication) {
-        dataController?.fetchData()
+        dataController?.startFetchTimer()
     }
 
     func applicationWillResignActive(application: UIApplication) {
