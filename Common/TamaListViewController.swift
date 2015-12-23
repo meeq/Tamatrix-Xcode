@@ -29,9 +29,10 @@ class TamaListViewController: UICollectionViewController {
         if let collectionView = self.collectionView {
             // Update the pixel data for all visible LCDs
             for indexPath in collectionView.indexPathsForVisibleItems() {
-                let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TamaListViewCell
-                if let tamaModel = self.tamaData[indexPath.item] {
-                    cell.redrawLcdAsync(tamaModel.pixels)
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TamaListViewCell {
+                    if let tamaModel = self.tamaData[indexPath.item] {
+                        cell.redrawLcdAsync(tamaModel.pixels)
+                    }
                 }
             }
         }
