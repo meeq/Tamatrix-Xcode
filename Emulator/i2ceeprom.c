@@ -47,7 +47,7 @@ int i2ceepromRead(void *dev, int byteNo) {
 	return r;
 }
 
-I2cEeprom *i2ceepromInit(char *filename) {
+I2cEeprom *i2ceepromInit(const char *filename) {
 	int x, i;
 	I2cEeprom *e=malloc(sizeof(I2cEeprom));
 	e->i2cdev.writeCb=i2ceepromWrite;
