@@ -34,78 +34,115 @@ struct TamaIcons : OptionSetType {
 
 class TamaEmulatorController: NSObject {
 
+    var romData: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>?
     var tamaPointer: UnsafeMutablePointer<Tamagotchi>?
     var tama: Tamagotchi?
     var dram = [UInt8](count: tamaDramSize, repeatedValue: 0)
     var display = Display()
-    var microSecs: UInt = 0
     var frameCount: UInt = 0
     var isAIEnabled: Bool = true
 
     override init() {
         super.init()
-        let romData = loadRoms(self.romDataPath()!)
-        self.tamaPointer = tamaInit(romData, self.eepromPath()!)
+        self.romData = loadRoms(self.romDataPath()!)
+        self.tamaPointer = tamaInit(self.romData!, self.eepromPath()!)
         self.tama = self.tamaPointer!.memory
+        benevolentAiInit()
+        udpInit(self.udpServerHost()!)
     }
 
     deinit {
-        guard self.tamaPointer != nil else {
-            return
+        if self.tamaPointer != nil {
+            tamaDeinit(self.tamaPointer!)
         }
-        tamaDeinit(self.tamaPointer!)
-        self.tama = nil
+        if self.romData != nil {
+            freeRoms(self.romData!)
+        }
+        udpExit()
     }
 
     func romDataPath() -> [CChar]? {
         // TODO Make this configurable
         let bundle = NSBundle.mainBundle()
-        if let romDirStr = bundle.pathForResource("rom", ofType: nil) {
-            return romDirStr.cStringUsingEncoding(NSUTF8StringEncoding)
-        } else {
+        guard let romDirStr = bundle.pathForResource("rom", ofType: nil) else {
             print("Unable to determine ROM data path; this is bad.")
             return nil
         }
+        print("ROM Path: \(romDirStr)")
+        return romDirStr.cStringUsingEncoding(NSUTF8StringEncoding)
     }
 
     func eepromPath() -> [CChar]? {
         // TODO Make this configurable
-        if let userDirStr = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first {
-            let eepromPathStr = userDirStr + "/tama.eep"
-            return eepromPathStr.cStringUsingEncoding(NSUTF8StringEncoding)
-        } else {
+        let dir = NSSearchPathDirectory.DocumentDirectory
+        let domain = NSSearchPathDomainMask.UserDomainMask
+        guard let userDirStr = NSSearchPathForDirectoriesInDomains(dir, domain, true).last else {
             print("Unable to determine EEPROM data path; this is bad.")
             return nil
         }
+        let eepromPathStr = userDirStr + "/tama.eep"
+        print("EEPROM Path: \(eepromPathStr)")
+        return eepromPathStr.cStringUsingEncoding(NSUTF8StringEncoding)
+    }
+
+    func udpServerHost() -> [CChar]? {
+        // TODO Make this configurable
+        let hostStr: String = "127.0.0.1"
+        return hostStr.cStringUsingEncoding(NSUTF8StringEncoding)
     }
 
     func renderDisplay() {
+        // TODO Fix this pointer type conversion nonsense
+        // Convert (char *) Tuple to uint8_t Array
         var i = 0
-        // Convert (char *) to (uint8_t *)
-        // TODO Fix this type conversion nonsense
-        let mirror = Mirror(reflecting: self.tama!.dram)
-        for (_, value) in mirror.children {
-            if let value = value as? Int {
-                self.dram[i] = UInt8(value)
-                i += 1
-            }
+        for (_, value) in Mirror(reflecting: self.tama!.dram).children {
+            self.dram[i] = UInt8(value as! Int8)
+            i += 1
         }
+        // Convert uint8_t Array into (uint8_t *)
         self.dram.withUnsafeMutableBufferPointer { (inout ptr: UnsafeMutableBufferPointer<UInt8>) -> () in
             let lcd = self.tama!.lcd
             lcdRender(ptr.baseAddress, lcd.sizex, lcd.sizey, &self.display)
-            print(self.display)
         }
     }
 
-    func dispatchRunFrame() {
+    func runFrameAsync() {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
-            print("Emulator running for \(tamaRunCycles) cycles...")
-            tamaRun(self.tamaPointer!, tamaRunCycles)
+            var frameStartTime = timespec()
+            clock_gettime(CLOCK_MONOTONIC, &frameStartTime)
+            tamaRun(self.tamaPointer!, tamaRunCycles - 1)
             self.renderDisplay()
-            self.dispatchRunFrame()
-            dispatch_async(dispatch_get_main_queue()) {
-                print("This is run on the main queue, after the previous code in outer block")
+            udpTick()
+            if (self.frameCount & 15) == 0 {
+                dispatch_async(dispatch_get_main_queue()) {
+                    lcdShow(&self.display)
+                    udpSendDisplay(&self.display)
+                    tamaDumpHw(self.tama!.cpu)
+                    benevolentAiDump()
+                }
             }
+            var frameEndTime = timespec()
+            clock_gettime(CLOCK_MONOTONIC, &frameEndTime)
+            self.frameCount += 1
+            self.dispatchNextFrame(frameStartTime, frameEndTime: frameEndTime)
+        }
+    }
+
+    func dispatchNextFrame(frameStartTime: timespec, frameEndTime: timespec) {
+        var frameDuration: Double // In Microseconds
+        frameDuration = Double(frameEndTime.tv_nsec - frameStartTime.tv_nsec) / 1000.0
+        frameDuration += Double(frameEndTime.tv_sec - frameStartTime.tv_sec) * 1000000.0
+        let frameDelay: Double = (1000000.0 / Double(tamaFps)) - frameDuration
+        if frameDelay > 0 {
+            let timer = NSTimer(
+                timeInterval: NSTimeInterval(frameDelay / 1000000.0),
+                target: self,
+                selector: "runFrameAsync",
+                userInfo: nil,
+                repeats: false)
+            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        } else {
+            self.runFrameAsync()
         }
     }
 

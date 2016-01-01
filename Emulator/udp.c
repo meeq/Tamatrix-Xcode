@@ -29,7 +29,7 @@ static struct sockaddr_in servaddr;
 static char olddisp[32][48];
 
 
-void udpInit(char *hostname) {
+void udpInit(const char *hostname) {
 //	struct sockaddr_in cliaddr;
 	struct hostent *server;
 	server=gethostbyname(hostname);

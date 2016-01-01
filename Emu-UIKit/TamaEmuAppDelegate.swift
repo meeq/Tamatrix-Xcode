@@ -34,7 +34,7 @@ class TamaEmuAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        self.emulator?.dispatchRunFrame()
+        self.emulator?.runFrameAsync()
     }
 
     func applicationWillTerminate(application: UIApplication) {

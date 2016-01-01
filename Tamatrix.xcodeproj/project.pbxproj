@@ -41,6 +41,8 @@
 		7AB4CEAB1C350882005A04A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB4CEA71C350882005A04A7 /* Main.storyboard */; };
 		7AB4CEB01C350C14005A04A7 /* TamaEmulatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEA21C3505C5005A04A7 /* TamaEmulatorController.swift */; };
 		7AB4CEB11C351481005A04A7 /* rom in Resources */ = {isa = PBXBuildFile; fileRef = 7AD810D71C34DC4E004EB35B /* rom */; };
+		7AB4CEB31C362C6D005A04A7 /* mach_gettime.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */; };
+		7AB4CEB41C362C6D005A04A7 /* mach_gettime.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */; };
 		7AD810531C34D5FE004EB35B /* TamaEmuAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */; };
 		7AD810551C34D5FE004EB35B /* TamaEmuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */; };
 		7AD810841C34D66A004EB35B /* i2c.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810601C34D66A004EB35B /* i2c.c */; };
@@ -156,6 +158,7 @@
 		7AB4CEA81C350882005A04A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7AB4CEA91C350882005A04A7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AB4CEAF1C350B90005A04A7 /* TamaEmu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TamaEmu-Bridging-Header.h"; sourceTree = "<group>"; };
+		7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_gettime.c; sourceTree = "<group>"; };
 		7AD810501C34D5FE004EB35B /* Tama-Emu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Emu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaEmuAppDelegate.swift; sourceTree = "<group>"; };
 		7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaEmuViewController.swift; sourceTree = "<group>"; };
@@ -358,6 +361,7 @@
 				7AD810A41C34D77B004EB35B /* lcd.h */,
 				7AD810A91C34D7DE004EB35B /* lcdmatch.c */,
 				7AD810AA1C34D7DE004EB35B /* lcdmatch.h */,
+				7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */,
 				7AD810D51C34DA64004EB35B /* mach_gettime.h */,
 				7AD810AB1C34D7DE004EB35B /* screens.c */,
 				7AD810AC1C34D7DE004EB35B /* screens.h */,
@@ -647,6 +651,7 @@
 				7AD810AE1C34D7DE004EB35B /* screens.c in Sources */,
 				7AD810891C34D66A004EB35B /* M6502.c in Sources */,
 				7AD810A21C34D761004EB35B /* udp.c in Sources */,
+				7AB4CEB41C362C6D005A04A7 /* mach_gettime.c in Sources */,
 				7AD810551C34D5FE004EB35B /* TamaEmuViewController.swift in Sources */,
 				7AB4CEB01C350C14005A04A7 /* TamaEmulatorController.swift in Sources */,
 				7AD810AD1C34D7DE004EB35B /* lcdmatch.c in Sources */,
@@ -667,6 +672,7 @@
 				7AD810C91C34D98F004EB35B /* i2c.c in Sources */,
 				7AD810CA1C34D98F004EB35B /* i2ceeprom.c in Sources */,
 				7AD810CE1C34D98F004EB35B /* screens.c in Sources */,
+				7AB4CEB31C362C6D005A04A7 /* mach_gettime.c in Sources */,
 				7AD810CF1C34D98F004EB35B /* main.c in Sources */,
 				7AD810D41C34D98F004EB35B /* udp.c in Sources */,
 				7AD810CD1C34D98F004EB35B /* lcdmatch.c in Sources */,

@@ -3,7 +3,7 @@
 
 #include "lcd.h"
 
-void udpInit(char *hostname);
+void udpInit(const char *hostname);
 void udpSendDisplay(Display *d);
 void udpSendIr(char *data, int len, int startPulseLen);
 void udpTick();
