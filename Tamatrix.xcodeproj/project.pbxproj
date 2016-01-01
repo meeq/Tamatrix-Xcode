@@ -12,6 +12,7 @@
 		7A0068B11C18E5BE0098B165 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A0068AF1C18E5BE0098B165 /* Main.storyboard */; };
 		7A0068B31C18E5BE0098B165 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A0068B21C18E5BE0098B165 /* Assets.xcassets */; };
 		7A0068BB1C18F0080098B165 /* TamaItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */; };
+		7A0E6BD51C37218B00E8C107 /* TamaEmulatorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0E6BD41C37218B00E8C107 /* TamaEmulatorState.swift */; };
 		7A151F331C234581002AC8DA /* TamaHiveAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068AB1C18E5BE0098B165 /* TamaHiveAppDelegate.swift */; };
 		7A151F341C234583002AC8DA /* TamaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068AD1C18E5BE0098B165 /* TamaListViewController.swift */; };
 		7A151F351C234586002AC8DA /* TamaItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */; };
@@ -136,6 +137,7 @@
 		7A0068B21C18E5BE0098B165 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A0068B41C18E5BE0098B165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaItemViewController.swift; sourceTree = "<group>"; };
+		7A0E6BD41C37218B00E8C107 /* TamaEmulatorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaEmulatorState.swift; sourceTree = "<group>"; };
 		7A151F201C23447E002AC8DA /* Tama-Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A69B2E81C192EF1000F1FBA /* hexagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hexagon.png; sourceTree = "<group>"; };
 		7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListViewCell.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 			children = (
 				7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */,
 				7AB4CEA21C3505C5005A04A7 /* TamaEmulatorController.swift */,
+				7A0E6BD41C37218B00E8C107 /* TamaEmulatorState.swift */,
 				7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */,
 				7AB4CEAF1C350B90005A04A7 /* TamaEmu-Bridging-Header.h */,
 			);
@@ -656,6 +659,7 @@
 				7AB4CEB01C350C14005A04A7 /* TamaEmulatorController.swift in Sources */,
 				7AD810AD1C34D7DE004EB35B /* lcdmatch.c in Sources */,
 				7AD810881C34D66A004EB35B /* Debug.c in Sources */,
+				7A0E6BD51C37218B00E8C107 /* TamaEmulatorState.swift in Sources */,
 				7AD810A81C34D7C2004EB35B /* benevolentai.c in Sources */,
 				7AD810851C34D66A004EB35B /* i2ceeprom.c in Sources */,
 				7AD810531C34D5FE004EB35B /* TamaEmuAppDelegate.swift in Sources */,

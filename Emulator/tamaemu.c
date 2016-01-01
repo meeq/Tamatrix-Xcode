@@ -15,7 +15,7 @@
 #include "i2c.h"
 #include "ir.h"
 
-int PAGECT=22;
+int PAGECT=20;
 
 #define BUTTONRELEASETIME FCPU/15;
 

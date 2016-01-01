@@ -8,44 +8,32 @@
 
 import Foundation
 
+let TamaStateUpdateNotificationKey = "tamaStateUpdateNotification"
+
+let tamaDramSize: Int = 512
 let tamaClock: Int = 16000000
 let tamaFps: Int = 15
 let tamaRunCycles: Int32 = Int32(tamaClock / tamaFps)
-let tamaDramSize: Int = 512
-let nanosPerSecond: Double = 1000000000.0
-
-let tamaScreenWidth = 48
-let tamaScreenHeight = 32
-
-struct TamaIcons : OptionSetType {
-    let rawValue: Int
-
-    static let None         = TamaIcons(rawValue: 0)
-    static let Info         = TamaIcons(rawValue: 1 << 0)
-    static let Food         = TamaIcons(rawValue: 1 << 1)
-    static let Toilet       = TamaIcons(rawValue: 1 << 2)
-    static let Door         = TamaIcons(rawValue: 1 << 3)
-    static let Figure       = TamaIcons(rawValue: 1 << 4)
-    static let Training     = TamaIcons(rawValue: 1 << 5)
-    static let Medical      = TamaIcons(rawValue: 1 << 6)
-    static let IR           = TamaIcons(rawValue: 1 << 7)
-    static let Album        = TamaIcons(rawValue: 1 << 8)
-    static let Attention    = TamaIcons(rawValue: 1 << 9)
-}
 
 class TamaEmulatorController: NSObject {
 
-    var romData: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>?
-    var tama: UnsafeMutablePointer<Tamagotchi>?
-    var dram = [UInt8](count: tamaDramSize, repeatedValue: 0)
-    var display = Display()
-    var frameCount: UInt = 0
+    private var romData: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>?
+    private var tama: UnsafeMutablePointer<Tamagotchi>?
+    private var dram = [UInt8](count: tamaDramSize, repeatedValue: 0)
+    private var display = Display()
+    private var state = TamaEmulatorState()
+    private var frameCount: UInt = 0
+    private var frameStart = NSDate()
+    private var frameEnd = NSDate()
+
+    var isPaused: Bool = false
     var isAIEnabled: Bool = true
 
     override init() {
         super.init()
         self.romData = loadRoms(self.romDataPath()!)
         self.tama = tamaInit(self.romData!, self.eepromPath()!)
+        self.state.emu = self
         benevolentAiInit()
         udpInit(self.udpServerHost()!)
     }
@@ -106,38 +94,41 @@ class TamaEmulatorController: NSObject {
     }
 
     func showFrame() {
-        lcdShow(&self.display)
         udpSendDisplay(&self.display)
+        // New hotness
+        self.state.setFromDisplay(self.display)
+        // Update the rest of the application
+        NSNotificationCenter.defaultCenter().postNotificationName(TamaStateUpdateNotificationKey, object: self.state)
+        // Old and busted
+        lcdShow(&self.display)
         tamaDumpHw(self.tama!.memory.cpu)
         benevolentAiDump()
     }
 
-    func runFrameSync() -> (timespec, timespec) {
-        var frameStartTime = timespec()
-        clock_gettime(CLOCK_MONOTONIC, &frameStartTime)
+    func runFrameAsync() {
+        if self.isPaused { return }
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+            self.runFrameSync()
+            self.dispatchNextFrame()
+        }
+    }
+
+    func runFrameSync() {
+        if self.isPaused { return }
+        self.frameStart = NSDate()
         tamaRun(self.tama!, tamaRunCycles - 1)
         self.renderDisplay()
         udpTick()
-        if (self.frameCount & 15) == 0 {
-            self.showFrame()
-        }
-        var frameEndTime = timespec()
-        clock_gettime(CLOCK_MONOTONIC, &frameEndTime)
+        self.showFrame()
+        self.frameEnd = NSDate()
         self.frameCount += 1
-        return (frameStartTime, frameEndTime)
     }
 
-    func runFrameAsync() {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
-            let (frameStartTime, frameEndTime) = self.runFrameSync()
-            self.dispatchNextFrame(frameStartTime, frameEndTime: frameEndTime)
-        }
-    }
-
-    func dispatchNextFrame(frameStartTime: timespec, frameEndTime: timespec) {
-        var frameDuration = Double(frameEndTime.tv_sec - frameStartTime.tv_sec)
-        frameDuration += Double(frameEndTime.tv_nsec - frameStartTime.tv_nsec) / nanosPerSecond
-        let frameDelay = NSTimeInterval((1.0 / Double(tamaFps)) - frameDuration)
+    func dispatchNextFrame() {
+        if self.isPaused { return }
+        // TODO Revisit all of this frame scheduling
+        let frameDuration = self.frameEnd.timeIntervalSinceDate(self.frameStart)
+        let frameDelay: NSTimeInterval = (1.0 / Double(tamaFps)) - frameDuration
         if frameDelay > 0 {
             let timer = NSTimer(
                 timeInterval: frameDelay,
