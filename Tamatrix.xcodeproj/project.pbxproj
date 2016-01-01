@@ -34,6 +34,7 @@
 		7A7DC6501C238861006DBD58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC64B1C238861006DBD58 /* LaunchScreen.storyboard */; };
 		7A7DC6511C238861006DBD58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC64D1C238861006DBD58 /* Main.storyboard */; };
 		7A7DC6531C238A63006DBD58 /* TamaDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */; };
+		7A8BE7D81C3730C5005B261D /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
 		7A9AFD411C23B3B700D0A8F6 /* TamaDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */; };
 		7A9AFD431C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
 		7A9AFD441C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
@@ -541,9 +542,9 @@
 			projectRoot = "";
 			targets = (
 				7A151F1F1C23447E002AC8DA /* Tama-Hive-iOS */,
-				7A0068A71C18E5BD0098B165 /* Tama-Hive-TV */,
 				7A7DC6241C237E68006DBD58 /* Tama-Hive-Watch */,
 				7A7DC6301C237E68006DBD58 /* Tama-Hive-Watch Extension */,
+				7A0068A71C18E5BD0098B165 /* Tama-Hive-TV */,
 				7AD810B21C34D8F8004EB35B /* tamaemu */,
 				7AD8104F1C34D5FE004EB35B /* Tama-Emu-TV */,
 			);
@@ -662,6 +663,7 @@
 				7A0E6BD51C37218B00E8C107 /* TamaEmulatorState.swift in Sources */,
 				7AD810A81C34D7C2004EB35B /* benevolentai.c in Sources */,
 				7AD810851C34D66A004EB35B /* i2ceeprom.c in Sources */,
+				7A8BE7D81C3730C5005B261D /* TamaLcdScreen.swift in Sources */,
 				7AD810531C34D5FE004EB35B /* TamaEmuAppDelegate.swift in Sources */,
 				7AD810861C34D66A004EB35B /* ir.c in Sources */,
 				7AD8109E1C34D66A004EB35B /* tamaemu.c in Sources */,

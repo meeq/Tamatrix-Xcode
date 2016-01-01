@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Tama Emu View Controller-->
@@ -15,8 +16,67 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0wG-WB-s6Q">
+                                <rect key="frame" x="360" y="40" width="1200" height="800"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0wG-WB-s6Q" secondAttribute="height" multiplier="3:2" id="54g-Wj-q7U"/>
+                                    <constraint firstAttribute="height" constant="800" id="Hn4-7W-hy6"/>
+                                    <constraint firstAttribute="width" constant="1200" id="Mda-nR-ugz"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mom-kP-4Ip">
+                                <rect key="frame" x="515" y="910" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="oyZ-tF-q0J"/>
+                                    <constraint firstAttribute="height" constant="130" id="plx-9a-HVw"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="A"/>
+                                <connections>
+                                    <action selector="userDidPressButton:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="TXI-1q-FQg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieP-fd-MJg">
+                                <rect key="frame" x="895" y="910" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="ZTx-oT-Ers"/>
+                                    <constraint firstAttribute="width" constant="130" id="diy-W8-qSX"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="B"/>
+                                <connections>
+                                    <action selector="userDidPressButton:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="VmR-SF-3QA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFQ-WT-100">
+                                <rect key="frame" x="1275" y="910" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="S4N-l5-Bab"/>
+                                    <constraint firstAttribute="width" constant="130" id="zz3-d2-1fT"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="C"/>
+                                <connections>
+                                    <action selector="userDidPressButton:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="2vp-aX-a0q"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eFQ-WT-100" firstAttribute="leading" secondItem="ieP-fd-MJg" secondAttribute="trailing" constant="250" id="5bw-iS-uTS"/>
+                            <constraint firstItem="0wG-WB-s6Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FLk-Ae-wKi"/>
+                            <constraint firstItem="mom-kP-4Ip" firstAttribute="top" secondItem="0wG-WB-s6Q" secondAttribute="bottom" constant="70" id="Fj6-YP-JPw"/>
+                            <constraint firstItem="eFQ-WT-100" firstAttribute="top" secondItem="0wG-WB-s6Q" secondAttribute="bottom" constant="70" id="Mbq-xl-DBY"/>
+                            <constraint firstItem="0wG-WB-s6Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="ZPk-JW-bZy"/>
+                            <constraint firstItem="ieP-fd-MJg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pnZ-Eq-7Ya"/>
+                            <constraint firstItem="ieP-fd-MJg" firstAttribute="top" secondItem="0wG-WB-s6Q" secondAttribute="bottom" constant="70" id="vFC-V6-g86"/>
+                            <constraint firstItem="ieP-fd-MJg" firstAttribute="leading" secondItem="mom-kP-4Ip" secondAttribute="trailing" constant="250" id="vSI-PH-jV2"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lcdImageView" destination="0wG-WB-s6Q" id="UCC-kg-smS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

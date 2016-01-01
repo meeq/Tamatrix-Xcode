@@ -100,9 +100,13 @@ class TamaEmulatorController: NSObject {
         // Update the rest of the application
         NSNotificationCenter.defaultCenter().postNotificationName(TamaStateUpdateNotificationKey, object: self.state)
         // Old and busted
-        lcdShow(&self.display)
-        tamaDumpHw(self.tama!.memory.cpu)
-        benevolentAiDump()
+//        lcdShow(&self.display)
+//        tamaDumpHw(self.tama!.memory.cpu)
+//        benevolentAiDump()
+    }
+
+    func pressButton(button: TamaButton) {
+        tamaPressBtn(self.tama!, Int32(button.rawValue))
     }
 
     func runFrameAsync() {

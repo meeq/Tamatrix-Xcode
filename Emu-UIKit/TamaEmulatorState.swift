@@ -8,10 +8,20 @@
 
 import Foundation
 
-enum TamaButtons: Int {
+enum TamaButton: Int {
+    case None = -1
     case A = 0
     case B = 1
     case C = 2
+
+    static func fromString(string: String) -> TamaButton {
+        switch string {
+            case "A": return .A
+            case "B": return .B
+            case "C": return .C
+            default : return .None
+        }
+    }
 }
 
 struct TamaIcons: OptionSetType {
@@ -47,6 +57,12 @@ class TamaEmulatorState: NSObject {
         }
         self.pixels = String(charAcc)
         self.icons = TamaIcons(rawValue: Int(display.icons))
+    }
+
+    func pressButton(button: TamaButton) {
+        if button != .None {
+            self.emu?.pressButton(button)
+        }
     }
     
 }
