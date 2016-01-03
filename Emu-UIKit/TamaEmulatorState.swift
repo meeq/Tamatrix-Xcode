@@ -39,6 +39,10 @@ struct TamaIcons: OptionSetType {
     static let Album        = TamaIcons(rawValue: 1 << 8)
     static let Attention    = TamaIcons(rawValue: 1 << 9)
 
+    static func fromIndex(index: Int) -> TamaIcons {
+        return TamaIcons(rawValue: 1 << index)
+    }
+
     static let count = 10
     static let names = [
         "Info",

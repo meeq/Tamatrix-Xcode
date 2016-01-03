@@ -18,10 +18,6 @@
 		7A151F351C234586002AC8DA /* TamaItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */; };
 		7A151F361C234588002AC8DA /* TamaListHiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */; };
 		7A151F371C23458B002AC8DA /* TamaListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */; };
-		7A151F3A1C23459C002AC8DA /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
-		7A151F3B1C23459F002AC8DA /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
-		7A151F3C1C2345A1002AC8DA /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
-		7A69B2EA1C192EF1000F1FBA /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
 		7A69B2ED1C1933DA000F1FBA /* TamaListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */; };
 		7A7DC6291C237E68006DBD58 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC6271C237E68006DBD58 /* Interface.storyboard */; };
 		7A7DC62B1C237E68006DBD58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC62A1C237E68006DBD58 /* Assets.xcassets */; };
@@ -87,6 +83,12 @@
 		7AB4CEB11C351481005A04A7 /* rom in Resources */ = {isa = PBXBuildFile; fileRef = 7AD810D71C34DC4E004EB35B /* rom */; };
 		7AB4CEB31C362C6D005A04A7 /* mach_gettime.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */; };
 		7AB4CEB41C362C6D005A04A7 /* mach_gettime.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */; };
+		7AC717541C39045E00B79F1B /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
+		7AC717551C39045E00B79F1B /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
+		7AC717561C39045E00B79F1B /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
+		7AC717571C39046500B79F1B /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
+		7AC717581C39046500B79F1B /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
+		7AC717591C39046500B79F1B /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
 		7AD810531C34D5FE004EB35B /* TamaEmuAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */; };
 		7AD810551C34D5FE004EB35B /* TamaEmuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */; };
 		7AD810841C34D66A004EB35B /* i2c.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810601C34D66A004EB35B /* i2c.c */; };
@@ -114,8 +116,6 @@
 		7AD810D41C34D98F004EB35B /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8109F1C34D761004EB35B /* udp.c */; };
 		7AD810D91C34DC5B004EB35B /* rom in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AD810D71C34DC4E004EB35B /* rom */; };
 		7AE766DF1C1A880300078E68 /* TamaListHiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */; };
-		7AE8C4AB1C1A37F000E1C4FD /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
-		7AE8C4AC1C1A37F000E1C4FD /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,7 +180,7 @@
 		7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaItemViewController.swift; sourceTree = "<group>"; };
 		7A0E6BD41C37218B00E8C107 /* TamaEmulatorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaEmulatorState.swift; sourceTree = "<group>"; };
 		7A151F201C23447E002AC8DA /* Tama-Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A69B2E81C192EF1000F1FBA /* hexagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hexagon.png; path = Images/hexagon.png; sourceTree = "<group>"; };
+		7A69B2E81C192EF1000F1FBA /* hexagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hexagon.png; sourceTree = "<group>"; };
 		7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListViewCell.swift; sourceTree = "<group>"; };
 		7A7DC6251C237E68006DBD58 /* Tama-Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Hive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7DC6281C237E68006DBD58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -251,8 +251,8 @@
 		7AD810D51C34DA64004EB35B /* mach_gettime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_gettime.h; sourceTree = "<group>"; };
 		7AD810D71C34DC4E004EB35B /* rom */ = {isa = PBXFileReference; lastKnownFileType = folder; name = rom; path = Emulator/rom; sourceTree = SOURCE_ROOT; };
 		7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListHiveLayout.swift; sourceTree = "<group>"; };
-		7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hexagon-invert-dark.png"; path = "Images/hexagon-invert-dark.png"; sourceTree = "<group>"; };
-		7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hexagon-invert.png"; path = "Images/hexagon-invert.png"; sourceTree = "<group>"; };
+		7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert-dark.png"; sourceTree = "<group>"; };
+		7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,8 +374,7 @@
 				7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */,
 				7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */,
 			);
-			name = Images;
-			path = "Hive-UIKit/Images";
+			path = Images;
 			sourceTree = "<group>";
 		};
 		7A7DC6351C237E68006DBD58 /* Hive-Watch */ = {
@@ -681,11 +680,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AE8C4AC1C1A37F000E1C4FD /* hexagon-invert.png in Resources */,
-				7A69B2EA1C192EF1000F1FBA /* hexagon.png in Resources */,
+				7AC717541C39045E00B79F1B /* hexagon.png in Resources */,
+				7AC717551C39045E00B79F1B /* hexagon-invert-dark.png in Resources */,
+				7AC717561C39045E00B79F1B /* hexagon-invert.png in Resources */,
 				7A0068B31C18E5BE0098B165 /* Assets.xcassets in Resources */,
 				7A0068B11C18E5BE0098B165 /* Main.storyboard in Resources */,
-				7AE8C4AB1C1A37F000E1C4FD /* hexagon-invert-dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,10 +692,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AC717571C39046500B79F1B /* hexagon.png in Resources */,
+				7AC717581C39046500B79F1B /* hexagon-invert-dark.png in Resources */,
+				7AC717591C39046500B79F1B /* hexagon-invert.png in Resources */,
 				7A7DC6511C238861006DBD58 /* Main.storyboard in Resources */,
-				7A151F3B1C23459F002AC8DA /* hexagon-invert.png in Resources */,
-				7A151F3A1C23459C002AC8DA /* hexagon.png in Resources */,
-				7A151F3C1C2345A1002AC8DA /* hexagon-invert-dark.png in Resources */,
 				7A7DC6501C238861006DBD58 /* LaunchScreen.storyboard in Resources */,
 				7A7DC64F1C238861006DBD58 /* Assets.xcassets in Resources */,
 			);

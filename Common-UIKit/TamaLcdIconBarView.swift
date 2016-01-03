@@ -15,8 +15,8 @@ class TamaLcdIconBarView: UIView {
     var iconViews = [UIImageView]()
     var iconState = TamaIcons.None
 
-    let inactiveAlpha: CGFloat = 0.4
-    let activeAlpha: CGFloat = 0.9
+    let inactiveAlpha: CGFloat = 0.3
+    let activeAlpha: CGFloat = 1.0
 
     @IBInspectable var isBottomIconBar: Bool = false {
         didSet {
@@ -35,24 +35,20 @@ class TamaLcdIconBarView: UIView {
     }
 
     func initIconViews() {
-        let barWidth = CGRectGetWidth(self.frame)
-        let iconSize = CGRectGetHeight(self.frame)
-        let iconPadding = (barWidth - (iconSize * CGFloat(numIcons))) / (CGFloat(numIcons) + 1)
-        var iconFrame = CGRectMake(iconPadding, 0, iconSize, iconSize)
         for _ in 0 ..< numIcons {
-            let iconView = UIImageView(frame: iconFrame)
+            let iconView = UIImageView(frame: CGRectZero)
             iconView.contentMode = .ScaleAspectFit
             self.iconViews.append(iconView)
             self.addSubview(iconView)
-            iconFrame.origin.x += iconSize + iconPadding
         }
     }
 
     override func layoutSubviews() {
         let barWidth = CGRectGetWidth(self.frame)
-        let iconSize = CGRectGetHeight(self.frame)
-        let iconPadding = (barWidth - (iconSize * CGFloat(numIcons))) / (CGFloat(numIcons) + 1)
-        var iconFrame = CGRectMake(iconPadding, 0, iconSize, iconSize)
+        let barHeight = CGRectGetHeight(self.frame)
+        let iconSize = barHeight * 0.75
+        let iconPadding = (barWidth - (iconSize * CGFloat(numIcons))) / (CGFloat(numIcons))
+        var iconFrame = CGRectMake(iconPadding / 2, (barHeight - iconSize) / 2, iconSize, iconSize)
         for i in 0 ..< numIcons {
             let iconView = self.iconViews[i]
             iconView.frame = iconFrame
@@ -61,11 +57,21 @@ class TamaLcdIconBarView: UIView {
     }
 
     func updateIconImages() {
-        let offset: Int = self.isBottomIconBar ? numIcons : 0
+        let offset = self.isBottomIconBar ? numIcons : 0
         for i in 0 ..< numIcons {
             let iconView = self.iconViews[i]
             iconView.image = UIImage(named: TamaIcons.names[i + offset])
             iconView.alpha = inactiveAlpha
+        }
+    }
+
+    func updateIconState(icons: TamaIcons) {
+        self.iconState = icons
+        let offset = self.isBottomIconBar ? numIcons : 0
+        for i in 0 ..< numIcons {
+            let iconView = self.iconViews[i]
+            let testIcon = TamaIcons.fromIndex(i + offset)
+            iconView.alpha = self.iconState.contains(testIcon) ? activeAlpha : inactiveAlpha
         }
     }
 
