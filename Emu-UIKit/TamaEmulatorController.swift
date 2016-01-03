@@ -19,7 +19,7 @@ private let tamaSaveFrameInterval: UInt = 511
 
 class TamaEmulatorController: NSObject {
 
-    private var romData: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>?
+    private var romPages: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>?
     private var tama: UnsafeMutablePointer<Tamagotchi>?
     private var dram = [UInt8](count: tamaDramSize, repeatedValue: 0)
     private var display = Display()
@@ -33,10 +33,9 @@ class TamaEmulatorController: NSObject {
 
     override init() {
         super.init()
-        self.romData = loadRoms(self.romDataPath()!)
-        self.tama = tamaInit(self.romData!, self.eepromPath()!)
+        self.romPages = loadRoms(self.romDataPath()!)
+        self.tama = tamaInit(self.romPages!, self.eepromPath()!)
         self.state.emu = self
-        benevolentAiInit()
         udpInit(self.udpServerHost()!)
     }
 
@@ -44,8 +43,8 @@ class TamaEmulatorController: NSObject {
         if self.tama != nil {
             tamaDeinit(self.tama!)
         }
-        if self.romData != nil {
-            freeRoms(self.romData!)
+        if self.romPages != nil {
+            freeRoms(self.romPages!)
         }
         udpExit()
     }
@@ -81,6 +80,7 @@ class TamaEmulatorController: NSObject {
     }
 
     func renderDramIntoDisplay() {
+        if self.isPaused { return }
         let tama = self.tama!.memory
         // TODO Fix this pointer type conversion nonsense
         // Convert (char *) Tuple to uint8_t Array
@@ -100,17 +100,19 @@ class TamaEmulatorController: NSObject {
     }
 
     func saveEeprom() {
-        print("Saving EEPROM")
         guard let tama = self.tama?.memory else { return }
+        print("Saving EEPROM")
         let eeprom = tama.i2ceeprom.memory
-        // For some strange reason, EEPROM changes don't sync unless we munmap
-        // (This could just be the simulator lying to me, though)
         msync(eeprom.mem, tamaEepromSize, MS_SYNC)
-        munmap(eeprom.mem, tamaEepromSize)
-        mmap(nil, tamaEepromSize, PROT_READ | PROT_WRITE, MAP_SHARED, eeprom.fd, 0)
+        // WARNING: For some strange reason, EEPROM changes don't sync unless we munmap
+        // CAVEAT: (This could just be the simulator lying to me, though)
+        // TODO: This is obviously bad and needs a better approach
+//        munmap(eeprom.mem, tamaEepromSize)
+//        mmap(nil, tamaEepromSize, PROT_READ | PROT_WRITE, MAP_SHARED, eeprom.fd, 0)
     }
 
     func showFrame() {
+        if self.isPaused { return }
         udpSendDisplay(&self.display)
         self.state.setFromDisplay(self.display)
         NSNotificationCenter.defaultCenter().postNotificationName(TamaStateUpdateNotificationKey, object: self.state)
