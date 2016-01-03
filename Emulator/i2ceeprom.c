@@ -76,6 +76,7 @@ I2cEeprom *i2ceepromInit(const char *filename) {
 }
 
 void i2ceepromDeinit(I2cEeprom *e) {
+    msync(e->mem, 65536, MS_SYNC);
 	munmap(e->mem, 65536);
 	close(e->fd);
 	free(e);

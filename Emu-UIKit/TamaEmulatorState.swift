@@ -44,7 +44,7 @@ class TamaEmulatorState: NSObject {
 
     var pixels: String?
     var icons = TamaIcons.None
-    var emu: TamaEmulatorController?
+    weak var emu: TamaEmulatorController?
 
     func setFromDisplay(display: Display) {
         let pixelCharMap: [Character] = ["A", "B", "C", "D"]

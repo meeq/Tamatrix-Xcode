@@ -10,10 +10,12 @@ import Foundation
 
 let TamaStateUpdateNotificationKey = "tamaStateUpdateNotification"
 
-let tamaDramSize: Int = 512
-let tamaClock: Int = 16000000
-let tamaFps: Int = 15
-let tamaRunCycles: Int32 = Int32(tamaClock / tamaFps)
+private let tamaDramSize: Int = 512
+private let tamaEepromSize: Int = 65536
+private let tamaClock: Int = 16000000
+private let tamaFps: Int = 15
+private let tamaRunCycles: Int32 = Int32(tamaClock / tamaFps) - 1
+private let tamaSaveFrameInterval: UInt = 511
 
 class TamaEmulatorController: NSObject {
 
@@ -78,7 +80,7 @@ class TamaEmulatorController: NSObject {
         return hostStr.cStringUsingEncoding(NSUTF8StringEncoding)
     }
 
-    func renderDisplay() {
+    func renderDramIntoDisplay() {
         let tama = self.tama!.memory
         // TODO Fix this pointer type conversion nonsense
         // Convert (char *) Tuple to uint8_t Array
@@ -93,20 +95,25 @@ class TamaEmulatorController: NSObject {
         }
     }
 
-    func showFrame() {
-        udpSendDisplay(&self.display)
-        // New hotness
-        self.state.setFromDisplay(self.display)
-        // Update the rest of the application
-        NSNotificationCenter.defaultCenter().postNotificationName(TamaStateUpdateNotificationKey, object: self.state)
-        // Old and busted
-//        lcdShow(&self.display)
-//        tamaDumpHw(self.tama!.memory.cpu)
-//        benevolentAiDump()
-    }
-
     func pressButton(button: TamaButton) {
         tamaPressBtn(self.tama!, Int32(button.rawValue))
+    }
+
+    func saveEeprom() {
+        print("Saving EEPROM")
+        guard let tama = self.tama?.memory else { return }
+        let eeprom = tama.i2ceeprom.memory
+        // For some strange reason, EEPROM changes don't sync unless we munmap
+        // (This could just be the simulator lying to me, though)
+        msync(eeprom.mem, tamaEepromSize, MS_SYNC)
+        munmap(eeprom.mem, tamaEepromSize)
+        mmap(nil, tamaEepromSize, PROT_READ | PROT_WRITE, MAP_SHARED, eeprom.fd, 0)
+    }
+
+    func showFrame() {
+        udpSendDisplay(&self.display)
+        self.state.setFromDisplay(self.display)
+        NSNotificationCenter.defaultCenter().postNotificationName(TamaStateUpdateNotificationKey, object: self.state)
     }
 
     func runFrameAsync() {
@@ -120,10 +127,13 @@ class TamaEmulatorController: NSObject {
     func runFrameSync() {
         if self.isPaused { return }
         self.frameStart = NSDate()
-        tamaRun(self.tama!, tamaRunCycles - 1)
-        self.renderDisplay()
+        tamaRun(self.tama!, tamaRunCycles)
+        self.renderDramIntoDisplay()
         udpTick()
         self.showFrame()
+        if self.frameCount & tamaSaveFrameInterval == 0 {
+            self.saveEeprom()
+        }
         self.frameEnd = NSDate()
         self.frameCount += 1
     }

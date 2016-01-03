@@ -21,14 +21,11 @@ class TamaEmuAppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillResignActive(application: UIApplication) {
         self.emulator?.isPaused = true
+        self.emulator?.saveEeprom()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
         self.emulator?.isPaused = true
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        self.emulator?.isPaused = false
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -38,6 +35,8 @@ class TamaEmuAppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         self.emulator?.isPaused = true
+        self.emulator?.saveEeprom()
+        self.emulator = nil
     }
 
 }
