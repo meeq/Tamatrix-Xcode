@@ -35,6 +35,26 @@
 		7A7DC6511C238861006DBD58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7DC64D1C238861006DBD58 /* Main.storyboard */; };
 		7A7DC6531C238A63006DBD58 /* TamaDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */; };
 		7A8BE7D81C3730C5005B261D /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
+		7A8BE7E51C38A1BE005B261D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A8BE7E31C38A1BE005B261D /* Main.storyboard */; };
+		7A8BE7E71C38A1BE005B261D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A8BE7E61C38A1BE005B261D /* Assets.xcassets */; };
+		7A8BE7EA1C38A1BE005B261D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A8BE7E81C38A1BE005B261D /* LaunchScreen.storyboard */; };
+		7A8BE7EF1C38A21C005B261D /* M6502.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8106A1C34D66A004EB35B /* M6502.c */; };
+		7A8BE7F01C38A21C005B261D /* benevolentai.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810A61C34D7C2004EB35B /* benevolentai.c */; };
+		7A8BE7F11C38A21C005B261D /* i2c.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810601C34D66A004EB35B /* i2c.c */; };
+		7A8BE7F21C38A21C005B261D /* i2ceeprom.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810621C34D66A004EB35B /* i2ceeprom.c */; };
+		7A8BE7F31C38A21C005B261D /* ir.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810641C34D66A004EB35B /* ir.c */; };
+		7A8BE7F41C38A21C005B261D /* lcd.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810A31C34D77B004EB35B /* lcd.c */; };
+		7A8BE7F51C38A21C005B261D /* lcdmatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810A91C34D7DE004EB35B /* lcdmatch.c */; };
+		7A8BE7F61C38A21C005B261D /* mach_gettime.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */; };
+		7A8BE7F71C38A21C005B261D /* screens.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810AB1C34D7DE004EB35B /* screens.c */; };
+		7A8BE7F81C38A21C005B261D /* tamaemu.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810821C34D66A004EB35B /* tamaemu.c */; };
+		7A8BE7F91C38A21C005B261D /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8109F1C34D761004EB35B /* udp.c */; };
+		7A8BE7FA1C38A21C005B261D /* TamaEmuAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */; };
+		7A8BE7FB1C38A21C005B261D /* TamaEmulatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEA21C3505C5005A04A7 /* TamaEmulatorController.swift */; };
+		7A8BE7FC1C38A21C005B261D /* TamaEmulatorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0E6BD41C37218B00E8C107 /* TamaEmulatorState.swift */; };
+		7A8BE7FD1C38A21C005B261D /* TamaEmuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */; };
+		7A8BE7FF1C38A2F4005B261D /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
+		7A8BE8001C38A4B3005B261D /* rom in Resources */ = {isa = PBXBuildFile; fileRef = 7AD810D71C34DC4E004EB35B /* rom */; };
 		7A9AFD411C23B3B700D0A8F6 /* TamaDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DC6481C2384D0006DBD58 /* TamaDataController.swift */; };
 		7A9AFD431C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
 		7A9AFD441C23C62700D0A8F6 /* TamaLcdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */; };
@@ -50,8 +70,6 @@
 		7AD810841C34D66A004EB35B /* i2c.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810601C34D66A004EB35B /* i2c.c */; };
 		7AD810851C34D66A004EB35B /* i2ceeprom.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810621C34D66A004EB35B /* i2ceeprom.c */; };
 		7AD810861C34D66A004EB35B /* ir.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810641C34D66A004EB35B /* ir.c */; };
-		7AD810871C34D66A004EB35B /* ConDebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810681C34D66A004EB35B /* ConDebug.c */; };
-		7AD810881C34D66A004EB35B /* Debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810691C34D66A004EB35B /* Debug.c */; };
 		7AD810891C34D66A004EB35B /* M6502.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8106A1C34D66A004EB35B /* M6502.c */; };
 		7AD8109E1C34D66A004EB35B /* tamaemu.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810821C34D66A004EB35B /* tamaemu.c */; };
 		7AD810A21C34D761004EB35B /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8109F1C34D761004EB35B /* udp.c */; };
@@ -155,6 +173,11 @@
 		7A7DC64C1C238861006DBD58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A7DC64D1C238861006DBD58 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7A7DC64E1C238861006DBD58 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A8BE7DD1C38A1BE005B261D /* Tama-Emu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Emu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A8BE7E41C38A1BE005B261D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7A8BE7E61C38A1BE005B261D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7A8BE7E91C38A1BE005B261D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7A8BE7EB1C38A1BE005B261D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaLcdScreen.swift; sourceTree = "<group>"; };
 		7AB4CEA21C3505C5005A04A7 /* TamaEmulatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaEmulatorController.swift; sourceTree = "<group>"; };
 		7AB4CEA61C350882005A04A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +244,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A8BE7DA1C38A1BE005B261D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7AD8104D1C34D5FE004EB35B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,8 +271,10 @@
 		7A00689F1C18E5BD0098B165 = {
 			isa = PBXGroup;
 			children = (
+				7A8BE7FE1C38A2E7005B261D /* Common-UIKit */,
 				7AD8105F1C34D66A004EB35B /* Emulator */,
 				7AD810511C34D5FE004EB35B /* Emu-UIKit */,
+				7A8BE7DE1C38A1BE005B261D /* Emu-iOS */,
 				7AB4CEA51C350882005A04A7 /* Emu-TV */,
 				7A0068AA1C18E5BD0098B165 /* Hive-UIKit */,
 				7A151F211C23447E002AC8DA /* Hive-iOS */,
@@ -262,6 +294,7 @@
 				7A7DC6311C237E68006DBD58 /* Tama-Hive-Watch Extension.appex */,
 				7AD810501C34D5FE004EB35B /* Tama-Emu.app */,
 				7AD810B31C34D8F8004EB35B /* tamaemu */,
+				7A8BE7DD1C38A1BE005B261D /* Tama-Emu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,7 +308,6 @@
 				7A0068BA1C18F0080098B165 /* TamaItemViewController.swift */,
 				7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */,
 				7A69B2EC1C1933DA000F1FBA /* TamaListViewCell.swift */,
-				7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */,
 			);
 			path = "Hive-UIKit";
 			sourceTree = "<group>";
@@ -323,6 +355,25 @@
 				7A7DC63C1C237E68006DBD58 /* Info-Extension.plist */,
 			);
 			path = "Hive-Watch";
+			sourceTree = "<group>";
+		};
+		7A8BE7DE1C38A1BE005B261D /* Emu-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7A8BE7E31C38A1BE005B261D /* Main.storyboard */,
+				7A8BE7E61C38A1BE005B261D /* Assets.xcassets */,
+				7A8BE7E81C38A1BE005B261D /* LaunchScreen.storyboard */,
+				7A8BE7EB1C38A1BE005B261D /* Info.plist */,
+			);
+			path = "Emu-iOS";
+			sourceTree = "<group>";
+		};
+		7A8BE7FE1C38A2E7005B261D /* Common-UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */,
+			);
+			path = "Common-UIKit";
 			sourceTree = "<group>";
 		};
 		7AB4CEA51C350882005A04A7 /* Emu-TV */ = {
@@ -464,6 +515,23 @@
 			productReference = 7A7DC6311C237E68006DBD58 /* Tama-Hive-Watch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		7A8BE7DC1C38A1BE005B261D /* Tama-Emu-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A8BE7EC1C38A1BE005B261D /* Build configuration list for PBXNativeTarget "Tama-Emu-iOS" */;
+			buildPhases = (
+				7A8BE7D91C38A1BE005B261D /* Sources */,
+				7A8BE7DA1C38A1BE005B261D /* Frameworks */,
+				7A8BE7DB1C38A1BE005B261D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tama-Emu-iOS";
+			productName = "Tama-Emu-iOS";
+			productReference = 7A8BE7DD1C38A1BE005B261D /* Tama-Emu.app */;
+			productType = "com.apple.product-type.application";
+		};
 		7AD8104F1C34D5FE004EB35B /* Tama-Emu-TV */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7AD8105E1C34D5FE004EB35B /* Build configuration list for PBXNativeTarget "Tama-Emu-TV" */;
@@ -520,6 +588,9 @@
 					7A7DC6301C237E68006DBD58 = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					7A8BE7DC1C38A1BE005B261D = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					7AD8104F1C34D5FE004EB35B = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -546,6 +617,7 @@
 				7A7DC6301C237E68006DBD58 /* Tama-Hive-Watch Extension */,
 				7A0068A71C18E5BD0098B165 /* Tama-Hive-TV */,
 				7AD810B21C34D8F8004EB35B /* tamaemu */,
+				7A8BE7DC1C38A1BE005B261D /* Tama-Emu-iOS */,
 				7AD8104F1C34D5FE004EB35B /* Tama-Emu-TV */,
 			);
 		};
@@ -590,6 +662,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A8BE7DB1C38A1BE005B261D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A8BE8001C38A4B3005B261D /* rom in Resources */,
+				7A8BE7EA1C38A1BE005B261D /* LaunchScreen.storyboard in Resources */,
+				7A8BE7E71C38A1BE005B261D /* Assets.xcassets in Resources */,
+				7A8BE7E51C38A1BE005B261D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,12 +728,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A8BE7D91C38A1BE005B261D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A8BE7FD1C38A21C005B261D /* TamaEmuViewController.swift in Sources */,
+				7A8BE7F91C38A21C005B261D /* udp.c in Sources */,
+				7A8BE7FA1C38A21C005B261D /* TamaEmuAppDelegate.swift in Sources */,
+				7A8BE7F81C38A21C005B261D /* tamaemu.c in Sources */,
+				7A8BE7FF1C38A2F4005B261D /* TamaLcdScreen.swift in Sources */,
+				7A8BE7F11C38A21C005B261D /* i2c.c in Sources */,
+				7A8BE7F71C38A21C005B261D /* screens.c in Sources */,
+				7A8BE7EF1C38A21C005B261D /* M6502.c in Sources */,
+				7A8BE7F21C38A21C005B261D /* i2ceeprom.c in Sources */,
+				7A8BE7FC1C38A21C005B261D /* TamaEmulatorState.swift in Sources */,
+				7A8BE7F41C38A21C005B261D /* lcd.c in Sources */,
+				7A8BE7F01C38A21C005B261D /* benevolentai.c in Sources */,
+				7A8BE7F51C38A21C005B261D /* lcdmatch.c in Sources */,
+				7A8BE7F61C38A21C005B261D /* mach_gettime.c in Sources */,
+				7A8BE7FB1C38A21C005B261D /* TamaEmulatorController.swift in Sources */,
+				7A8BE7F31C38A21C005B261D /* ir.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7AD8104C1C34D5FE004EB35B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7AD810A51C34D77B004EB35B /* lcd.c in Sources */,
-				7AD810871C34D66A004EB35B /* ConDebug.c in Sources */,
 				7AD810841C34D66A004EB35B /* i2c.c in Sources */,
 				7AD810AE1C34D7DE004EB35B /* screens.c in Sources */,
 				7AD810891C34D66A004EB35B /* M6502.c in Sources */,
@@ -659,7 +764,6 @@
 				7AD810551C34D5FE004EB35B /* TamaEmuViewController.swift in Sources */,
 				7AB4CEB01C350C14005A04A7 /* TamaEmulatorController.swift in Sources */,
 				7AD810AD1C34D7DE004EB35B /* lcdmatch.c in Sources */,
-				7AD810881C34D66A004EB35B /* Debug.c in Sources */,
 				7A0E6BD51C37218B00E8C107 /* TamaEmulatorState.swift in Sources */,
 				7AD810A81C34D7C2004EB35B /* benevolentai.c in Sources */,
 				7AD810851C34D66A004EB35B /* i2ceeprom.c in Sources */,
@@ -727,6 +831,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				7A7DC64C1C238861006DBD58 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7A8BE7E31C38A1BE005B261D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7A8BE7E41C38A1BE005B261D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7A8BE7E81C38A1BE005B261D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7A8BE7E91C38A1BE005B261D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -937,6 +1057,38 @@
 			};
 			name = Release;
 		};
+		7A8BE7ED1C38A1BE005B261D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Emu-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Emu-iOS";
+				PRODUCT_NAME = "Tama-Emu";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Emu-UIKit/TamaEmu-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7A8BE7EE1C38A1BE005B261D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Emu-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Emu-iOS";
+				PRODUCT_NAME = "Tama-Emu";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Emu-UIKit/TamaEmu-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		7AD8105C1C34D5FE004EB35B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1032,6 +1184,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7A8BE7EC1C38A1BE005B261D /* Build configuration list for PBXNativeTarget "Tama-Emu-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A8BE7ED1C38A1BE005B261D /* Debug */,
+				7A8BE7EE1C38A1BE005B261D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		7AD8105E1C34D5FE004EB35B /* Build configuration list for PBXNativeTarget "Tama-Emu-TV" */ = {
 			isa = XCConfigurationList;
