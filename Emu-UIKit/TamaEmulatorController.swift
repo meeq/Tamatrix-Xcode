@@ -131,11 +131,11 @@ class TamaEmulatorController: NSObject {
         self.renderDramIntoDisplay()
         udpTick()
         self.showFrame()
+        self.frameEnd = NSDate()
+        self.frameCount += 1
         if self.frameCount & tamaSaveFrameInterval == 0 {
             self.saveEeprom()
         }
-        self.frameEnd = NSDate()
-        self.frameCount += 1
     }
 
     func dispatchNextFrame() {

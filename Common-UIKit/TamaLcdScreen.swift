@@ -25,10 +25,10 @@ private func tamaCalculateLcdFatPixelSize(size: CGSize) -> CGFloat {
     return min(x, y)
 }
 
-func tamaDrawLcdImage(data: String, size: CGSize) -> UIImage {
+func tamaDrawLcdImage(data: String, size: CGSize) -> UIImage? {
     // Create a drawing context for the LCD
     UIGraphicsBeginImageContextWithOptions(size, true, 0.0)
-    let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
+    guard let ctx: CGContextRef = UIGraphicsGetCurrentContext() else { return nil }
     tamaDrawLcdInCGContext(ctx, data: data, size: size)
     // Convert the graphics context to an image
     let result = UIImage(CGImage: CGBitmapContextCreateImage(ctx)!)

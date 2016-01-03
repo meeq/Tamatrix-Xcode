@@ -34,10 +34,24 @@ struct TamaIcons: OptionSetType {
     static let Door         = TamaIcons(rawValue: 1 << 3)
     static let Figure       = TamaIcons(rawValue: 1 << 4)
     static let Training     = TamaIcons(rawValue: 1 << 5)
-    static let Medical      = TamaIcons(rawValue: 1 << 6)
+    static let Medicine     = TamaIcons(rawValue: 1 << 6)
     static let IR           = TamaIcons(rawValue: 1 << 7)
     static let Album        = TamaIcons(rawValue: 1 << 8)
     static let Attention    = TamaIcons(rawValue: 1 << 9)
+
+    static let count = 10
+    static let names = [
+        "Info",
+        "Food",
+        "Toilet",
+        "Door",
+        "Figure",
+        "Training",
+        "Medicine",
+        "IR",
+        "Album",
+        "Attention"
+    ]
 }
 
 class TamaEmulatorState: NSObject {
