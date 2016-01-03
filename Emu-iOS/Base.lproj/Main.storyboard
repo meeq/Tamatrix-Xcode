@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y8a-Fj-zcx">
-                                <rect key="frame" x="40" y="66" width="520" height="468"/>
+                                <rect key="frame" x="40" y="16" width="520" height="468"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONY-UL-3z3" customClass="TamaLcdIconBarView" customModule="Tama_Emu" customModuleProvider="target">
                                         <rect key="frame" x="5" y="8" width="510" height="51"/>
@@ -81,20 +81,48 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
+                                        <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="20" y="238" width="367" height="325"/>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awo-T8-2SI">
+                                <rect key="frame" x="150" y="544" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="AuP-GM-wpw"/>
+                                    <constraint firstAttribute="height" constant="50" id="h5I-kJ-T02"/>
+                                </constraints>
+                                <state key="normal" title="A"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="50" y="563" width="50" height="50"/>
+                                </variation>
+                                <connections>
+                                    <action selector="userDidPressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WT4-DP-F4X"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4c-gd-Wn7">
-                                <rect key="frame" x="275" y="542" width="50" height="50"/>
+                                <rect key="frame" x="275" y="564" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Wvy-V0-9Gn"/>
                                     <constraint firstAttribute="width" constant="50" id="w1I-eS-mRv"/>
                                 </constraints>
                                 <state key="normal" title="B"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="175" y="563" width="50" height="50"/>
                                 </variation>
@@ -103,12 +131,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hro-bQ-GqH">
-                                <rect key="frame" x="400" y="542" width="50" height="50"/>
+                                <rect key="frame" x="400" y="544" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="c0H-Qk-noy"/>
                                     <constraint firstAttribute="height" constant="50" id="xS4-rh-J96"/>
                                 </constraints>
                                 <state key="normal" title="C"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="300" y="563" width="50" height="50"/>
                                 </variation>
@@ -116,33 +151,19 @@
                                     <action selector="userDidPressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qcc-e3-jKg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awo-T8-2SI">
-                                <rect key="frame" x="150" y="542" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="AuP-GM-wpw"/>
-                                    <constraint firstAttribute="height" constant="50" id="h5I-kJ-T02"/>
-                                </constraints>
-                                <state key="normal" title="A"/>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="50" y="563" width="50" height="50"/>
-                                </variation>
-                                <connections>
-                                    <action selector="userDidPressButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WT4-DP-F4X"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Awo-T8-2SI" firstAttribute="top" secondItem="Y8a-Fj-zcx" secondAttribute="bottom" constant="8" id="2AV-lr-crM"/>
+                            <constraint firstItem="Awo-T8-2SI" firstAttribute="top" secondItem="Y8a-Fj-zcx" secondAttribute="bottom" constant="60" id="2AV-lr-crM"/>
                             <constraint firstItem="hro-bQ-GqH" firstAttribute="leading" secondItem="Y4c-gd-Wn7" secondAttribute="trailing" constant="75" id="6A4-FU-teL"/>
                             <constraint firstItem="Y8a-Fj-zcx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="721-fP-aYD"/>
-                            <constraint firstItem="Y8a-Fj-zcx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Cep-GQ-CX3"/>
+                            <constraint firstItem="Y8a-Fj-zcx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="Cep-GQ-CX3"/>
                             <constraint firstItem="Y4c-gd-Wn7" firstAttribute="leading" secondItem="Awo-T8-2SI" secondAttribute="trailing" constant="75" id="Kfg-s3-Mp8"/>
-                            <constraint firstItem="Y4c-gd-Wn7" firstAttribute="top" secondItem="Y8a-Fj-zcx" secondAttribute="bottom" constant="8" id="X2P-Kz-EVv"/>
+                            <constraint firstItem="Y4c-gd-Wn7" firstAttribute="top" secondItem="Y8a-Fj-zcx" secondAttribute="bottom" constant="80" id="X2P-Kz-EVv"/>
                             <constraint firstItem="Y4c-gd-Wn7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bFo-hh-ojd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y8a-Fj-zcx" secondAttribute="trailing" constant="20" id="hU3-lP-qcC"/>
                             <constraint firstItem="Y8a-Fj-zcx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="k3O-3u-Owt"/>
-                            <constraint firstItem="hro-bQ-GqH" firstAttribute="top" secondItem="Y8a-Fj-zcx" secondAttribute="bottom" constant="8" id="uyG-CC-DP8"/>
+                            <constraint firstItem="hro-bQ-GqH" firstAttribute="top" secondItem="Y8a-Fj-zcx" secondAttribute="bottom" constant="60" id="uyG-CC-DP8"/>
                         </constraints>
                     </view>
                     <connections>
@@ -156,4 +177,5 @@
             <point key="canvasLocation" x="139" y="441"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

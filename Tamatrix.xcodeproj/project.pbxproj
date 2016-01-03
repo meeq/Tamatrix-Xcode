@@ -116,6 +116,8 @@
 		7AD810D41C34D98F004EB35B /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8109F1C34D761004EB35B /* udp.c */; };
 		7AD810D91C34DC5B004EB35B /* rom in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AD810D71C34DC4E004EB35B /* rom */; };
 		7AE766DF1C1A880300078E68 /* TamaListHiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */; };
+		7AFFE7F81C39C3D8002052D0 /* TamaLcdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AFFE7F71C39C3D8002052D0 /* TamaLcdView.xib */; };
+		7AFFE7FA1C39C598002052D0 /* TamaLcdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFE7F91C39C598002052D0 /* TamaLcdView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,6 +255,8 @@
 		7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListHiveLayout.swift; sourceTree = "<group>"; };
 		7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert-dark.png"; sourceTree = "<group>"; };
 		7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert.png"; sourceTree = "<group>"; };
+		7AFFE7F71C39C3D8002052D0 /* TamaLcdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TamaLcdView.xib; path = "../Emu-UIKit/TamaLcdView.xib"; sourceTree = "<group>"; };
+		7AFFE7F91C39C598002052D0 /* TamaLcdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaLcdView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,6 +409,8 @@
 			isa = PBXGroup;
 			children = (
 				7A9AFD421C23C62700D0A8F6 /* TamaLcdScreen.swift */,
+				7AFFE7F71C39C3D8002052D0 /* TamaLcdView.xib */,
+				7AFFE7F91C39C598002052D0 /* TamaLcdView.swift */,
 				7A8BE8011C38C126005B261D /* TamaLcdIconBarView.swift */,
 			);
 			path = "Common-UIKit";
@@ -728,6 +734,7 @@
 				7A8BE8111C38C446005B261D /* Attention.png in Resources */,
 				7A8BE7EA1C38A1BE005B261D /* LaunchScreen.storyboard in Resources */,
 				7A8BE8191C38C446005B261D /* Info.png in Resources */,
+				7AFFE7F81C39C3D8002052D0 /* TamaLcdView.xib in Resources */,
 				7A8BE7E71C38A1BE005B261D /* Assets.xcassets in Resources */,
 				7A8BE7E51C38A1BE005B261D /* Main.storyboard in Resources */,
 				7A8BE81D1C38C446005B261D /* Medicine.png in Resources */,
@@ -819,6 +826,7 @@
 				7A8BE7F01C38A21C005B261D /* benevolentai.c in Sources */,
 				7A8BE7F51C38A21C005B261D /* lcdmatch.c in Sources */,
 				7A8BE7F61C38A21C005B261D /* mach_gettime.c in Sources */,
+				7AFFE7FA1C39C598002052D0 /* TamaLcdView.swift in Sources */,
 				7A8BE7FB1C38A21C005B261D /* TamaEmulatorController.swift in Sources */,
 				7A8BE7F31C38A21C005B261D /* ir.c in Sources */,
 			);

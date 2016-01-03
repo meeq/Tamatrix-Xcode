@@ -60,8 +60,11 @@ struct TamaIcons: OptionSetType {
 
 class TamaEmulatorState: NSObject {
 
-    var pixels: String?
+    static let pixelCount = tamaScreenWidth * tamaScreenHeight
+
+    var pixels = String([Character](count: pixelCount, repeatedValue: "A"))
     var icons = TamaIcons.None
+
     weak var emu: TamaEmulatorController?
 
     func setFromDisplay(display: Display) {

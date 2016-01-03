@@ -32,9 +32,7 @@ class TamaEmuViewController: UIViewController {
     func tamaStateDidUpdate(sender: AnyObject) {
         guard let tama = sender.object as? TamaEmulatorState else { return }
         self.tama = tama
-        if let pixels = tama.pixels {
-            self.redrawLcdAsync(pixels, icons: tama.icons)
-        }
+        self.redrawLcdAsync(tama.pixels, icons: tama.icons)
     }
 
     func redrawLcdAsync(pixels: String, icons: TamaIcons) {
