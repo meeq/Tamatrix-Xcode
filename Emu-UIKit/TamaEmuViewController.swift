@@ -10,11 +10,9 @@ import UIKit
 
 class TamaEmuViewController: UIViewController {
 
-    private var tama: TamaEmulatorState?
+    private var tamaState: TamaEmulatorState?
 
-    @IBOutlet weak var lcdImageView: UIImageView!
-    @IBOutlet weak var lcdTopIconBar: TamaLcdIconBarView!
-    @IBOutlet weak var lcdBottomIconBar: TamaLcdIconBarView!
+    @IBOutlet weak var lcdView: TamaLcdView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,26 +28,14 @@ class TamaEmuViewController: UIViewController {
     }
 
     func tamaStateDidUpdate(sender: AnyObject) {
-        guard let tama = sender.object as? TamaEmulatorState else { return }
-        self.tama = tama
-        self.redrawLcdAsync(tama.pixels, icons: tama.icons)
-    }
-
-    func redrawLcdAsync(pixels: String, icons: TamaIcons) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            let lcdImage = tamaDrawLcdImage(pixels, size: self.lcdImageView.frame.size)
-            // Schedule the image to be updated in the UI
-            dispatch_async(dispatch_get_main_queue()) {
-                self.lcdImageView.image = lcdImage
-                self.lcdTopIconBar.updateIconState(icons)
-                self.lcdBottomIconBar.updateIconState(icons)
-            }
-        }
+        guard let tamaState = sender.object as? TamaEmulatorState else { return }
+        self.tamaState = tamaState
+        self.lcdView.setState(tamaState)
     }
 
     @IBAction func userDidPressButton(sender: UIButton) {
         if let text = sender.titleLabel?.text {
-            self.tama?.pressButton(TamaButton.fromString(text))
+            self.tamaState?.pressButton(TamaButton.fromString(text))
         }
     }
 

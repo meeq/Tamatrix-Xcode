@@ -17,14 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0wG-WB-s6Q">
-                                <rect key="frame" x="360" y="40" width="1200" height="800"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="0wG-WB-s6Q" secondAttribute="height" multiplier="3:2" id="54g-Wj-q7U"/>
-                                    <constraint firstAttribute="height" constant="800" id="Hn4-7W-hy6"/>
-                                    <constraint firstAttribute="width" constant="1200" id="Mda-nR-ugz"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mom-kP-4Ip">
                                 <rect key="frame" x="515" y="910" width="130" height="130"/>
                                 <constraints>
@@ -57,25 +49,39 @@
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="C"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="userDidPressButton:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="2vp-aX-a0q"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YsH-9G-MC4" customClass="TamaLcdView" customModule="Tama_Emu" customModuleProvider="target">
+                                <rect key="frame" x="550" y="71" width="820" height="738"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YsH-9G-MC4" secondAttribute="height" multiplier="10:9" id="Km6-RD-FCB"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mom-kP-4Ip" secondAttribute="bottom" constant="40" id="2JF-r8-apF"/>
                             <constraint firstItem="eFQ-WT-100" firstAttribute="leading" secondItem="ieP-fd-MJg" secondAttribute="trailing" constant="250" id="5bw-iS-uTS"/>
-                            <constraint firstItem="0wG-WB-s6Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FLk-Ae-wKi"/>
-                            <constraint firstItem="mom-kP-4Ip" firstAttribute="top" secondItem="0wG-WB-s6Q" secondAttribute="bottom" constant="70" id="Fj6-YP-JPw"/>
-                            <constraint firstItem="eFQ-WT-100" firstAttribute="top" secondItem="0wG-WB-s6Q" secondAttribute="bottom" constant="70" id="Mbq-xl-DBY"/>
-                            <constraint firstItem="0wG-WB-s6Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="ZPk-JW-bZy"/>
+                            <constraint firstItem="YsH-9G-MC4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="LsT-Fk-x5F"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eFQ-WT-100" secondAttribute="bottom" constant="40" id="W6E-AH-RV0"/>
+                            <constraint firstItem="YsH-9G-MC4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YKV-eb-f9j"/>
+                            <constraint firstAttribute="trailing" secondItem="YsH-9G-MC4" secondAttribute="trailing" constant="550" id="Z7g-FO-cq6"/>
+                            <constraint firstItem="YsH-9G-MC4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="550" id="hZn-a5-fw2"/>
                             <constraint firstItem="ieP-fd-MJg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pnZ-Eq-7Ya"/>
-                            <constraint firstItem="ieP-fd-MJg" firstAttribute="top" secondItem="0wG-WB-s6Q" secondAttribute="bottom" constant="70" id="vFC-V6-g86"/>
                             <constraint firstItem="ieP-fd-MJg" firstAttribute="leading" secondItem="mom-kP-4Ip" secondAttribute="trailing" constant="250" id="vSI-PH-jV2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ieP-fd-MJg" secondAttribute="bottom" constant="40" id="whn-kW-pVk"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="lcdImageView" destination="0wG-WB-s6Q" id="UCC-kg-smS"/>
+                        <outlet property="lcdView" destination="YsH-9G-MC4" id="hH4-jk-6ZP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -17,20 +17,28 @@ class TamaLcdView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.initNibView()
+        self.setupNibView()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.initNibView()
+        self.setupNibView()
     }
 
-    func initNibView() {
-        let nib = NSBundle.mainBundle().loadNibNamed("TamaLcdView", owner: self, options: nil)
-        if let view = nib.first as? UIView {
-            self.addSubview(view)
-            view.frame = self.bounds
-        }
+    var nibView: UIView!
+
+    func setupNibView() {
+        nibView = loadViewFromNib()
+        nibView.frame = bounds
+        nibView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        addSubview(nibView)
+    }
+
+    func loadViewFromNib() -> UIView {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let nib = UINib(nibName: "TamaLcdView", bundle: bundle)
+        let view = nib.instantiateWithOwner(self, options: nil).first as! UIView
+        return view
     }
 
     func setState(state: TamaEmulatorState) {

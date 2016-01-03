@@ -19,64 +19,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y8a-Fj-zcx">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y8a-Fj-zcx" customClass="TamaLcdView" customModule="Tama_Emu" customModuleProvider="target">
                                 <rect key="frame" x="40" y="16" width="520" height="468"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONY-UL-3z3" customClass="TamaLcdIconBarView" customModule="Tama_Emu" customModuleProvider="target">
-                                        <rect key="frame" x="5" y="8" width="510" height="51"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                                        </accessibility>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="ONY-UL-3z3" secondAttribute="height" multiplier="10:1" id="nYV-y7-eGs"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isBottomIconBar" value="NO"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="13" y="20" width="340" height="30"/>
-                                        </variation>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDm-Zu-9uZ" customClass="TamaLcdIconBarView" customModule="Tama_Emu" customModuleProvider="target">
-                                        <rect key="frame" x="5" y="409" width="510" height="51"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                                        </accessibility>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="gDm-Zu-9uZ" secondAttribute="height" multiplier="10:1" id="lWy-h8-xT1"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isBottomIconBar" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="13" y="276" width="340" height="30"/>
-                                        </variation>
-                                    </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOT-wj-iMr">
-                                        <rect key="frame" x="5" y="69" width="510" height="330"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="BOT-wj-iMr" secondAttribute="height" multiplier="48:31" id="64Q-JA-eVJ"/>
-                                        </constraints>
-                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="13" y="50" width="340" height="226"/>
-                                        </variation>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.95294117649999999" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="ONY-UL-3z3" firstAttribute="leading" secondItem="Y8a-Fj-zcx" secondAttribute="leading" constant="5" id="2QR-Dz-pvI"/>
-                                    <constraint firstItem="ONY-UL-3z3" firstAttribute="top" secondItem="Y8a-Fj-zcx" secondAttribute="topMargin" id="4R1-zo-aNP"/>
-                                    <constraint firstItem="gDm-Zu-9uZ" firstAttribute="centerX" secondItem="Y8a-Fj-zcx" secondAttribute="centerX" id="ECX-5M-pww"/>
-                                    <constraint firstItem="ONY-UL-3z3" firstAttribute="centerX" secondItem="Y8a-Fj-zcx" secondAttribute="centerX" id="ENF-k3-jlj"/>
-                                    <constraint firstItem="BOT-wj-iMr" firstAttribute="centerY" secondItem="Y8a-Fj-zcx" secondAttribute="centerY" id="HWh-vl-pbL"/>
-                                    <constraint firstAttribute="trailing" secondItem="ONY-UL-3z3" secondAttribute="trailing" constant="5" id="Jhn-2P-lqe"/>
-                                    <constraint firstItem="BOT-wj-iMr" firstAttribute="centerX" secondItem="Y8a-Fj-zcx" secondAttribute="centerX" id="KUx-pw-7oy"/>
                                     <constraint firstAttribute="width" secondItem="Y8a-Fj-zcx" secondAttribute="height" multiplier="10:9" id="XFV-l8-piv"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="gDm-Zu-9uZ" secondAttribute="bottom" id="e10-IY-3Wi"/>
-                                    <constraint firstItem="gDm-Zu-9uZ" firstAttribute="leading" secondItem="Y8a-Fj-zcx" secondAttribute="leading" constant="5" id="uHW-3R-hxC"/>
-                                    <constraint firstAttribute="trailing" secondItem="gDm-Zu-9uZ" secondAttribute="trailing" constant="5" id="vVZ-eo-PJr"/>
-                                    <constraint firstAttribute="trailing" secondItem="BOT-wj-iMr" secondAttribute="trailing" constant="5" id="yT3-aK-feO"/>
-                                    <constraint firstItem="BOT-wj-iMr" firstAttribute="leading" secondItem="Y8a-Fj-zcx" secondAttribute="leading" constant="5" id="zfm-Ok-q0f"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
@@ -167,9 +114,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="lcdBottomIconBar" destination="gDm-Zu-9uZ" id="Hdv-eD-iX0"/>
-                        <outlet property="lcdImageView" destination="BOT-wj-iMr" id="dac-mi-BQl"/>
-                        <outlet property="lcdTopIconBar" destination="ONY-UL-3z3" id="9wD-84-7Cy"/>
+                        <outlet property="lcdView" destination="Y8a-Fj-zcx" id="YW1-5K-LQv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
