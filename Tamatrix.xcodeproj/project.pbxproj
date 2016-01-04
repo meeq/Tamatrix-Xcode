@@ -90,6 +90,9 @@
 		7AC717581C39046500B79F1B /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
 		7AC717591C39046500B79F1B /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
 		7AD52CAE1C3A2F7800330F51 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD52CAC1C3A2F7100330F51 /* Settings.bundle */; };
+		7AD52CAF1C3A438E00330F51 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD52CAC1C3A2F7100330F51 /* Settings.bundle */; };
+		7AD52CB11C3A441200330F51 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD52CB01C3A441200330F51 /* Settings.bundle */; };
+		7AD52CB21C3A441200330F51 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD52CB01C3A441200330F51 /* Settings.bundle */; };
 		7AD810531C34D5FE004EB35B /* TamaEmuAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */; };
 		7AD810551C34D5FE004EB35B /* TamaEmuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */; };
 		7AD810841C34D66A004EB35B /* i2c.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810601C34D66A004EB35B /* i2c.c */; };
@@ -224,6 +227,7 @@
 		7AB4CEAF1C350B90005A04A7 /* TamaEmu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TamaEmu-Bridging-Header.h"; sourceTree = "<group>"; };
 		7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_gettime.c; sourceTree = "<group>"; };
 		7AD52CAC1C3A2F7100330F51 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		7AD52CB01C3A441200330F51 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		7AD810501C34D5FE004EB35B /* Tama-Emu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Emu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaEmuAppDelegate.swift; sourceTree = "<group>"; };
 		7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaEmuViewController.swift; sourceTree = "<group>"; };
@@ -361,6 +365,7 @@
 				7A7DC64B1C238861006DBD58 /* LaunchScreen.storyboard */,
 				7A7DC64A1C238861006DBD58 /* Assets.xcassets */,
 				7A7DC64E1C238861006DBD58 /* Info.plist */,
+				7AD52CB01C3A441200330F51 /* Settings.bundle */,
 			);
 			path = "Hive-iOS";
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 				7AC717551C39045E00B79F1B /* hexagon-invert-dark.png in Resources */,
 				7AC717561C39045E00B79F1B /* hexagon-invert.png in Resources */,
 				7A0068B31C18E5BE0098B165 /* Assets.xcassets in Resources */,
+				7AD52CB21C3A441200330F51 /* Settings.bundle in Resources */,
 				7A0068B11C18E5BE0098B165 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,6 +717,7 @@
 				7A7DC6511C238861006DBD58 /* Main.storyboard in Resources */,
 				7A7DC6501C238861006DBD58 /* LaunchScreen.storyboard in Resources */,
 				7A7DC64F1C238861006DBD58 /* Assets.xcassets in Resources */,
+				7AD52CB11C3A441200330F51 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +771,7 @@
 				7A8BE8221C38C446005B261D /* Training.png in Resources */,
 				7A8BE81A1C38C446005B261D /* Info.png in Resources */,
 				7AFFE7FF1C39D4F5002052D0 /* TamaLcdView.xib in Resources */,
+				7AD52CAF1C3A438E00330F51 /* Settings.bundle in Resources */,
 				7AB4CEAA1C350882005A04A7 /* Assets.xcassets in Resources */,
 				7A8BE8181C38C446005B261D /* Food.png in Resources */,
 				7A8BE8141C38C446005B261D /* Door.png in Resources */,

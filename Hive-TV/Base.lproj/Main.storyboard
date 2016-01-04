@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Tama Item View Controller-->
@@ -17,13 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oID-J5-9OH" customClass="UIImageView">
-                                <rect key="frame" x="360" y="140" width="1200" height="800"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oID-J5-9OH" customClass="UIImageView">
+                                <rect key="frame" x="340" y="139" width="1240" height="802"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1200" id="9bd-ph-zD6"/>
-                                    <constraint firstAttribute="width" secondItem="oID-J5-9OH" secondAttribute="height" multiplier="3:2" id="Nu7-il-dPj"/>
-                                    <constraint firstAttribute="height" constant="800" id="cHW-JH-c3W"/>
+                                    <constraint firstAttribute="width" secondItem="oID-J5-9OH" secondAttribute="height" multiplier="48:31" id="Nu7-il-dPj"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -31,6 +30,8 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="oID-J5-9OH" firstAttribute="centerY" secondItem="arV-VA-a08" secondAttribute="centerY" id="BCK-wf-bD9"/>
+                            <constraint firstItem="oID-J5-9OH" firstAttribute="leading" secondItem="arV-VA-a08" secondAttribute="leadingMargin" constant="320" id="IG6-nu-aa2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oID-J5-9OH" secondAttribute="trailing" constant="320" id="fLk-d0-217"/>
                             <constraint firstItem="oID-J5-9OH" firstAttribute="centerX" secondItem="arV-VA-a08" secondAttribute="centerX" id="vep-R1-Nff"/>
                         </constraints>
                         <connections>

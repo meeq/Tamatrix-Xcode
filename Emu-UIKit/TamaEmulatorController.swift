@@ -83,12 +83,20 @@ class TamaEmulatorController: NSObject {
 
     override init() {
         super.init()
-        setupUserDefaults()
+        loadUserDefaults()
+        // Setup emulator
         romPages = loadRoms(romDataPathChars()!)
         tama = tamaInit(romPages!, eepromPathChars()!)
         state.emu = self
         udpInit(udpServerHostChars()!)
         benevolentAiInit()
+        // Listen for settings changes
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "userDefaultsChanged:",
+            name: NSUserDefaultsDidChangeNotification,
+            object: nil)
+
     }
 
     deinit {
@@ -101,7 +109,7 @@ class TamaEmulatorController: NSObject {
         udpExit()
     }
 
-    func setupUserDefaults() {
+    func loadUserDefaults() {
         let defaults = NSUserDefaults.standardUserDefaults()
         isAIEnabled = defaults.boolForKey(TamaEmuSettingsIsAIEnabledKey)
         if let settingsFilename = defaults.stringForKey(TamaEmuSettingsEEPROMFilenameKey) {
@@ -110,6 +118,10 @@ class TamaEmulatorController: NSObject {
         if let settingsHost = defaults.stringForKey(TamaEmuSettingsUDPServerHostKey) {
             udpServerHost = settingsHost
         }
+    }
+
+    func userDefaultsChanged(notification: NSNotification) {
+        loadUserDefaults()
     }
 
     func romDataPathChars() -> [CChar]? {
@@ -189,7 +201,7 @@ class TamaEmulatorController: NSObject {
         case 1: tamaPressBtn(tama!, 0)
         case 2: tamaPressBtn(tama!, 1)
         case 4: tamaPressBtn(tama!, 2)
-        default: ()
+        default: break
         }
     }
 

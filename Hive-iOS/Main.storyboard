@@ -75,13 +75,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-dn-vaJ" customClass="UIImageView">
-                                <rect key="frame" x="40" y="127" width="520" height="346"/>
+                                <rect key="frame" x="40" y="132" width="520" height="336"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="EyX-dn-vaJ" secondAttribute="height" multiplier="3:2" id="j68-dt-35P"/>
+                                    <constraint firstAttribute="width" secondItem="EyX-dn-vaJ" secondAttribute="height" multiplier="48:31" id="j68-dt-35P"/>
                                 </constraints>
                             </view>
                         </subviews>

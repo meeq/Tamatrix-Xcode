@@ -25,7 +25,6 @@ class TamaEmuAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        emulator?.setupUserDefaults()
         emulator?.isPaused = false
         emulator?.runFrameAsync()
     }
