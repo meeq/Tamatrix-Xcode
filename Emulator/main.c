@@ -70,6 +70,7 @@ int main(int argc, char **argv) {
 	int speedup=0;
 	int stopDisplay=0;
 	int aiEnabled=1;
+    int silent=0;
 	int t=0;
 	char *eeprom="tama.eep";
 	char *host="127.0.0.1";
@@ -93,6 +94,8 @@ int main(int argc, char **argv) {
 			romdir=argv[i];
 		} else if (strcmp(argv[i], "-n")==0) {
 			aiEnabled=0;
+        } else if (strcmp(argv[i], "-s")==0) {
+            silent=1;
 		} else {
 			printf("Unrecognized option - %s\n", argv[i]);
 			err=1;
@@ -106,6 +109,7 @@ int main(int argc, char **argv) {
 		printf("-e eeprom.eep - change eeprom file (def tama.eep)\n");
 		printf("-r rom/ - change rom dir\n");
 		printf("-n - disable AI\n");
+        printf("-s - disable console noise\n");
 		exit(0);
 	}
 
@@ -129,10 +133,12 @@ int main(int argc, char **argv) {
 			k=0;
 		}
 		if (!speedup || (t&15)==0) {
-			lcdShow(&display);
-			udpSendDisplay(&display);
-			tamaDumpHw(tama->cpu);
-			benevolentAiDump();
+            udpSendDisplay(&display);
+            if (!silent) {
+                lcdShow(&display);
+                tamaDumpHw(tama->cpu);
+                benevolentAiDump();
+            }
 		}
 		if ((k&8)) {
 			//If anything interesting happens, make a LCD dump.
