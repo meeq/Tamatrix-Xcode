@@ -18,17 +18,18 @@ class TamaItemViewController: UIViewController {
 
     func tamaDataDidUpdate(sender: AnyObject) {
         let tamaData = sender.object as! [Int: TamaModel]
-        if let tamaModel = tamaData[self.tamaId] {
-            self.redrawLcdAsync(tamaModel.pixels)
+        if let tamaModel = tamaData[tamaId] {
+            redrawLcdAsync(tamaModel.pixels)
         }
     }
 
     func redrawLcdAsync(pixels: String) {
+        let view = lcdImageView
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            let lcdImage = tamaDrawLcdImage(pixels, size: self.lcdImageView.frame.size)
+            let lcdImage = tamaDrawLcdImage(pixels, size: view.frame.size)
             // Schedule the image to be updated in the UI
             dispatch_async(dispatch_get_main_queue()) {
-                self.lcdImageView.image = lcdImage
+                view.image = lcdImage
             }
         }
     }

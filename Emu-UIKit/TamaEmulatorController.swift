@@ -28,23 +28,35 @@ class TamaEmulatorController: NSObject {
     private var frameStart = NSDate()
     private var frameEnd = NSDate()
 
-    var isPaused: Bool = false
-    var isAIEnabled: Bool = true
+    var isPaused: Bool = false {
+        didSet {
+            if isPaused == oldValue {
+                return
+            } else if isPaused {
+                saveEeprom()
+                udpExit()
+            } else {
+                udpInit(udpServerHost()!)
+            }
+        }
+    }
+    var isAIEnabled: Bool = false
 
     override init() {
         super.init()
-        self.romPages = loadRoms(self.romDataPath()!)
-        self.tama = tamaInit(self.romPages!, self.eepromPath()!)
-        self.state.emu = self
-        udpInit(self.udpServerHost()!)
+        romPages = loadRoms(romDataPath()!)
+        tama = tamaInit(romPages!, eepromPath()!)
+        state.emu = self
+        benevolentAiInit()
+        udpInit(udpServerHost()!)
     }
 
     deinit {
-        if self.tama != nil {
-            tamaDeinit(self.tama!)
+        if tama != nil {
+            tamaDeinit(tama!)
         }
-        if self.romPages != nil {
-            freeRoms(self.romPages!)
+        if romPages != nil {
+            freeRoms(romPages!)
         }
         udpExit()
     }
@@ -80,70 +92,80 @@ class TamaEmulatorController: NSObject {
     }
 
     func renderDramIntoDisplay() {
-        if self.isPaused { return }
-        let tama = self.tama!.memory
+        if isPaused { return }
+        guard let tama = self.tama?.memory else { return }
         // TODO Fix this pointer type conversion nonsense
         // Convert (char *) Tuple to uint8_t Array
         var i = 0
         for (_, value) in Mirror(reflecting: tama.dram).children {
-            self.dram[i] = unsafeBitCast(value as! Int8, UInt8.self)
+            dram[i] = unsafeBitCast(value as! Int8, UInt8.self)
             i += 1
         }
         // Convert uint8_t Array into (uint8_t *)
-        self.dram.withUnsafeMutableBufferPointer { (inout ptr: UnsafeMutableBufferPointer<UInt8>) -> () in
-            lcdRender(ptr.baseAddress, tama.lcd.sizex, tama.lcd.sizey, &self.display)
+        dram.withUnsafeMutableBufferPointer { (inout ptr: UnsafeMutableBufferPointer<UInt8>) -> () in
+            lcdRender(ptr.baseAddress, tama.lcd.sizex, tama.lcd.sizey, &display)
         }
     }
 
     func pressButton(button: TamaButton) {
-        tamaPressBtn(self.tama!, Int32(button.rawValue))
+        tamaPressBtn(tama!, Int32(button.rawValue))
     }
 
     func saveEeprom() {
-        guard let tama = self.tama?.memory else { return }
+        guard let tama = tama?.memory else { return }
         print("Saving EEPROM")
         let eeprom = tama.i2ceeprom.memory
         msync(eeprom.mem, tamaEepromSize, MS_SYNC)
-        // WARNING: For some strange reason, EEPROM changes don't sync unless we munmap
-        // CAVEAT: (This could just be the simulator lying to me, though)
-        // TODO: This is obviously bad and needs a better approach
-//        munmap(eeprom.mem, tamaEepromSize)
-//        mmap(nil, tamaEepromSize, PROT_READ | PROT_WRITE, MAP_SHARED, eeprom.fd, 0)
     }
 
     func showFrame() {
-        if self.isPaused { return }
-        udpSendDisplay(&self.display)
-        self.state.setFromDisplay(self.display)
-        NSNotificationCenter.defaultCenter().postNotificationName(TamaStateUpdateNotificationKey, object: self.state)
+        if isPaused { return }
+        udpSendDisplay(&display)
+        state.setFromDisplay(display)
+        NSNotificationCenter.defaultCenter().postNotificationName(TamaStateUpdateNotificationKey, object: state)
     }
 
     func runFrameAsync() {
-        if self.isPaused { return }
+        if isPaused { return }
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
             self.runFrameSync()
             self.dispatchNextFrame()
         }
     }
 
+    func runAIFrame() {
+        if !isAIEnabled || isPaused { return }
+        let result = Int(benevolentAiRun(&display, Int32(1000 / tamaFps)))
+        if result & 1 != 0 {
+            tamaPressBtn(tama!, Int32(0))
+        }
+        if result & 2 != 0 {
+            tamaPressBtn(tama!, Int32(1))
+        }
+        if result & 4 != 0 {
+            tamaPressBtn(tama!, Int32(2))
+        }
+    }
+
     func runFrameSync() {
-        if self.isPaused { return }
-        self.frameStart = NSDate()
-        tamaRun(self.tama!, tamaRunCycles)
-        self.renderDramIntoDisplay()
+        if isPaused { return }
+        frameStart = NSDate()
+        tamaRun(tama!, tamaRunCycles)
+        renderDramIntoDisplay()
         udpTick()
-        self.showFrame()
-        self.frameEnd = NSDate()
-        self.frameCount += 1
-        if self.frameCount & tamaSaveFrameInterval == 0 {
-            self.saveEeprom()
+        runAIFrame()
+        showFrame()
+        frameEnd = NSDate()
+        frameCount += 1
+        if frameCount & tamaSaveFrameInterval == 0 {
+            saveEeprom()
         }
     }
 
     func dispatchNextFrame() {
-        if self.isPaused { return }
+        if isPaused { return }
         // TODO Revisit all of this frame scheduling
-        let frameDuration = self.frameEnd.timeIntervalSinceDate(self.frameStart)
+        let frameDuration = frameEnd.timeIntervalSinceDate(frameStart)
         let frameDelay: NSTimeInterval = (1.0 / Double(tamaFps)) - frameDuration
         if frameDelay > 0 {
             let timer = NSTimer(
@@ -154,7 +176,7 @@ class TamaEmulatorController: NSObject {
                 repeats: false)
             NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         } else {
-            self.runFrameAsync()
+            runFrameAsync()
         }
     }
 

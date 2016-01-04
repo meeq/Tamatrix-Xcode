@@ -23,8 +23,8 @@ class TamaInterfaceController: WKInterfaceController {
         super.awakeWithContext(context)
         // Set properties from context
         if let tamaModel = context as? TamaModel {
-            self.tamaId = tamaModel.id
-            self.tamaPixels = tamaModel.pixels
+            tamaId = tamaModel.id
+            tamaPixels = tamaModel.pixels
         }
         determineLcdSize()
         // Listen for data-change events
@@ -42,14 +42,14 @@ class TamaInterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        self.isActive = true
-        self.redrawLcdSync()
+        isActive = true
+        redrawLcdSync()
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
-        self.isActive = false
+        isActive = false
     }
 
     func determineLcdSize() {
@@ -57,20 +57,20 @@ class TamaInterfaceController: WKInterfaceController {
         let aspectRatio = CGFloat(tamaScreenWidth) / CGFloat(tamaScreenHeight)
         let width = CGRectGetWidth(WKInterfaceDevice.currentDevice().screenBounds)
         let height = width / aspectRatio
-        self.lcdSize = CGSizeMake(width, height)
+        lcdSize = CGSizeMake(width, height)
     }
 
     func redrawLcdSync() {
         // Only draw if the view is visible and we have pixel data
-        if !self.isActive || self.tamaPixels == nil {
+        if !isActive || tamaPixels == nil {
             return
         }
-        self.lcd.setImage(tamaDrawLcdImage(tamaPixels!, size: lcdSize))
+        lcd.setImage(tamaDrawLcdImage(tamaPixels!, size: lcdSize))
     }
 
     func redrawLcdAsync() {
         // Only draw if the view is visible and we have pixel data
-        if !self.isActive || self.tamaPixels == nil {
+        if !isActive || tamaPixels == nil {
             return
         }
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
@@ -85,9 +85,9 @@ class TamaInterfaceController: WKInterfaceController {
     func tamaDataDidUpdate(sender: AnyObject) {
         let newData = sender.object as! [Int: TamaModel]
         // Extract the pixel data from the fetched dump
-        if let tamaModel = newData[self.tamaId] {
-            self.tamaPixels = tamaModel.pixels
-            self.redrawLcdAsync()
+        if let tamaModel = newData[tamaId] {
+            tamaPixels = tamaModel.pixels
+            redrawLcdAsync()
         }
     }
 

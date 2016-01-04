@@ -30,12 +30,12 @@ class TamaEmuViewController: UIViewController {
     func tamaStateDidUpdate(sender: AnyObject) {
         guard let tamaState = sender.object as? TamaEmulatorState else { return }
         self.tamaState = tamaState
-        self.lcdView.setState(tamaState)
+        lcdView.setState(tamaState)
     }
 
     @IBAction func userDidPressButton(sender: UIButton) {
         if let text = sender.titleLabel?.text {
-            self.tamaState?.pressButton(TamaButton.fromString(text))
+            tamaState?.pressButton(TamaButton.fromString(text))
         }
     }
 

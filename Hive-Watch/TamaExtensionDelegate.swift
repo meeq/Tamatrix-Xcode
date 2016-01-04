@@ -25,18 +25,18 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func tamaDataDidUpdate(sender: AnyObject) {
-        self.tamaData = sender.object as! [Int: TamaModel]
-        if self.pageCount != self.tamaData.count {
-            self.reloadRootControllers()
+        tamaData = sender.object as! [Int: TamaModel]
+        if pageCount != tamaData.count {
+            reloadRootControllers()
         }
     }
 
     func reloadRootControllers() {
-        self.pageCount = self.tamaData.count
-        let names = [String](count: self.pageCount, repeatedValue: "TamaInterfaceController")
+        pageCount = tamaData.count
+        let names = [String](count: pageCount, repeatedValue: "TamaInterfaceController")
         var contexts = [TamaModel]()
-        for key in self.tamaData.keys.sort() {
-            contexts.append(self.tamaData[key]!)
+        for key in tamaData.keys.sort() {
+            contexts.append(tamaData[key]!)
         }
         dispatch_async(dispatch_get_main_queue()) {
             WKInterfaceController.reloadRootControllersWithNames(names, contexts: contexts)

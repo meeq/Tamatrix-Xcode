@@ -17,12 +17,12 @@ class TamaLcdView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupNibView()
+        setupNibView()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.setupNibView()
+        setupNibView()
     }
 
     var nibView: UIView!

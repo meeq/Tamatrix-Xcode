@@ -48,42 +48,42 @@ class TamaDataController: NSObject {
     override init() {
         let defaults = NSUserDefaults.standardUserDefaults()
         if let configUrl = defaults.stringForKey(TamaSettingsDataURLKey) {
-            self.baseUrl = configUrl
+            baseUrl = configUrl
         }
         let configInterval = defaults.doubleForKey(TamaSettingsFetchIntervalKey)
         if configInterval > 0 {
-            self.fetchInterval = configInterval
+            fetchInterval = configInterval
         }
-        self.tamaData = [Int: TamaModel]()
+        tamaData = [Int: TamaModel]()
         super.init()
     }
 
     func startFetchTimer() {
-        if self.fetchTimer != nil {
+        if fetchTimer != nil {
             return
         }
-        self.fetchRepeats = true
-        self.fetchTimer = NSTimer(
-            timeInterval: self.fetchInterval,
+        fetchRepeats = true
+        fetchTimer = NSTimer(
+            timeInterval: fetchInterval,
             target: self,
             selector: "fetchData",
             userInfo: nil,
             repeats: false)
-        NSRunLoop.mainRunLoop().addTimer(self.fetchTimer!, forMode: NSRunLoopCommonModes)
+        NSRunLoop.mainRunLoop().addTimer(fetchTimer!, forMode: NSRunLoopCommonModes)
     }
 
     func stopFetching() {
-        self.fetchTimer?.invalidate()
-        self.fetchTimer = nil
-        self.fetchRepeats = false
+        fetchTimer?.invalidate()
+        fetchTimer = nil
+        fetchRepeats = false
     }
 
     func fetchData() {
         // Clear possible outstanding timer
-        self.fetchTimer?.invalidate()
-        self.fetchTimer = nil
+        fetchTimer?.invalidate()
+        fetchTimer = nil
         // Build the request URL from the sequence number of the last request
-        var urlString = self.baseUrl
+        var urlString = baseUrl
         if lastseq > 0 {
             urlString = "\(urlString)?lastseq=\(lastseq)"
         }
@@ -123,21 +123,21 @@ class TamaDataController: NSObject {
     private func processResponseDictionary(respObj: NSDictionary) {
         // Grab the useful bits
         // TODO Validate the response object (beyond crashing)
-        self.lastseq = respObj["lastseq"] as! Int
+        lastseq = respObj["lastseq"] as! Int
         for tamaDict in respObj["tama"] as! [NSDictionary] {
             let id = tamaDict["id"] as! Int
             let pixels = tamaDict["pixels"] as! String
-            if let tamaModel = self.tamaData[id] {
+            if let tamaModel = tamaData[id] {
                 tamaModel.pixels = pixels
             } else {
-                self.tamaData[id] = TamaModel(id: id, pixels: pixels)
+                tamaData[id] = TamaModel(id: id, pixels: pixels)
             }
         }
         // Update the rest of the application
-        NSNotificationCenter.defaultCenter().postNotificationName(TamaDataUpdateNotificationKey, object: self.tamaData)
+        NSNotificationCenter.defaultCenter().postNotificationName(TamaDataUpdateNotificationKey, object: tamaData)
         // Keep fetching data periodically unless the timer was stopped.
-        if self.fetchRepeats {
-            self.startFetchTimer()
+        if fetchRepeats {
+            startFetchTimer()
         }
     }
 

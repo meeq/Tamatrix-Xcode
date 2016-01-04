@@ -76,13 +76,13 @@ class TamaEmulatorState: NSObject {
                 charAcc.append(pixelCharMap[Int(pixel as! Int8) & 3])
             }
         }
-        self.pixels = String(charAcc)
-        self.icons = TamaIcons(rawValue: Int(display.icons))
+        pixels = String(charAcc)
+        icons = TamaIcons(rawValue: Int(display.icons))
     }
 
     func pressButton(button: TamaButton) {
         if button != .None {
-            self.emu?.pressButton(button)
+            emu?.pressButton(button)
         }
     }
     
