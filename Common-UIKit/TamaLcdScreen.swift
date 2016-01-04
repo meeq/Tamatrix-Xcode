@@ -40,7 +40,7 @@ func tamaDrawLcdInCGContext(ctx: CGContextRef, data: String, size: CGSize) {
     // Determine pixel sizes
     let pixelSize = tamaCalculateLcdFatPixelSize(size)
     // Create a tiny space between the pixels... for authenticity.
-    let pixelGapSize = pixelSize * 0.1
+    let pixelGapSize = pixelSize * 0.2
     let pixelFillSize = pixelSize - pixelGapSize
     // Clear the background
     CGContextSetFillColorWithColor(ctx, tamaScreenBgColor.CGColor)
