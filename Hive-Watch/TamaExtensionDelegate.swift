@@ -15,7 +15,7 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
     private var pageCount: Int = 0
 
     func applicationDidFinishLaunching() {
-        tamaRegisterUserDefaults()
+        tamaHiveRegisterUserDefaults()
         dataController = TamaDataController()
         // Listen for data-change events
         NSNotificationCenter.defaultCenter().addObserver(self,

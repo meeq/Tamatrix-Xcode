@@ -13,7 +13,7 @@ let TamaSettingsDataURLDefault = "http://tamahive.spritesserver.nl/gettama.php"
 let TamaSettingsFetchIntervalKey = "FetchInterval"
 let TamaSettingsFetchIntervalDefault = 0.2
 
-func tamaRegisterUserDefaults() {
+func tamaHiveRegisterUserDefaults() {
     NSUserDefaults.standardUserDefaults().registerDefaults([
         TamaSettingsDataURLKey: TamaSettingsDataURLDefault,
         TamaSettingsFetchIntervalKey: TamaSettingsFetchIntervalDefault

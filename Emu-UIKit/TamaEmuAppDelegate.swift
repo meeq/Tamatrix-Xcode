@@ -15,6 +15,7 @@ class TamaEmuAppDelegate: UIResponder, UIApplicationDelegate {
     var emulator: TamaEmulatorController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        tamaEmuRegisterUserDefaults()
         emulator = TamaEmulatorController()
         return true
     }
@@ -24,6 +25,7 @@ class TamaEmuAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
+        emulator?.setupUserDefaults()
         emulator?.isPaused = false
         emulator?.runFrameAsync()
     }

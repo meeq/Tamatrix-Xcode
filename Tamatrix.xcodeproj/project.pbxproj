@@ -89,6 +89,7 @@
 		7AC717571C39046500B79F1B /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
 		7AC717581C39046500B79F1B /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
 		7AC717591C39046500B79F1B /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
+		7AD52CAE1C3A2F7800330F51 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD52CAC1C3A2F7100330F51 /* Settings.bundle */; };
 		7AD810531C34D5FE004EB35B /* TamaEmuAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */; };
 		7AD810551C34D5FE004EB35B /* TamaEmuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */; };
 		7AD810841C34D66A004EB35B /* i2c.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810601C34D66A004EB35B /* i2c.c */; };
@@ -222,6 +223,7 @@
 		7AB4CEA91C350882005A04A7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AB4CEAF1C350B90005A04A7 /* TamaEmu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TamaEmu-Bridging-Header.h"; sourceTree = "<group>"; };
 		7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_gettime.c; sourceTree = "<group>"; };
+		7AD52CAC1C3A2F7100330F51 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		7AD810501C34D5FE004EB35B /* Tama-Emu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Emu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD810521C34D5FE004EB35B /* TamaEmuAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaEmuAppDelegate.swift; sourceTree = "<group>"; };
 		7AD810541C34D5FE004EB35B /* TamaEmuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamaEmuViewController.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				7A8BE7E81C38A1BE005B261D /* LaunchScreen.storyboard */,
 				7A8BE7EB1C38A1BE005B261D /* Info.plist */,
 				7AFFE7F71C39C3D8002052D0 /* TamaLcdView.xib */,
+				7AD52CAC1C3A2F7100330F51 /* Settings.bundle */,
 			);
 			path = "Emu-iOS";
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				7A8BE8111C38C446005B261D /* Attention.png in Resources */,
 				7A8BE7EA1C38A1BE005B261D /* LaunchScreen.storyboard in Resources */,
 				7A8BE8191C38C446005B261D /* Info.png in Resources */,
+				7AD52CAE1C3A2F7800330F51 /* Settings.bundle in Resources */,
 				7A8BE7E71C38A1BE005B261D /* Assets.xcassets in Resources */,
 				7A8BE7E51C38A1BE005B261D /* Main.storyboard in Resources */,
 				7A8BE81D1C38C446005B261D /* Medicine.png in Resources */,
