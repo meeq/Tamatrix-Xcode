@@ -30,23 +30,23 @@ class TamaLcdView: UIView {
     func setupNibView() {
         nibView = loadViewFromNib()
         nibView.frame = bounds
-        nibView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        nibView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(nibView)
     }
 
     func loadViewFromNib() -> UIView {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "TamaLcdView", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil).first as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         return view
     }
 
-    func setState(state: TamaEmulatorState) {
+    func setState(_ state: TamaEmulatorState) {
         // Schedule the LCD screen drawing in the background
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            let lcdImage = tamaDrawLcdImage(state.pixels, size: self.lcdImageView.frame.size)
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            let lcdImage = tamaDrawLcdImage(with: state.pixels, size: self.lcdImageView.frame.size)
             // Schedule the images to be updated in the UI
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.lcdImageView.image = lcdImage
                 self.topIconBarView.updateIconState(state.icons)
                 self.bottomIconBarView.updateIconState(state.icons)

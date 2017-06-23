@@ -14,7 +14,7 @@ let TamaSettingsFetchIntervalKey = "FetchInterval"
 let TamaSettingsFetchIntervalDefault = 0.2
 
 func tamaHiveRegisterUserDefaults() {
-    NSUserDefaults.standardUserDefaults().registerDefaults([
+    UserDefaults.standard.register(defaults: [
         TamaSettingsDataURLKey: TamaSettingsDataURLDefault,
         TamaSettingsFetchIntervalKey: TamaSettingsFetchIntervalDefault
     ])
@@ -38,19 +38,19 @@ class TamaDataController: NSObject {
     // Fetch state
     private var lastseq: Int = 0
     private var tamaData: [Int: TamaModel]
-    private var fetchTimer: NSTimer?
+    private var fetchTimer: Timer?
     private var fetchRepeats: Bool = true
 
     // Settings
     private var baseUrl: String = TamaSettingsDataURLDefault
-    private var fetchInterval: NSTimeInterval = TamaSettingsFetchIntervalDefault
+    private var fetchInterval: TimeInterval = TamaSettingsFetchIntervalDefault
 
     override init() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let configUrl = defaults.stringForKey(TamaSettingsDataURLKey) {
+        let defaults = UserDefaults.standard
+        if let configUrl = defaults.string(forKey: TamaSettingsDataURLKey) {
             baseUrl = configUrl
         }
-        let configInterval = defaults.doubleForKey(TamaSettingsFetchIntervalKey)
+        let configInterval = defaults.double(forKey: TamaSettingsFetchIntervalKey)
         if configInterval > 0 {
             fetchInterval = configInterval
         }
@@ -63,13 +63,13 @@ class TamaDataController: NSObject {
             return
         }
         fetchRepeats = true
-        fetchTimer = NSTimer(
+        fetchTimer = Timer(
             timeInterval: fetchInterval,
             target: self,
-            selector: "fetchData",
+            selector: #selector(TamaDataController.fetchData),
             userInfo: nil,
             repeats: false)
-        NSRunLoop.mainRunLoop().addTimer(fetchTimer!, forMode: NSRunLoopCommonModes)
+        RunLoop.main.add(fetchTimer!, forMode: RunLoopMode.commonModes)
     }
 
     func stopFetching() {
@@ -88,14 +88,14 @@ class TamaDataController: NSObject {
             urlString = "\(urlString)?lastseq=\(lastseq)"
         }
         print("Fetching data from \(urlString)")
-        let url: NSURL = NSURL(string: urlString)! // TODO Handle bad URLs a bit more elegantly
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) { data, response, error in
+        let url: URL = URL(string: urlString)! // TODO Handle bad URLs a bit more elegantly
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             // TODO Notify the application that a data error has occurred
             guard data != nil else {
-                print("Request failed: \(error)")
+                print("Request failed: \(String(describing: error))")
                 return
             }
-            let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             // Sometimes the response comes back blank; just ignore it and try again.
             if (jsonStr == "") && self.fetchRepeats {
                 self.startFetchTimer()
@@ -103,24 +103,24 @@ class TamaDataController: NSObject {
             }
             // Attempt to parse the response as JSON
             do {
-                if let jsonObj = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                if let jsonObj = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                     self.processResponseDictionary(jsonObj) // Success!
                 } else {
-                    print("Could not parse JSON Object: \(jsonStr)")
+                    print("Could not parse JSON Object: \(String(describing: jsonStr))")
                     // TODO Notify the application that a data error has occurred
                     // TODO Retry?
                 }
             } catch let parseError {
-                print("Parse error for JSON: \(jsonStr)")
+                print("Parse error for JSON: \(String(describing: jsonStr))")
                 print(parseError)
                 // TODO Notify the application that a data error has occurred
                 // TODO Retry?
             }
-        }
+        }) 
         task.resume()
     }
 
-    private func processResponseDictionary(respObj: NSDictionary) {
+    private func processResponseDictionary(_ respObj: NSDictionary) {
         // Grab the useful bits
         // TODO Validate the response object (beyond crashing)
         lastseq = respObj["lastseq"] as! Int
@@ -134,7 +134,7 @@ class TamaDataController: NSObject {
             }
         }
         // Update the rest of the application
-        NSNotificationCenter.defaultCenter().postNotificationName(TamaDataUpdateNotificationKey, object: tamaData)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: TamaDataUpdateNotificationKey), object: tamaData)
         // Keep fetching data periodically unless the timer was stopped.
         if fetchRepeats {
             startFetchTimer()

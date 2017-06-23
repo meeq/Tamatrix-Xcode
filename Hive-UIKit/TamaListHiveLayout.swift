@@ -20,7 +20,7 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
     private let baseCellYPadding: CGFloat = 0
     private let baseVertInset: CGFloat = 30
 
-    private func computeNumCellsInFirstRowForWidth(contentWidth: CGFloat, cellWidth: CGFloat, cellPadding: CGFloat) -> CGFloat {
+    private func computeNumCellsInFirstRow(for contentWidth: CGFloat, cellWidth: CGFloat, cellPadding: CGFloat) -> CGFloat {
         var result: CGFloat = 1
         var xOffset: CGFloat = cellWidth
         let xIncrement: CGFloat = cellPadding + cellWidth
@@ -31,18 +31,18 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
         return result
     }
 
-    override func prepareLayout() {
+    override func prepare() {
         cache.removeAll()
 
-        contentWidth = CGRectGetWidth(collectionView!.bounds)
-        let currentScreen = collectionView!.window?.screen ?? UIScreen.mainScreen()
+        contentWidth = collectionView!.bounds.width
+        let currentScreen = collectionView!.window?.screen ?? UIScreen.main
         let pixelScale: CGFloat = currentScreen.scale
         let cellWidth: CGFloat = baseCellWidth / pixelScale
         let cellHeight: CGFloat = baseCellHeight / pixelScale
         let cellXPadding: CGFloat = baseCellXPadding / pixelScale
         let cellYPadding: CGFloat = baseCellYPadding / pixelScale
 
-        let cellsPerRow = computeNumCellsInFirstRowForWidth(contentWidth, cellWidth: cellWidth, cellPadding: cellXPadding)
+        let cellsPerRow = computeNumCellsInFirstRow(for: contentWidth, cellWidth: cellWidth, cellPadding: cellXPadding)
         let firstRowCellsWidth = (cellWidth * (cellsPerRow)) + (cellXPadding * (cellsPerRow - 1))
 
         let verticalInset: CGFloat = baseVertInset / pixelScale
@@ -54,10 +54,10 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
         var isStaggeredRow: Bool = false
         var isEmptyRow: Bool = true
 
-        for item in 0 ..< collectionView!.numberOfItemsInSection(0) {
-            let indexPath = NSIndexPath(forItem: item, inSection: 0)
-            let itemAttrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-            itemAttrs.frame = CGRectMake(xOffset, yOffset, cellWidth, cellHeight)
+        for item in 0 ..< collectionView!.numberOfItems(inSection: 0) {
+            let indexPath = IndexPath(item: item, section: 0)
+            let itemAttrs = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            itemAttrs.frame = CGRect(x: xOffset, y: yOffset, width: cellWidth, height: cellHeight)
             cache.append(itemAttrs)
             isEmptyRow = false
 
@@ -78,14 +78,14 @@ class TamaListHiveLayout: UICollectionViewFlowLayout {
         }
     }
 
-    override func collectionViewContentSize() -> CGSize {
-        return CGSizeMake(contentWidth, contentHeight)
+    override var collectionViewContentSize : CGSize {
+        return CGSize(width: contentWidth, height: contentHeight)
     }
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         for attributes in cache {
-            if CGRectIntersectsRect(attributes.frame, rect) {
+            if attributes.frame.intersects(rect) {
                 layoutAttributes.append(attributes)
             }
         }

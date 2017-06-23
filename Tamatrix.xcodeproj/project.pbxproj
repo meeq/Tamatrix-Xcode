@@ -644,15 +644,19 @@
 					};
 					7A151F1F1C23447E002AC8DA = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0830;
 					};
 					7A7DC6241C237E68006DBD58 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0830;
 					};
 					7A7DC6301C237E68006DBD58 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0830;
 					};
 					7A8BE7DC1C38A1BE005B261D = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0830;
 					};
 					7AD8104F1C34D5FE004EB35B = {
 						CreatedOnToolsVersion = 7.2;
@@ -1047,6 +1051,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-TV";
 				PRODUCT_NAME = "Tama-Hive";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1059,6 +1064,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-TV";
 				PRODUCT_NAME = "Tama-Hive";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1073,6 +1079,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-iOS";
 				PRODUCT_NAME = "Tama-Hive";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1088,6 +1095,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Hive-iOS";
 				PRODUCT_NAME = "Tama-Hive";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1101,6 +1109,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.1;
 			};
@@ -1115,6 +1124,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.1;
 			};
@@ -1131,6 +1141,7 @@
 				PRODUCT_NAME = "Tama-Hive";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.1;
 			};
@@ -1147,6 +1158,7 @@
 				PRODUCT_NAME = "Tama-Hive";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.1;
 			};
@@ -1164,6 +1176,7 @@
 				PRODUCT_NAME = "Tama-Emu";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Emu-UIKit/TamaEmu-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1180,6 +1193,7 @@
 				PRODUCT_NAME = "Tama-Emu";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Emu-UIKit/TamaEmu-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1195,6 +1209,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Emu-TV";
 				PRODUCT_NAME = "Tama-Emu";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emu-UIKit/TamaEmu-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1209,6 +1224,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.christopherbonhage.Tama-Emu-TV";
 				PRODUCT_NAME = "Tama-Emu";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emu-UIKit/TamaEmu-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

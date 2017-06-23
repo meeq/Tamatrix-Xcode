@@ -35,19 +35,19 @@ class TamaLcdIconBarView: UIView {
 
     func initIconViews() {
         for _ in 0 ..< numIcons {
-            let iconView = UIImageView(frame: CGRectZero)
-            iconView.contentMode = .ScaleAspectFit
+            let iconView = UIImageView(frame: CGRect.zero)
+            iconView.contentMode = .scaleAspectFit
             iconViews.append(iconView)
             addSubview(iconView)
         }
     }
 
     override func layoutSubviews() {
-        let barWidth = CGRectGetWidth(frame)
-        let barHeight = CGRectGetHeight(frame)
+        let barWidth = frame.width
+        let barHeight = frame.height
         let iconSize = barHeight * 0.75
         let iconPadding = (barWidth - (iconSize * CGFloat(numIcons))) / (CGFloat(numIcons))
-        var iconFrame = CGRectMake(iconPadding / 2, (barHeight - iconSize) / 2, iconSize, iconSize)
+        var iconFrame = CGRect(x: iconPadding / 2, y: (barHeight - iconSize) / 2, width: iconSize, height: iconSize)
         for i in 0 ..< numIcons {
             let iconView = iconViews[i]
             iconView.frame = iconFrame
@@ -64,7 +64,7 @@ class TamaLcdIconBarView: UIView {
         }
     }
 
-    func updateIconState(icons: TamaIcons) {
+    func updateIconState(_ icons: TamaIcons) {
         let offset = isBottomIconBar ? numIcons : 0
         for i in 0 ..< numIcons {
             let iconView = iconViews[i]

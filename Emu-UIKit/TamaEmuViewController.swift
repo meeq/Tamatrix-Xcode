@@ -17,23 +17,23 @@ class TamaEmuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Listen for data-change events
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "tamaStateDidUpdate:",
-            name: TamaStateUpdateNotificationKey,
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(TamaEmuViewController.tamaStateDidUpdate(_:)),
+            name: NSNotification.Name(rawValue: TamaStateUpdateNotificationKey),
             object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
-    func tamaStateDidUpdate(sender: AnyObject) {
+    func tamaStateDidUpdate(_ sender: AnyObject) {
         guard let tamaState = sender.object as? TamaEmulatorState else { return }
         self.tamaState = tamaState
         lcdView.setState(tamaState)
     }
 
-    @IBAction func userDidPressButton(sender: UIButton) {
+    @IBAction func userDidPressButton(_ sender: UIButton) {
         if let text = sender.titleLabel?.text {
             tamaState?.pressButton(TamaButton.fromString(text))
         }

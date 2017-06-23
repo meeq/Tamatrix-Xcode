@@ -19,32 +19,32 @@ private let tamaScreenFgColors: [Character: UIColor] = [
     "D": UIColor.init(red: 0.0627, green: 0.125, blue: 0, alpha: 1)
 ]
 
-private func tamaCalculateLcdFatPixelSize(size: CGSize) -> CGFloat {
-    let x: CGFloat = size.width / CGFloat(tamaScreenWidth)
-    let y: CGFloat = size.height / CGFloat(tamaScreenHeight)
+private func tamaCalculateLcdFatPixelSize(for contextSize: CGSize) -> CGFloat {
+    let x: CGFloat = contextSize.width / CGFloat(tamaScreenWidth)
+    let y: CGFloat = contextSize.height / CGFloat(tamaScreenHeight)
     return min(x, y)
 }
 
-func tamaDrawLcdImage(data: String, size: CGSize) -> UIImage? {
+func tamaDrawLcdImage(with data: String, size: CGSize) -> UIImage? {
     // Create a drawing context for the LCD
     UIGraphicsBeginImageContextWithOptions(size, true, 0.0)
-    guard let ctx: CGContextRef = UIGraphicsGetCurrentContext() else { return nil }
-    tamaDrawLcdInCGContext(ctx, data: data, size: size)
+    guard let context: CGContext = UIGraphicsGetCurrentContext() else { return nil }
+    tamaDrawLcd(in: context, data: data, size: size)
     // Convert the graphics context to an image
-    let result = UIImage(CGImage: CGBitmapContextCreateImage(ctx)!)
+    let result = UIImage(cgImage: context.makeImage()!)
     UIGraphicsEndImageContext()
     return result
 }
 
-func tamaDrawLcdInCGContext(ctx: CGContextRef, data: String, size: CGSize) {
+func tamaDrawLcd(in context: CGContext, data: String, size: CGSize) {
     // Determine pixel sizes
-    let pixelSize = tamaCalculateLcdFatPixelSize(size)
+    let pixelSize = tamaCalculateLcdFatPixelSize(for: size)
     // Create a tiny space between the pixels... for authenticity.
     let pixelGapSize = pixelSize * 0.2
     let pixelFillSize = pixelSize - pixelGapSize
     // Clear the background
-    CGContextSetFillColorWithColor(ctx, tamaScreenBgColor.CGColor)
-    CGContextFillRect(ctx, CGRect(origin: CGPointZero, size: size))
+    context.setFillColor(tamaScreenBgColor.cgColor)
+    context.fill(CGRect(origin: CGPoint.zero, size: size))
     // Iterate through the source pixels as characters and paint them as fat pixels
     let pixelChars = [Character](data.characters)
     var i: Int = 0
@@ -52,13 +52,13 @@ func tamaDrawLcdInCGContext(ctx: CGContextRef, data: String, size: CGSize) {
         for srcX in 0..<tamaScreenWidth {
             // Look up the foreground color from 2-bit pixel
             let pixelColor = tamaScreenFgColors[pixelChars[i]] ?? tamaScreenBgColor
-            CGContextSetFillColorWithColor(ctx, pixelColor.CGColor)
+            context.setFillColor(pixelColor.cgColor)
             let destX = CGFloat(srcX) * pixelSize
             let destY = CGFloat(srcY) * pixelSize
             let destW = pixelFillSize
             let destH = pixelFillSize
-            let destRect = CGRectMake(destX, destY, destW, destH)
-            CGContextFillRect(ctx, destRect)
+            let destRect = CGRect(x: destX, y: destY, width: destW, height: destH)
+            context.fill(destRect)
             i += 1
         }
     }

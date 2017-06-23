@@ -9,22 +9,22 @@
 import Foundation
 
 enum TamaButton: Int {
-    case None = -1
-    case A = 0
-    case B = 1
-    case C = 2
+    case none = -1
+    case a = 0
+    case b = 1
+    case c = 2
 
-    static func fromString(string: String) -> TamaButton {
+    static func fromString(_ string: String) -> TamaButton {
         switch string {
-            case "A": return .A
-            case "B": return .B
-            case "C": return .C
-            default : return .None
+            case "A": return .a
+            case "B": return .b
+            case "C": return .c
+            default : return .none
         }
     }
 }
 
-struct TamaIcons: OptionSetType {
+struct TamaIcons: OptionSet {
     let rawValue: Int
 
     static let None         = TamaIcons(rawValue: 0)
@@ -39,7 +39,7 @@ struct TamaIcons: OptionSetType {
     static let Album        = TamaIcons(rawValue: 1 << 8)
     static let Attention    = TamaIcons(rawValue: 1 << 9)
 
-    static func fromIndex(index: Int) -> TamaIcons {
+    static func fromIndex(_ index: Int) -> TamaIcons {
         return TamaIcons(rawValue: 1 << index)
     }
 
@@ -62,12 +62,12 @@ class TamaEmulatorState: NSObject {
 
     static let pixelCount = tamaScreenWidth * tamaScreenHeight
 
-    var pixels = String([Character](count: pixelCount, repeatedValue: "A"))
+    var pixels = String([Character](repeating: "A", count: pixelCount))
     var icons = TamaIcons.None
 
     weak var emu: TamaEmulatorController?
 
-    func setFromDisplay(display: Display) {
+    func setFromDisplay(_ display: Display) {
         let pixelCharMap: [Character] = ["A", "B", "C", "D"]
         var charAcc = [Character]()
         // Extract the pixels from (char **) using smoke and (mostly) mirrors
@@ -80,8 +80,8 @@ class TamaEmulatorState: NSObject {
         icons = TamaIcons(rawValue: Int(display.icons))
     }
 
-    func pressButton(button: TamaButton) {
-        if button != .None {
+    func pressButton(_ button: TamaButton) {
+        if button != .none {
             emu?.pressButton(button)
         }
     }

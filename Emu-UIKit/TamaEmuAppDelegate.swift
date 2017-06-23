@@ -14,22 +14,22 @@ class TamaEmuAppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var emulator: TamaEmulatorController?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         tamaEmuRegisterUserDefaults()
         emulator = TamaEmulatorController()
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         emulator?.isPaused = true
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         emulator?.isPaused = false
         emulator?.runFrameAsync()
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         emulator?.isPaused = true
         emulator = nil
     }

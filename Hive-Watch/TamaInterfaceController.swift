@@ -15,12 +15,12 @@ class TamaInterfaceController: WKInterfaceController {
     private var tamaId: Int = 0
     private var tamaPixels: String?
     private var isActive: Bool = false
-    private var lcdSize: CGSize = CGSizeZero
+    private var lcdSize: CGSize = CGSize.zero
 
     @IBOutlet weak var lcd: WKInterfaceImage!
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         // Set properties from context
         if let tamaModel = context as? TamaModel {
             tamaId = tamaModel.id
@@ -28,15 +28,15 @@ class TamaInterfaceController: WKInterfaceController {
         }
         determineLcdSize()
         // Listen for data-change events
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "tamaDataDidUpdate:",
-            name: TamaDataUpdateNotificationKey,
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(TamaInterfaceController.tamaDataDidUpdate(_:)),
+            name: NSNotification.Name(rawValue: TamaDataUpdateNotificationKey),
             object: nil)
     }
 
     deinit {
         // Stop listening for data-change events
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func willActivate() {
@@ -55,9 +55,9 @@ class TamaInterfaceController: WKInterfaceController {
     func determineLcdSize() {
         // Determine image size
         let aspectRatio = CGFloat(tamaScreenWidth) / CGFloat(tamaScreenHeight)
-        let width = CGRectGetWidth(WKInterfaceDevice.currentDevice().screenBounds)
+        let width = WKInterfaceDevice.current().screenBounds.width
         let height = width / aspectRatio
-        lcdSize = CGSizeMake(width, height)
+        lcdSize = CGSize(width: width, height: height)
     }
 
     func redrawLcdSync() {
@@ -65,7 +65,7 @@ class TamaInterfaceController: WKInterfaceController {
         if !isActive || tamaPixels == nil {
             return
         }
-        lcd.setImage(tamaDrawLcdImage(tamaPixels!, size: lcdSize))
+        lcd.setImage(tamaDrawLcdImage(with: tamaPixels!, size: lcdSize))
     }
 
     func redrawLcdAsync() {
@@ -73,16 +73,16 @@ class TamaInterfaceController: WKInterfaceController {
         if !isActive || tamaPixels == nil {
             return
         }
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            let lcdImage = tamaDrawLcdImage(self.tamaPixels!, size: self.lcdSize)
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            let lcdImage = tamaDrawLcdImage(with: self.tamaPixels!, size: self.lcdSize)
             // Schedule the image to be updated in the UI
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.lcd.setImage(lcdImage)
             }
         }
     }
 
-    func tamaDataDidUpdate(sender: AnyObject) {
+    func tamaDataDidUpdate(_ sender: AnyObject) {
         let newData = sender.object as! [Int: TamaModel]
         // Extract the pixel data from the fetched dump
         if let tamaModel = newData[tamaId] {

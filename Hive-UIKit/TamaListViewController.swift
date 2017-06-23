@@ -13,12 +13,12 @@ class TamaListViewController: UICollectionViewController {
     private var tamaData = [Int: TamaModel]()
     private var cellCount: Int = 0
 
-    func tamaDataDidUpdate(sender: AnyObject) {
+    func tamaDataDidUpdate(_ sender: AnyObject) {
         guard let collectionView = collectionView else { return }
         tamaData = sender.object as! [Int: TamaModel]
         if cellCount != tamaData.count {
             cellCount = tamaData.count
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 collectionView.reloadData()
             }
         } else {
@@ -29,10 +29,10 @@ class TamaListViewController: UICollectionViewController {
     func redrawVisibleCells() {
         guard let collectionView = collectionView else { return }
         // Update the pixel data for all visible LCDs
-        for indexPath in collectionView.indexPathsForVisibleItems() {
-            if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TamaListViewCell {
+        for indexPath in collectionView.indexPathsForVisibleItems {
+            if let cell = collectionView.cellForItem(at: indexPath) as? TamaListViewCell {
                 if let tamaModel = tamaData[indexPath.item] {
-                    cell.redrawLcdAsync(tamaModel.pixels)
+                    cell.redrawLcdAsync(with: tamaModel.pixels)
                 }
             }
         }
@@ -43,20 +43,20 @@ class TamaListViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Listen for data-change events
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "tamaDataDidUpdate:",
-            name: TamaDataUpdateNotificationKey,
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(TamaListViewController.tamaDataDidUpdate(_:)),
+            name: NSNotification.Name(rawValue: TamaDataUpdateNotificationKey),
             object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Configure ItemViewController for indexed selection
-        if let indexPath = collectionView!.indexPathsForSelectedItems()?.first {
-            let itemViewController = segue.destinationViewController as! TamaItemViewController
+        if let indexPath = collectionView!.indexPathsForSelectedItems?.first {
+            let itemViewController = segue.destination as! TamaItemViewController
             if let tamaModel = tamaData[indexPath.item] {
                 itemViewController.tamaId = tamaModel.id
             }
@@ -65,24 +65,24 @@ class TamaListViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellCount;
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TamaListViewCell", forIndexPath: indexPath) as! TamaListViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TamaListViewCell", for: indexPath) as! TamaListViewCell
         cell.centerAndResizeLcdImageView() // TODO Use constraints
         if let tamaModel = tamaData[indexPath.item] {
-            cell.redrawLcdAsync(tamaModel.pixels)
+            cell.redrawLcdAsync(with: tamaModel.pixels)
         }
         return cell
     }
 
-    override func collectionView(collectionView: UICollectionView, canFocusItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return true
     }
 

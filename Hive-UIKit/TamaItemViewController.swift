@@ -16,19 +16,19 @@ class TamaItemViewController: UIViewController {
 
     var tamaId: Int = 0
 
-    func tamaDataDidUpdate(sender: AnyObject) {
+    func tamaDataDidUpdate(_ sender: AnyObject) {
         let tamaData = sender.object as! [Int: TamaModel]
         if let tamaModel = tamaData[tamaId] {
-            redrawLcdAsync(tamaModel.pixels)
+            redrawLcdAsync(with: tamaModel.pixels)
         }
     }
 
-    func redrawLcdAsync(pixels: String) {
-        let view = lcdImageView
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            let lcdImage = tamaDrawLcdImage(pixels, size: view.frame.size)
+    func redrawLcdAsync(with pixels: String) {
+        guard let view: UIImageView = lcdImageView else { return }
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            let lcdImage = tamaDrawLcdImage(with: pixels, size: view.frame.size)
             // Schedule the image to be updated in the UI
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 view.image = lcdImage
             }
         }
@@ -39,15 +39,15 @@ class TamaItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Register for data update notifications
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "tamaDataDidUpdate:",
-            name: TamaDataUpdateNotificationKey,
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(TamaItemViewController.tamaDataDidUpdate(_:)),
+            name: NSNotification.Name(rawValue: TamaDataUpdateNotificationKey),
             object: nil)
     }
 
     deinit {
         // Stop listening for data updates
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
 }

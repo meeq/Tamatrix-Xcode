@@ -25,7 +25,7 @@ let TamaEmuSettingsEEPROMFilenameKey = "eepromFilename"
 let TamaEmuSettingsEEPROMFilenameDefault = "tama.eep"
 
 func tamaEmuRegisterUserDefaults() {
-    NSUserDefaults.standardUserDefaults().registerDefaults([
+    UserDefaults.standard.register(defaults: [
         TamaEmuSettingsIsAIEnabledKey: TamaEmuSettingsIsAIEnabledDefault,
         TamaEmuSettingsUDPServerHostKey: TamaEmuSettingsUDPServerHostDefault,
         TamaEmuSettingsEEPROMFilenameKey: TamaEmuSettingsEEPROMFilenameDefault
@@ -34,14 +34,14 @@ func tamaEmuRegisterUserDefaults() {
 
 class TamaEmulatorController: NSObject {
 
-    private var romPages: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>?
+    private var romPages: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>?
     private var tama: UnsafeMutablePointer<Tamagotchi>?
-    private var dram = [UInt8](count: tamaDRAMSize, repeatedValue: 0)
+    private var dram = [UInt8](repeating: 0, count: tamaDRAMSize)
     private var display = Display()
     private var state = TamaEmulatorState()
     private var frameCount: UInt = 0
-    private var frameStart = NSDate()
-    private var frameEnd = NSDate()
+    private var frameStart = Date()
+    private var frameEnd = Date()
 
     var isPaused: Bool = false {
         didSet {
@@ -91,10 +91,10 @@ class TamaEmulatorController: NSObject {
         udpInit(udpServerHostChars()!)
         benevolentAiInit()
         // Listen for settings changes
-        NSNotificationCenter.defaultCenter().addObserver(
+        NotificationCenter.default.addObserver(
             self,
-            selector: "userDefaultsChanged:",
-            name: NSUserDefaultsDidChangeNotification,
+            selector: #selector(TamaEmulatorController.userDefaultsChanged(_:)),
+            name: UserDefaults.didChangeNotification,
             object: nil)
 
     }
@@ -110,73 +110,73 @@ class TamaEmulatorController: NSObject {
     }
 
     func loadUserDefaults() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        isAIEnabled = defaults.boolForKey(TamaEmuSettingsIsAIEnabledKey)
-        if let settingsFilename = defaults.stringForKey(TamaEmuSettingsEEPROMFilenameKey) {
+        let defaults = UserDefaults.standard
+        isAIEnabled = defaults.bool(forKey: TamaEmuSettingsIsAIEnabledKey)
+        if let settingsFilename = defaults.string(forKey: TamaEmuSettingsEEPROMFilenameKey) {
             eepromFilename = settingsFilename
         }
-        if let settingsHost = defaults.stringForKey(TamaEmuSettingsUDPServerHostKey) {
+        if let settingsHost = defaults.string(forKey: TamaEmuSettingsUDPServerHostKey) {
             udpServerHost = settingsHost
         }
     }
 
-    func userDefaultsChanged(notification: NSNotification) {
+    func userDefaultsChanged(_ notification: Notification) {
         loadUserDefaults()
     }
 
     func romDataPathChars() -> [CChar]? {
         // TODO Make this configurable?
-        let bundle = NSBundle.mainBundle()
-        guard let romDirStr = bundle.pathForResource("rom", ofType: nil) else {
+        let bundle = Bundle.main
+        guard let romDirStr = bundle.path(forResource: "rom", ofType: nil) else {
             print("Unable to determine ROM data path; this is bad.")
             return nil
         }
         print("ROM Path: \(romDirStr)")
-        return romDirStr.cStringUsingEncoding(NSUTF8StringEncoding)
+        return romDirStr.cString(using: String.Encoding.utf8)
     }
 
     func eepromPathChars() -> [CChar]? {
-        let dir = NSSearchPathDirectory.DocumentDirectory
-        let domain = NSSearchPathDomainMask.UserDomainMask
+        let dir = FileManager.SearchPathDirectory.documentDirectory
+        let domain = FileManager.SearchPathDomainMask.userDomainMask
         guard let userDirStr = NSSearchPathForDirectoriesInDomains(dir, domain, true).last else {
             print("Unable to determine EEPROM data path; this is bad.")
             return nil
         }
         let eepromPathStr = userDirStr + "/" + eepromFilename
         print("EEPROM Path: \(eepromPathStr)")
-        return eepromPathStr.cStringUsingEncoding(NSUTF8StringEncoding)
+        return eepromPathStr.cString(using: String.Encoding.utf8)
     }
 
     func udpServerHostChars() -> [CChar]? {
-        return udpServerHost.cStringUsingEncoding(NSUTF8StringEncoding)
+        return udpServerHost.cString(using: String.Encoding.utf8)
     }
 
     func renderDRAMIntoDisplay() {
         if isPaused { return }
-        guard let tama = self.tama?.memory else { return }
+        guard let tama = self.tama?.pointee else { return }
         // TODO Fix this pointer type conversion nonsense
         // Convert (char *) Tuple to uint8_t Array
         var i = 0
         for (_, value) in Mirror(reflecting: tama.dram).children {
-            dram[i] = unsafeBitCast(value as! Int8, UInt8.self)
+            dram[i] = UInt8(bitPattern: value as! Int8)
             i += 1
         }
         // Convert uint8_t Array into (uint8_t *)
-        dram.withUnsafeMutableBufferPointer { (inout ptr: UnsafeMutableBufferPointer<UInt8>) -> () in
+        dram.withUnsafeMutableBufferPointer { (ptr: inout UnsafeMutableBufferPointer<UInt8>) -> () in
             lcdRender(ptr.baseAddress, tama.lcd.sizex, tama.lcd.sizey, &display)
         }
     }
 
-    func pressButton(button: TamaButton) {
+    func pressButton(_ button: TamaButton) {
         if !isAIEnabled {
             tamaPressBtn(tama!, Int32(button.rawValue))
         }
     }
 
     func saveEEPROM() {
-        guard let tama = tama?.memory else { return }
+        guard let tama = tama?.pointee else { return }
         print("Saving EEPROM")
-        let eeprom = tama.i2ceeprom.memory
+        let eeprom = tama.i2ceeprom.pointee
         msync(eeprom.mem, tamaEEPROMSize, MS_SYNC)
     }
 
@@ -184,12 +184,12 @@ class TamaEmulatorController: NSObject {
         if isPaused { return }
         udpSendDisplay(&display)
         state.setFromDisplay(display)
-        NSNotificationCenter.defaultCenter().postNotificationName(TamaStateUpdateNotificationKey, object: state)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: TamaStateUpdateNotificationKey), object: state)
     }
 
     func runFrameAsync() {
         if isPaused { return }
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             self.runFrameSync()
             self.dispatchNextFrame()
         }
@@ -207,13 +207,13 @@ class TamaEmulatorController: NSObject {
 
     func runFrameSync() {
         if isPaused { return }
-        frameStart = NSDate()
+        frameStart = Date()
         tamaRun(tama!, tamaRunCycles)
         renderDRAMIntoDisplay()
         udpTick()
         runAIFrame()
         showFrame()
-        frameEnd = NSDate()
+        frameEnd = Date()
         frameCount += 1
         if frameCount & tamaSaveFrameBitmask == 0 {
             saveEEPROM()
@@ -222,16 +222,16 @@ class TamaEmulatorController: NSObject {
 
     func dispatchNextFrame() {
         if isPaused { return }
-        let frameDuration = frameEnd.timeIntervalSinceDate(frameStart)
-        let frameDelay: NSTimeInterval = (1.0 / Double(tamaFPS)) - frameDuration
+        let frameDuration = frameEnd.timeIntervalSince(frameStart)
+        let frameDelay: TimeInterval = (1.0 / Double(tamaFPS)) - frameDuration
         if frameDelay > 0 {
-            let timer = NSTimer(
+            let timer = Timer(
                 timeInterval: frameDelay,
                 target: self,
-                selector: "runFrameAsync",
+                selector: #selector(TamaEmulatorController.runFrameAsync),
                 userInfo: nil,
                 repeats: false)
-            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+            RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
         } else {
             runFrameAsync()
         }

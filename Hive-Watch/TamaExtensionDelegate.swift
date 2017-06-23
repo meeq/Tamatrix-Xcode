@@ -18,13 +18,13 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
         tamaHiveRegisterUserDefaults()
         dataController = TamaDataController()
         // Listen for data-change events
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "tamaDataDidUpdate:",
-            name: TamaDataUpdateNotificationKey,
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(TamaExtensionDelegate.tamaDataDidUpdate(_:)),
+            name: NSNotification.Name(rawValue: TamaDataUpdateNotificationKey),
             object: nil)
     }
 
-    func tamaDataDidUpdate(sender: AnyObject) {
+    func tamaDataDidUpdate(_ sender: AnyObject) {
         tamaData = sender.object as! [Int: TamaModel]
         if pageCount != tamaData.count {
             reloadRootControllers()
@@ -33,13 +33,13 @@ class TamaExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func reloadRootControllers() {
         pageCount = tamaData.count
-        let names = [String](count: pageCount, repeatedValue: "TamaInterfaceController")
+        let names = [String](repeating: "TamaInterfaceController", count: pageCount)
         var contexts = [TamaModel]()
-        for key in tamaData.keys.sort() {
+        for key in tamaData.keys.sorted() {
             contexts.append(tamaData[key]!)
         }
-        dispatch_async(dispatch_get_main_queue()) {
-            WKInterfaceController.reloadRootControllersWithNames(names, contexts: contexts)
+        DispatchQueue.main.async {
+            WKInterfaceController.reloadRootControllers(withNames: names, contexts: contexts)
         }
     }
 

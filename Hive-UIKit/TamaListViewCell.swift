@@ -38,28 +38,28 @@ class TamaListViewCell: UICollectionViewCell {
 
     func centerAndResizeLcdImageView() {
         // TODO Rewrite this using constraints
-        let currentScreen = window?.screen ?? UIScreen.mainScreen()
+        let currentScreen = window?.screen ?? UIScreen.main
         let pixelScale: CGFloat = currentScreen.scale
         let width = baseLcdWidth / pixelScale
         let height = baseLcdHeight / pixelScale
-        let x = (CGRectGetWidth(frame) / 2) - (width / 2)
-        let y = (CGRectGetHeight(frame) / 2) - (height / 2)
-        lcdImageView.frame = CGRectMake(x, y, width, height)
+        let x = (frame.width / 2) - (width / 2)
+        let y = (frame.height / 2) - (height / 2)
+        lcdImageView.frame = CGRect(x: x, y: y, width: width, height: height)
     }
 
-    func redrawLcdAsync(pixels: String) {
-        let view = lcdImageView
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            let lcdImage = tamaDrawLcdImage(pixels, size: view.frame.size)
+    func redrawLcdAsync(with pixels: String) {
+        guard let view: UIImageView = lcdImageView else { return }
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            let lcdImage = tamaDrawLcdImage(with: pixels, size: view.frame.size)
             // Schedule the image to be updated in the UI
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 view.image = lcdImage
             }
         }
     }
 
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
 
         coordinator.addCoordinatedAnimations({
                 let backgroundView = self.backgroundView as! UIImageView

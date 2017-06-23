@@ -14,7 +14,7 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var dataController: TamaDataController?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         tamaHiveRegisterUserDefaults()
         dataController = TamaDataController()
         return true
@@ -22,11 +22,11 @@ class TamaHiveAppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: Application Delegate callbacks
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         dataController?.startFetchTimer()
     }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         dataController?.stopFetching()
     }
 
