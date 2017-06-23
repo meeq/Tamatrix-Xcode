@@ -41,7 +41,6 @@
 		7A8BE7F31C38A21C005B261D /* ir.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810641C34D66A004EB35B /* ir.c */; };
 		7A8BE7F41C38A21C005B261D /* lcd.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810A31C34D77B004EB35B /* lcd.c */; };
 		7A8BE7F51C38A21C005B261D /* lcdmatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810A91C34D7DE004EB35B /* lcdmatch.c */; };
-		7A8BE7F61C38A21C005B261D /* mach_gettime.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */; };
 		7A8BE7F71C38A21C005B261D /* screens.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810AB1C34D7DE004EB35B /* screens.c */; };
 		7A8BE7F81C38A21C005B261D /* tamaemu.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD810821C34D66A004EB35B /* tamaemu.c */; };
 		7A8BE7F91C38A21C005B261D /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD8109F1C34D761004EB35B /* udp.c */; };
@@ -81,8 +80,6 @@
 		7AB4CEAB1C350882005A04A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB4CEA71C350882005A04A7 /* Main.storyboard */; };
 		7AB4CEB01C350C14005A04A7 /* TamaEmulatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEA21C3505C5005A04A7 /* TamaEmulatorController.swift */; };
 		7AB4CEB11C351481005A04A7 /* rom in Resources */ = {isa = PBXBuildFile; fileRef = 7AD810D71C34DC4E004EB35B /* rom */; };
-		7AB4CEB31C362C6D005A04A7 /* mach_gettime.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */; };
-		7AB4CEB41C362C6D005A04A7 /* mach_gettime.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */; };
 		7AC717541C39045E00B79F1B /* hexagon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A69B2E81C192EF1000F1FBA /* hexagon.png */; };
 		7AC717551C39045E00B79F1B /* hexagon-invert-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */; };
 		7AC717561C39045E00B79F1B /* hexagon-invert.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AE8C4AA1C1A37F000E1C4FD /* hexagon-invert.png */; };
@@ -225,7 +222,6 @@
 		7AB4CEA81C350882005A04A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7AB4CEA91C350882005A04A7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AB4CEAF1C350B90005A04A7 /* TamaEmu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TamaEmu-Bridging-Header.h"; sourceTree = "<group>"; };
-		7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_gettime.c; sourceTree = "<group>"; };
 		7AD52CAC1C3A2F7100330F51 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		7AD52CB01C3A441200330F51 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		7AD810501C34D5FE004EB35B /* Tama-Emu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tama-Emu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,7 +254,6 @@
 		7AD810AC1C34D7DE004EB35B /* screens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screens.h; sourceTree = "<group>"; };
 		7AD810B31C34D8F8004EB35B /* tamaemu */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tamaemu; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD810BA1C34D96E004EB35B /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		7AD810D51C34DA64004EB35B /* mach_gettime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_gettime.h; sourceTree = "<group>"; };
 		7AD810D71C34DC4E004EB35B /* rom */ = {isa = PBXFileReference; lastKnownFileType = folder; name = rom; path = Emulator/rom; sourceTree = SOURCE_ROOT; };
 		7AE766DE1C1A880300078E68 /* TamaListHiveLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TamaListHiveLayout.swift; sourceTree = "<group>"; };
 		7AE8C4A91C1A37F000E1C4FD /* hexagon-invert-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hexagon-invert-dark.png"; sourceTree = "<group>"; };
@@ -486,8 +481,6 @@
 				7AD810A41C34D77B004EB35B /* lcd.h */,
 				7AD810A91C34D7DE004EB35B /* lcdmatch.c */,
 				7AD810AA1C34D7DE004EB35B /* lcdmatch.h */,
-				7AB4CEB21C362C6D005A04A7 /* mach_gettime.c */,
-				7AD810D51C34DA64004EB35B /* mach_gettime.h */,
 				7AD810AB1C34D7DE004EB35B /* screens.c */,
 				7AD810AC1C34D7DE004EB35B /* screens.h */,
 				7AD810821C34D66A004EB35B /* tamaemu.c */,
@@ -842,7 +835,6 @@
 				7A8BE8021C38C126005B261D /* TamaLcdIconBarView.swift in Sources */,
 				7A8BE7F01C38A21C005B261D /* benevolentai.c in Sources */,
 				7A8BE7F51C38A21C005B261D /* lcdmatch.c in Sources */,
-				7A8BE7F61C38A21C005B261D /* mach_gettime.c in Sources */,
 				7AFFE7FA1C39C598002052D0 /* TamaLcdView.swift in Sources */,
 				7A8BE7FB1C38A21C005B261D /* TamaEmulatorController.swift in Sources */,
 				7A8BE7F31C38A21C005B261D /* ir.c in Sources */,
@@ -858,7 +850,6 @@
 				7AD810AE1C34D7DE004EB35B /* screens.c in Sources */,
 				7AD810891C34D66A004EB35B /* M6502.c in Sources */,
 				7AD810A21C34D761004EB35B /* udp.c in Sources */,
-				7AB4CEB41C362C6D005A04A7 /* mach_gettime.c in Sources */,
 				7AD810551C34D5FE004EB35B /* TamaEmuViewController.swift in Sources */,
 				7AB4CEB01C350C14005A04A7 /* TamaEmulatorController.swift in Sources */,
 				7AD810AD1C34D7DE004EB35B /* lcdmatch.c in Sources */,
@@ -882,7 +873,6 @@
 				7AD810C91C34D98F004EB35B /* i2c.c in Sources */,
 				7AD810CA1C34D98F004EB35B /* i2ceeprom.c in Sources */,
 				7AD810CE1C34D98F004EB35B /* screens.c in Sources */,
-				7AB4CEB31C362C6D005A04A7 /* mach_gettime.c in Sources */,
 				7AD810CF1C34D98F004EB35B /* main.c in Sources */,
 				7AD810D41C34D98F004EB35B /* udp.c in Sources */,
 				7AD810CD1C34D98F004EB35B /* lcdmatch.c in Sources */,
